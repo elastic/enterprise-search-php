@@ -1,8 +1,0 @@
-{
-  "gitUserId": "elastic",
-  "gitRepoId": "enterprise-search-php",
-  "artifactVersion": "1.0.0",
-  "invokerPackage": "Elastic\\EnterpriseSearch\\Client",
-  "helpUrl": "https://discuss.elastic.co/c/enterprise-search",
-  "copyright": "© [Elastic](https://github.com/elastic)"
-}

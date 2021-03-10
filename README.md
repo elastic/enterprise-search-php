@@ -1,14 +1,13 @@
-<p align="center"><img src="https://github.com/elastic/enterprise-search-php/blob/master/logo-enterprise-search.png?raw=true" alt="Elastic App Search Logo"></p>
+<p align="center"><img src="https://github.com/elastic/enterprise-search-php/blob/master/logo-enterprise-search.png?raw=true" alt="Elastic Enterprise Search Logo"></p>
 
-<p align="center"><a href="https://circleci.com/gh/elastic/enterprise-search-php"><img src="https://circleci.com/gh/swiftype/swiftype-app-search-php.svg?style=svg&circle-token=c5aa66b0ee683b0f485c414eb6554837c29cc150" alt="CircleCI buidl"></a></p>
 
-> A first-party PHP client to interface with [Elastic Enterpise Search](https://www.elastic.co/fr/products/enterprise-search).
+> A first-party PHP client to interface with [Elastic Enterpise Search](https://www.elastic.co/enterprise-search)
+including [Elastic App Search](https://www.elastic.co/app-search/) and [Elastic Workplace Search](https://www.elastic.co/workplace-search).
 
 ## Contents
 
 - [Getting started](#getting-started-)
 - [Usage](#usage)
-- [Development](#development)
 - [FAQ](#faq-)
 - [Contribute](#contribute-)
 - [License](#license-)
@@ -17,7 +16,7 @@
 
 ## Getting started 🐣
 
-Using this client assumes that you have a [Enterprise Search](https://www.elastic.co/fr/products/enterprise-search) server installed and running.
+Using this client assumes that you have a [Enterprise Search](https://www.elastic.co/enterprise-search) server installed and running.
 
 You can install the client in your project by using composer:
 
@@ -39,31 +38,7 @@ composer require elastic/enterprise-search
 
 ### Clients methods
 
-Method      | Description | Documentation
-------------|-------------|--------------
-**`addUserPermissions`**| adds user permissions<br/> <br/> **Parameters :** <br />  - `$contentSourceKey` (required) <br />   - `$user` (required) <br />   - `$permissions` (required) <br/>
-**`deleteDocuments`**| destroys documents<br/> <br/> **Parameters :** <br />  - `$contentSourceKey` (required) <br />   - `$documentIds` (required) <br/>
-**`getUserPermissions`**| shows user permissions<br/> <br/> **Parameters :** <br />  - `$contentSourceKey` (required) <br />   - `$user` (required) <br/>
-**`indexDocuments`**| creates documents<br/> <br/> **Parameters :** <br />  - `$contentSourceKey` (required) <br />   - `$documents` (required) <br/>
-**`listAllPermissions`**| lists permissions<br/> <br/> **Parameters :** <br />  - `$contentSourceKey` (required) <br />   - `$currentPage`<br />   - `$pageSize`<br/>
-**`removeUserPermissions`**| removes user permissions<br/> <br/> **Parameters :** <br />  - `$contentSourceKey` (required) <br />   - `$user` (required) <br />   - `$permissionsObject` (required) <br/>
-**`updateUserPermissions`**| updates user permissions<br/> <br/> **Parameters :** <br />  - `$contentSourceKey` (required) <br />   - `$user` (required) <br />   - `$permissions` (required) <br/>
-
-## Development
-
-Code for the endpoints is generated automatically using a custom version of [OpenAPI Generator](https://github.com/openapitools/openapi-generator).
-
-To regenerate endpoints, use the docker laucher packaged in `vendor/bin`:
-
-```bash
-./vendor/bin/elastic-openapi-codegen.sh
-```
-
-The custom generator will be built and launched using the following Open API spec file : `resources/api/api-spec.yml`.
-
-You can then commit and PR the modified api-spec file and your endpoints code files.
-
-The client class and readme may be changed in some cases. Do not forget to include them in your commit!
+**TODO**
 
 ## FAQ 🔮
 
@@ -86,5 +61,4 @@ We welcome contributors to the project. Before you begin, a couple notes...
 
 [Apache 2.0](https://github.com/elastic/enterprise-search-php/blob/master/LICENSE) © [Elastic](https://github.com/elastic)
 
-Thank you to all the [contributors](https://github.com/elastic/enterprise-search-php/graphs/contributors)!
 
