@@ -26,7 +26,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class Client
 {
-    const VERSION = '7.12beta1';
+    const VERSION = '7.12.0beta1';
 
     use EndpointsTrait;
 
