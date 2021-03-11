@@ -18,6 +18,9 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 
+/**
+ * @internal
+ */
 class AppStats
 {
 	/** @var int */

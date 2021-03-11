@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieve current schema for the engine
+ * @internal
  */
 class GetSchema extends Request
 {

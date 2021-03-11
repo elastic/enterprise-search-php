@@ -18,6 +18,9 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 
+/**
+ * @internal
+ */
 class SearchPageParam
 {
 	/** @var int */

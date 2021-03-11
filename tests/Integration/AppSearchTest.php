@@ -17,6 +17,7 @@ namespace Elastic\EnterpriseSearch\Tests\Request;
 use Elastic\EnterpriseSearch\Client;
 use Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\AppSearch\Schema;
+use Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -24,6 +25,16 @@ use PHPUnit\Framework\TestCase;
  */
 final class AppSearchTest extends TestCase
 {
+    /**
+     * @var Endpoints
+     */
+    private $appSearch;
+
+    /**
+     * @var Client
+     */
+    private $client;
+
     public function setUp(): void
     {
         if (!getenv('ENTERPRISE_SEARCH_URL')) {

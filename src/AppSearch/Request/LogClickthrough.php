@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Send data about clicked results
+ * @internal
  */
 class LogClickthrough extends Request
 {

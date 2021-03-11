@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Deletes a list of documents from a custom content source
+ * @internal
  */
 class DeleteDocuments extends Request
 {

@@ -18,19 +18,22 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 
+/**
+ * @internal
+ */
 class Timer
 {
-	/** @var number */
+	/** @var float */
 	public $sum;
 
-	/** @var number */
+	/** @var float */
 	public $max;
 
-	/** @var number */
+	/** @var float */
 	public $mean;
 
 
-	public function __construct(\number $sum, \number $max, \number $mean)
+	public function __construct(float $sum, float $max, float $mean)
 	{
 		$this->sum = $sum;
 		$this->max = $max;

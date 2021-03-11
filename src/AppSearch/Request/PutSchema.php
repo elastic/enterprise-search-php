@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Update schema for the current engine
+ * @internal
  */
 class PutSchema extends Request
 {

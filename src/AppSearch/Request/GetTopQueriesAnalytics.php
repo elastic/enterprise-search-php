@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Returns queries analytics by usage count
+ * @internal
  */
 class GetTopQueriesAnalytics extends Request
 {

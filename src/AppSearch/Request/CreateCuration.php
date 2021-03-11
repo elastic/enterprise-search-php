@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Create a new curation
+ * @internal
  */
 class CreateCuration extends Request
 {

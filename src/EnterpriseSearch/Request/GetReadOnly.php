@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Get the read-only flag's state
+ * @internal
  */
 class GetReadOnly extends Request
 {

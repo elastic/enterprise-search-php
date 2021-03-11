@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ExternalIdentity;
 
 /**
  * Adds a new external identity
+ * @internal
  */
 class CreateExternalIdentity extends Request
 {

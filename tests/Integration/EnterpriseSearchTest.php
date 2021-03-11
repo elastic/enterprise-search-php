@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\Tests\Request;
 
+use Elastic\EnterpriseSearch\AppSearch\Endpoints;
 use Elastic\EnterpriseSearch\Client;
 use Elastic\EnterpriseSearch\EnterpriseSearch\Request;
 use Elastic\EnterpriseSearch\EnterpriseSearch\Schema\ReadOnlyState;
@@ -24,6 +25,16 @@ use PHPUnit\Framework\TestCase;
  */
 final class EnterpriseSearchTest extends TestCase
 {
+    /**
+     * @var Endpoints
+     */
+    private $enterpriseSearch;
+
+    /**
+     * @var Client
+     */
+    private $client;
+
     public function setUp(): void
     {
         if (!getenv('ENTERPRISE_SEARCH_URL')) {
@@ -37,18 +48,21 @@ final class EnterpriseSearchTest extends TestCase
         }
         $this->client = new Client([
             'host'     => getenv('ENTERPRISE_SEARCH_URL'),
-            'username' => getenv('ENTERPRISE_SEARCH_USER'),
-            'password' => getenv('ENTERPRISE_SEARCH_PASSWORD')
+            'enterprise-search' => [
+                'username' => getenv('ENTERPRISE_SEARCH_USER'),
+                'password' => getenv('ENTERPRISE_SEARCH_PASSWORD')
+            ]
         ]);
+        $this->enterpriseSearch = $this->client->enterpriseSearch();
     }
 
     /**
-     * @covers Elastic\EnterpriseSearch\Client::getHealth
+     * @covers Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints::getHealth
      * @covers Elastic\EnterpriseSearch\EnterpriseSearch\Request\GetHealth
      */
     public function testGetHealth()
     {
-        $result = $this->client->getHealth(new Request\GetHealth);
+        $result = $this->enterpriseSearch->getHealth(new Request\GetHealth);
         
         $this->assertTrue(isset($result['name']));
         $this->assertTrue(isset($result['version']));
@@ -59,23 +73,23 @@ final class EnterpriseSearchTest extends TestCase
     }
 
     /**
-     * @covers Elastic\EnterpriseSearch\Client::getReadOnly
+     * @covers Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints::getReadOnly
      * @covers Elastic\EnterpriseSearch\EnterpriseSearch\Request\GetReadOnly
      */
     public function testGetReadOnly()
     {
-        $result = $this->client->getReadOnly(new Request\GetReadOnly);
+        $result = $this->enterpriseSearch->getReadOnly(new Request\GetReadOnly);
         
         $this->assertTrue(isset($result['enabled']));
     }
 
     /**
-     * @covers Elastic\EnterpriseSearch\Client::getStats
+     * @covers Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints::getStats
      * @covers Elastic\EnterpriseSearch\EnterpriseSearch\Request\GetStats 
      */
     public function testGetStats()
     {
-        $result = $this->client->getStats(new Request\GetStats);
+        $result = $this->enterpriseSearch->getStats(new Request\GetStats);
 
         $this->assertTrue(isset($result['app']));
         $this->assertTrue(isset($result['queues']));
@@ -83,12 +97,12 @@ final class EnterpriseSearchTest extends TestCase
     }
 
     /**
-     * @covers Elastic\EnterpriseSearch\Client::getVersion
+     * @covers Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints::getVersion
      * @covers Elastic\EnterpriseSearch\EnterpriseSearch\Request\GetStats
      */
     public function testGetVersion()
     {
-        $result = $this->client->getVersion(new Request\GetVersion);
+        $result = $this->enterpriseSearch->getVersion(new Request\GetVersion);
         
         $this->assertTrue(isset($result['number']));
         $this->assertTrue(isset($result['build_hash']));
@@ -96,12 +110,12 @@ final class EnterpriseSearchTest extends TestCase
     }
 
     /**
-     * @covers Elastic\EnterpriseSearch\Client::getVersion
+     * @covers Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints::getVersion
      * @covers Elastic\EnterpriseSearch\EnterpriseSearch\Request\GetStats
      */
     public function testPutReadOnly()
     {
-        $result = $this->client->putReadOnly(
+        $result = $this->enterpriseSearch->putReadOnly(
             new Request\PutReadOnly(
                 new ReadOnlyState(true)
             )
@@ -109,7 +123,7 @@ final class EnterpriseSearchTest extends TestCase
         
         $this->assertTrue($result['enabled']);
 
-        $result = $this->client->putReadOnly(
+        $result = $this->enterpriseSearch->putReadOnly(
             new Request\PutReadOnly(
                 new ReadOnlyState(false)
             )

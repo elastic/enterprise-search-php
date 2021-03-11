@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Get information about the resource usage of the application, the state of different internal queues, etc.
+ * @internal
  */
 class GetStats extends Request
 {

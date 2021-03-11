@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Create a new synonym set
+ * @internal
  */
 class CreateSynonymSet extends Request
 {

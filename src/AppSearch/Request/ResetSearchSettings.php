@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Reset search settings for the engine
+ * @internal
  */
 class ResetSearchSettings extends Request
 {

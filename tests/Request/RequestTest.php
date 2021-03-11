@@ -20,6 +20,11 @@ use Psr\Http\Message\RequestInterface;
 
 final class RequestTest extends TestCase
 {
+    /**
+     * @var Request
+     */
+    private $request;
+
     public function setUp(): void
     {
         $this->request = new Request;

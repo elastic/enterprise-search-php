@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Get version information for this server
+ * @internal
  */
 class GetVersion extends Request
 {

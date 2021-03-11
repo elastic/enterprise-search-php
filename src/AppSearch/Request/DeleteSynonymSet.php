@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Delete a synonym set by ID
+ * @internal
  */
 class DeleteSynonymSet extends Request
 {

@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Provide relevant query suggestions for incomplete queries
+ * @internal
  */
 class QuerySuggestion extends Request
 {

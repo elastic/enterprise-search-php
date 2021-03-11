@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Returns the number of clicks received by a document in descending order
+ * @internal
  */
 class GetTopClicksAnalytics extends Request
 {

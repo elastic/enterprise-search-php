@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieves one or more documents by ID
+ * @internal
  */
 class GetDocuments extends Request
 {

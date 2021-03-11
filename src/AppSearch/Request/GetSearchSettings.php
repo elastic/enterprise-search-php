@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieve current search settings for the engine
+ * @internal
  */
 class GetSearchSettings extends Request
 {

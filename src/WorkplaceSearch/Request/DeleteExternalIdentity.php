@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Deletes an external identity
+ * @internal
  */
 class DeleteExternalIdentity extends Request
 {

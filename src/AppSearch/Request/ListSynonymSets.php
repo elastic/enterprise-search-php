@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieve available synonym sets for the engine
+ * @internal
  */
 class ListSynonymSets extends Request
 {

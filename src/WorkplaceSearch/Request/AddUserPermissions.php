@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Adds one or more new permissions atop existing permissions
+ * @internal
  */
 class AddUserPermissions extends Request
 {

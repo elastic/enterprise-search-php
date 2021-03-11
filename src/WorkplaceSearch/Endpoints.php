@@ -23,9 +23,13 @@ use Elastic\Transport\Transport;
 
 /**
  * Workplace Search API
+ * @internal
  */
 class Endpoints
 {
+	private Transport $transport;
+
+
 	public function __construct(Transport $transport)
 	{
 		$this->transport = $transport;

@@ -18,6 +18,9 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
+/**
+ * @internal
+ */
 class GeoDistanceFilter
 {
 	/** @var */
@@ -26,11 +29,11 @@ class GeoDistanceFilter
 	/** @var */
 	public $center;
 
-	/** @var number */
+	/** @var float */
 	public $distance;
 
 
-	public function __construct($unit, $center, \number $distance)
+	public function __construct($unit, $center, float $distance)
 	{
 		$this->unit = $unit;
 		$this->center = $center;

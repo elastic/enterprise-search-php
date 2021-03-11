@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Update search settings for the engine
+ * @internal
  */
 class PutSearchSettings extends Request
 {

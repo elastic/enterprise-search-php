@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Lists all permissions for one user
+ * @internal
  */
 class GetUserPermissions extends Request
 {

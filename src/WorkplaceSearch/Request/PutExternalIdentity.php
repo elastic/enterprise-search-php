@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ExternalIdentity;
 
 /**
  * Updates an external identity
+ * @internal
  */
 class PutExternalIdentity extends Request
 {

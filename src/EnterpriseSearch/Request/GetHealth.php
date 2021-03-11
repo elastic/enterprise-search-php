@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Get information on the health of a deployment and basic statistics around resource usage
+ * @internal
  */
 class GetHealth extends Request
 {

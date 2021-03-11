@@ -18,6 +18,9 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
+/**
+ * @internal
+ */
 class BoostItem
 {
 	/** @var */
@@ -32,7 +35,7 @@ class BoostItem
 	/** @var string */
 	public $operation;
 
-	/** @var number */
+	/** @var float */
 	public $factor;
 
 	/** @var */

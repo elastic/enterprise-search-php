@@ -18,14 +18,24 @@ use ArrayIterator;
 use Elastic\EnterpriseSearch\Exception\ArrayAccessException;
 use Elastic\EnterpriseSearch\Response\Response;
 use Elastic\Transport\Exception\UnknownContentTypeException;
+use PHPUnit\Framework\MockObject\Builder\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use SimpleXMLElement;
 use stdClass;
 
 final class ResponseTest extends TestCase
 {
+    /**
+     * @var Stub
+     */
+    private $psr7Response;
+
+    /**
+     * @var Response
+     */
+    private $response;
+
     public function setUp(): void
     {
         $this->psr7Response = $this->createStub(ResponseInterface::class); 

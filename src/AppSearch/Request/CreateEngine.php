@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Creates a new engine
+ * @internal
  */
 class CreateEngine extends Request
 {

@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Delete documents by ID
+ * @internal
  */
 class DeleteDocuments extends Request
 {

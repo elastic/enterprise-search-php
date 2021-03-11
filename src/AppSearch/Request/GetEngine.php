@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieves an engine by name
+ * @internal
  */
 class GetEngine extends Request
 {

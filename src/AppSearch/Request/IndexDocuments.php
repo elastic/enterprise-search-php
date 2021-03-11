@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Create or update documents
+ * @internal
  */
 class IndexDocuments extends Request
 {

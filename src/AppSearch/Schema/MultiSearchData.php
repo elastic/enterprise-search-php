@@ -18,6 +18,9 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 
+/**
+ * @internal
+ */
 class MultiSearchData
 {
 	/** @var array */
@@ -25,7 +28,7 @@ class MultiSearchData
 
 
 	/**
-	 * @param SearchRequestParams[] $queries
+	 * @param object[] $queries
 	 */
 	public function __construct(array $queries)
 	{

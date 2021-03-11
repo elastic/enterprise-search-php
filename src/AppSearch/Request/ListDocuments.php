@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * List all available documents with optional pagination support
+ * @internal
  */
 class ListDocuments extends Request
 {

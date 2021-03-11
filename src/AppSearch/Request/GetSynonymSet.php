@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieve a synonym set by ID
+ * @internal
  */
 class GetSynonymSet extends Request
 {

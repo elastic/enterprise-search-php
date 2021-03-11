@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Returns the number of clicks and total number of queries over a period
+ * @internal
  */
 class GetCountAnalytics extends Request
 {

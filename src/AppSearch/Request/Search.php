@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Allows you to search over, facet and filter your data
+ * @internal
  */
 class Search extends Request
 {

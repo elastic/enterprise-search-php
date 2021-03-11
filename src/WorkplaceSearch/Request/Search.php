@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\SearchApiQuery;
 
 /**
  * Search across available sources with various query tuning options
+ * @internal
  */
 class Search extends Request
 {

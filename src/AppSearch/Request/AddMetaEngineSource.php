@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Add a source engine to an existing meta engine
+ * @internal
  */
 class AddMetaEngineSource extends Request
 {

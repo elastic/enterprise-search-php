@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieves an external identity
+ * @internal
  */
 class GetExternalIdentity extends Request
 {

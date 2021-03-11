@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Run several search in the same request
+ * @internal
  */
 class MultiSearch extends Request
 {

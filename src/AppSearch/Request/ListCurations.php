@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieve available curations for the engine
+ * @internal
  */
 class ListCurations extends Request
 {

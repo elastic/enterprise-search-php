@@ -18,6 +18,9 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
+/**
+ * @internal
+ */
 class MetaPage
 {
 	/** @var object */

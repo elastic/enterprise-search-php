@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Partial update of documents
+ * @internal
  */
 class PutDocuments extends Request
 {

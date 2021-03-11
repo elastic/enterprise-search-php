@@ -23,11 +23,15 @@ use Elastic\Transport\Transport;
 
 /**
  * Elastic App Search API
+ * @internal
  *
  * @see https://www.elastic.co/guide/en/app-search/current/index.html
  */
 class Endpoints
 {
+	private Transport $transport;
+
+
 	public function __construct(Transport $transport)
 	{
 		$this->transport = $transport;

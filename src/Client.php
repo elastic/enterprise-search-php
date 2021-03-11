@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace Elastic\EnterpriseSearch;
 
 use Elastic\EnterpriseSearch\AppSearch\Endpoints as AppEndpoints;
-use Elastic\EnterpriseSearch\EnterpriseSearch\EndpointsTrait;
+use Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints as EnterpriseEndpoints;
 use Elastic\EnterpriseSearch\Exception\InvalidParameterException;
 use Elastic\EnterpriseSearch\Exception\MissingParameterException;
 use Elastic\EnterpriseSearch\WorkplaceSearch\Endpoints as WorkplaceEndpoints;
@@ -27,8 +27,6 @@ use Psr\Http\Message\ResponseInterface;
 class Client
 {
     const VERSION = '7.12.0beta1';
-
-    use EndpointsTrait;
 
     /**
      * @var array
@@ -49,6 +47,11 @@ class Client
      * @var WorkplaceEndpoints
      */
     private $workplaceSearch;
+
+    /**
+     * @var EnterpriseEndpoints
+     */
+    private $enterpriseSearch;
 
     public function __construct(array $config)
     {
@@ -85,9 +88,6 @@ class Client
      */
     private function initTransport(Transport $transport, array $config): void
     {
-        if (isset($config['username'])) {
-            $transport->setUserInfo($config['username'], $config['password'] ?? null);
-        }
         if (isset($config['headers'])) {
             if (!is_array($config['headers'])) {
                 throw new InvalidParameterException('The headers parameter must be an array');
@@ -103,24 +103,48 @@ class Client
         $transport->setHeader('Accept-Encoding', 'gzip');
     }
 
+    public function enterpriseSearch(): EnterpriseEndpoints
+    {
+        if (!isset($this->enterpriseSearch)) {
+            if (!isset($this->config['enterprise-search']['username'])) {
+                throw new MissingParameterException(
+                    'The [\'enterprise-search\'][\'username\'] parameter is missing. ' .
+                    'You need to pass it in Client::_construct().'
+                );
+            }
+            if (!isset($this->config['enterprise-search']['password'])) {
+                throw new MissingParameterException(
+                    'The [\'enterprise-search\'][\'password\'] parameter is missing. ' .
+                    'You need to pass it in Client::_construct().'
+                );
+            }
+            $transport = clone($this->transport);
+            $transport->setUserInfo(
+                $this->config['enterprise-search']['username'], 
+                $this->config['enterprise-search']['password']
+            );
+            $this->enterpriseSearch = new EnterpriseEndpoints($transport);
+        }
+        return $this->enterpriseSearch;
+    }
+
     /**
      * Returns the App Search instance endpoints
      */
-    public function appSearch(array $config = []): AppEndpoints
+    public function appSearch(): AppEndpoints
     {
         if (!isset($this->appSearch)) {
-            if (!isset($this->config['app-search']['api-key']) && !isset($config['api-key'])) {
+            if (!isset($this->config['app-search']['api-key'])) {
                 throw new MissingParameterException(
-                    'The api-key parameter is missing. ' .
-                    'You can pass it in Client::appSearch() or in Client::_construct() using ["app-search"]["api-key"]'
+                    'The [\'app-search\'][\'api-key\'] parameter is missing. ' .
+                    'You need to pass it in Client::_construct().'
                 );
             }
             $transport = clone($this->transport);
             // reset the UserInfo for Basic authentication
             $transport->setUserInfo('');
-            $apiKey = $config['api-key'] ?? $this->config['app-search']['api-key'];
             // set the authoriazione header
-            $transport->setHeader('Authorization', sprintf("Bearer %s", $apiKey));
+            $transport->setHeader('Authorization', sprintf("Bearer %s", $this->config['app-search']['api-key']));
             $this->appSearch = new AppEndpoints($transport);
         }
         return $this->appSearch;
@@ -129,39 +153,22 @@ class Client
     /**
      * Returns the Workplace Search instance endpoints
      */
-    public function workplaceSearch(array $config = []): WorkplaceEndpoints
+    public function workplaceSearch(): WorkplaceEndpoints
     {
         if (!isset($this->workplaceSearch)) {
-            if (!isset($this->config['workplace-search']['token']) && !isset($config['token'])) {
+            if (!isset($this->config['workplace-search']['token'])) {
                 throw new MissingParameterException(
-                    'The token parameter is missing. ' .
-                    'You can pass it in Client::workplaceSearch() or in Client::_construct() using ["workplace-search"]["token"]'
+                    'The [\'workplace-search\'][\'token\'] parameter is missing. ' .
+                    'You need to pass it in Client::_construct()'
                 );
             }
             $transport = clone($this->transport);
             // reset the UserInfo for Basic authentication
             $transport->setUserInfo('');
-            $token = $config['token'] ?? $this->config['workplace-search']['token'];
             // set the authoriazione header
-            $transport->setHeader('Authorization', sprintf("Bearer %s", $token));
+            $transport->setHeader('Authorization', sprintf("Bearer %s", $this->config['workplace-search']['token']));
             $this->workplaceSearch = new WorkplaceEndpoints($transport);
         }
         return $this->workplaceSearch;
     }
-
-    /**
-     * Returns the last request, as PSR-7 message
-     */
-    public function getLastRequest(): RequestInterface
-    {
-        return $this->transport->getLastRequest();
-    }
-
-    /**
-     * Returns the last response, as PSR-7 message
-     */
-    public function getLastResponse(): ResponseInterface
-    {
-        return $this->transport->getLastResponse();
-    } 
 }

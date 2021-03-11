@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieves all engines with optional pagination support
+ * @internal
  */
 class ListEngines extends Request
 {

@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Elastic\EnterpriseSearch\Tests\Request;
 
 use Elastic\EnterpriseSearch\Client;
+use Elastic\EnterpriseSearch\WorkplaceSearch\Endpoints;
 use Elastic\EnterpriseSearch\WorkplaceSearch\Request;
 use Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 use PHPUnit\Framework\TestCase;
@@ -24,6 +25,21 @@ use PHPUnit\Framework\TestCase;
  */
 final class WorkplaceSearchTest extends TestCase
 {
+    /**
+     * @var Endpoints
+     */
+    private $workplaceSearch;
+
+    /**
+     * @var Client
+     */
+    private $client;
+    
+    /**
+     * @var string
+     */
+    private $id;
+
     public function setUp(): void
     {
         if (!getenv('ENTERPRISE_SEARCH_URL')) {
@@ -77,7 +93,5 @@ final class WorkplaceSearchTest extends TestCase
         $this->assertTrue(isset($result['results']));
         $this->assertEquals($doc->id, $result['results'][0]['id']);
         $this->assertTrue($result['results'][0]['success']);
-    }
-
-    
+    }    
 }

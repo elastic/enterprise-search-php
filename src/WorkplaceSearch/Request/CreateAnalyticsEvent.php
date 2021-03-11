@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\AnalyticsEvent;
 
 /**
  * Capture click and feedback analytic events
+ * @internal
  */
 class CreateAnalyticsEvent extends Request
 {

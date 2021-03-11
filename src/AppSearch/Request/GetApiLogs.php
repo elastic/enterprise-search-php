@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * The API Log displays API request and response data at the Engine level
+ * @internal
  */
 class GetApiLogs extends Request
 {

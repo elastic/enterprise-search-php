@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Update a synonym set by ID
+ * @internal
  */
 class PutSynonymSet extends Request
 {

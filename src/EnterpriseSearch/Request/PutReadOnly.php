@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Update the read-only flag's state
+ * @internal
  */
 class PutReadOnly extends Request
 {

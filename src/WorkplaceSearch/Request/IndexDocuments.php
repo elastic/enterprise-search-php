@@ -23,6 +23,7 @@ use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\Document;
 
 /**
  * Indexes one or more new documents into a custom content source, or updates one or more existing documents
+ * @internal
  */
 class IndexDocuments extends Request
 {

@@ -22,6 +22,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Removes one or more permissions from an existing set of permissions
+ * @internal
  */
 class RemoveUserPermissions extends Request
 {
