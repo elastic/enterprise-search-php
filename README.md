@@ -31,7 +31,7 @@ use Elastic\EnterpriseSearch\Client;
 use Elastic\EnterpriseSearch\EnterpriseSearch\Request;
 
 $client = new Client([
-    'host'     => 'http://localhost:3002',
+    'host' => 'http://localhost:3002',
     'enterprise-search' => [
         'username' => '<insert here the username>',
         'password' => '<insert here the password>'

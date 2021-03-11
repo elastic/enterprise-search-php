@@ -1,5 +1,5 @@
 {
-    "name" : "elastic/enterprise-search-php",
+    "name" : "elastic/enterprise-search",
     "description" : "Enterprise Search official PHP client",
     "homepage": "https://github.com/elastic/enterprise-search-php",
     "keywords" : [
