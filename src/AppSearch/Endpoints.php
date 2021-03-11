@@ -29,7 +29,8 @@ use Elastic\Transport\Transport;
  */
 class Endpoints
 {
-	private Transport $transport;
+	/** @var Transport */
+	private $transport;
 
 
 	public function __construct(Transport $transport)
