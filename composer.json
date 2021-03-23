@@ -39,8 +39,14 @@
         "test": [
             "vendor/bin/phpunit"
         ],
-        "integration-test": [
-            "vendor/bin/phpunit -c phpunit-integration.xml"
+        "test-enterprise": [
+            "vendor/bin/phpunit -c phpunit-integration-enterprise.xml"
+        ],
+        "test-app-search": [
+            "vendor/bin/phpunit -c phpunit-integration-app-search.xml"
+        ],
+        "test-app-workplace": [
+            "vendor/bin/phpunit -c phpunit-integration-workplace.xml"
         ],
         "phpstan": [
             "vendor/bin/phpstan analyse src tests"

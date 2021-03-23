@@ -18,8 +18,8 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch;
 
+use Elastic\EnterpriseSearch\AbstractEndpoints;
 use Elastic\EnterpriseSearch\Response\Response;
-use Elastic\Transport\Transport;
 
 /**
  * Elastic App Search API
@@ -27,18 +27,8 @@ use Elastic\Transport\Transport;
  *
  * @see https://www.elastic.co/guide/en/app-search/current/index.html
  */
-class Endpoints
+class Endpoints extends AbstractEndpoints
 {
-	/** @var Transport */
-	private $transport;
-
-
-	public function __construct(Transport $transport)
-	{
-		$this->transport = $transport;
-	}
-
-
 	/**
 	 * Retrieves all engines with optional pagination support
 	 *

@@ -18,10 +18,11 @@ use Elastic\EnterpriseSearch\Client;
 use Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\AppSearch\Schema;
 use Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints;
+use Elastic\Transport\Transport;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @group integration
+ * @group app-search
  */
 final class AppSearchTest extends TestCase
 {
@@ -50,6 +51,14 @@ final class AppSearchTest extends TestCase
             ]
         ]);
         $this->appSearch = $this->client->appSearch();
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::getTransport
+     */
+    public function testGetTransport()
+    {
+        $this->assertInstanceOf(Transport::class, $this->appSearch->getTransport());
     }
 
     /**
@@ -86,14 +95,79 @@ final class AppSearchTest extends TestCase
      */
     public function testIndexDocuments()
     {
-        $doc = new Schema\Document('id1');
-        $doc->foo = 'bar';
+        $id = 'park_death-valley';
+        $doc = new Schema\Document($id);
+        $doc->description = 'Death Valley is the hottest, lowest, and driest place in the United States. Daytime temperatures have topped 130 °F (54 °C) and it is home to Badwater Basin, the lowest elevation in North America. The park contains canyons, badlands, sand dunes, and mountain ranges, while more than 1000 species of plants grow in this geologic graben. Additional points of interest include salt flats, historic mines, and springs.';
+        $doc->states = [
+            'California',
+            'Nevada'
+        ];
+        $doc->title = 'Death Valley';
+        $doc->visitors = 1296283;
+        $doc->world_heritage_site = false;
 
         $result = $this->appSearch->indexDocuments(new Request\IndexDocuments('test', [$doc]));
         
         $this->assertCount(1, $result->asArray());
-        $this->assertEquals('id1', $result[0]['id']);
+        $this->assertEquals($id, $result[0]['id']);
         $this->assertEmpty($result[0]['errors']);
+        
+        // Sleep some times because the index is asynchronously
+        // There will be a processing delay before they are available to your Engine
+        sleep(5);
+
+        return $id;
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::getDocuments
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\GetDocuments
+     * @depends testIndexDocuments
+     */
+    public function testGetDocuments(string $id)
+    {
+        $result = $this->appSearch->getDocuments(new Request\GetDocuments('test', [$id]));
+        
+        $this->assertCount(1, $result->asArray());
+        $this->assertEquals($result[0]['id'], $id);
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::search
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\Search
+     * @depends testIndexDocuments
+     */
+    public function testSearch(string $id)
+    {
+        $search = new Schema\SearchRequestParams();
+        $search->query = 'valley';
+
+        $result = $this->appSearch->search(
+            new Request\Search('test', $search)
+        );
+        
+        $this->assertCount(1, $result['results']);
+        $this->assertEquals($id, $result['results'][0]['id']['raw']);
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::search
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\Search
+     * @depends testIndexDocuments
+     */
+    public function testSearchFields(string $id)
+    {
+        $search = new Schema\SearchRequestParams();
+        $search->query = 'valley';
+        $search->search_fields = new Schema\SearchFields;
+        $search->search_fields->title = new Schema\SimpleObject;
+        
+        $result = $this->appSearch->search(
+            new Request\Search('test', $search)
+        );
+        
+        $this->assertCount(1, $result['results']);
+        $this->assertEquals($id, $result['results'][0]['id']['raw']);
     }
 
     /**
@@ -101,12 +175,12 @@ final class AppSearchTest extends TestCase
      * @covers Elastic\EnterpriseSearch\AppSearch\Request\DeleteDocuments
      * @depends testIndexDocuments
      */
-    public function testDeleteDocuments()
+    public function testDeleteDocuments(string $id)
     {
-        $result = $this->appSearch->deleteDocuments(new Request\DeleteDocuments('test', ['id1']));
+        $result = $this->appSearch->deleteDocuments(new Request\DeleteDocuments('test', [$id]));
 
         $this->assertCount(1, $result->asArray());
-        $this->assertEquals('id1', $result[0]['id']);
+        $this->assertEquals($id, $result[0]['id']);
         $this->assertTrue($result[0]['deleted']);
     }
 

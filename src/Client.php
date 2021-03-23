@@ -141,8 +141,6 @@ class Client
                 );
             }
             $transport = clone($this->transport);
-            // reset the UserInfo for Basic authentication
-            $transport->setUserInfo('');
             // set the authoriazione header
             $transport->setHeader('Authorization', sprintf("Bearer %s", $this->config['app-search']['api-key']));
             $this->appSearch = new AppEndpoints($transport);
@@ -163,8 +161,6 @@ class Client
                 );
             }
             $transport = clone($this->transport);
-            // reset the UserInfo for Basic authentication
-            $transport->setUserInfo('');
             // set the authoriazione header
             $transport->setHeader('Authorization', sprintf("Bearer %s", $this->config['workplace-search']['token']));
             $this->workplaceSearch = new WorkplaceEndpoints($transport);

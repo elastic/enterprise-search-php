@@ -10,7 +10,7 @@
     </testsuites>
     <groups>
         <include>
-            <group>integration</group>
+            <group>enterprise</group>
         </include>
     </groups>
 </phpunit>

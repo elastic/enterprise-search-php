@@ -21,7 +21,7 @@ use Elastic\EnterpriseSearch\EnterpriseSearch\Schema\ReadOnlyState;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @group integration
+ * @group enterprise
  */
 final class EnterpriseSearchTest extends TestCase
 {

@@ -9,10 +9,8 @@
         </testsuite>
     </testsuites>
     <groups>
-        <exclude>
-            <group>enterprise</group>
+        <include>
             <group>app-search</group>
-            <group>workplace</group>
-        </exclude>
+        </include>
     </groups>
 </phpunit>

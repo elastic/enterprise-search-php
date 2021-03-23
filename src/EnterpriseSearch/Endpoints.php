@@ -18,25 +18,15 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\EnterpriseSearch;
 
+use Elastic\EnterpriseSearch\AbstractEndpoints;
 use Elastic\EnterpriseSearch\Response\Response;
-use Elastic\Transport\Transport;
 
 /**
  * Enterprise Search API
  * @internal
  */
-class Endpoints
+class Endpoints extends AbstractEndpoints
 {
-	/** @var Transport */
-	private $transport;
-
-
-	public function __construct(Transport $transport)
-	{
-		$this->transport = $transport;
-	}
-
-
 	/**
 	 * Get information on the health of a deployment and basic statistics around resource usage
 	 *

@@ -18,25 +18,15 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\WorkplaceSearch;
 
+use Elastic\EnterpriseSearch\AbstractEndpoints;
 use Elastic\EnterpriseSearch\Response\Response;
-use Elastic\Transport\Transport;
 
 /**
  * Workplace Search API
  * @internal
  */
-class Endpoints
+class Endpoints extends AbstractEndpoints
 {
-	/** @var Transport */
-	private $transport;
-
-
-	public function __construct(Transport $transport)
-	{
-		$this->transport = $transport;
-	}
-
-
 	/**
 	 * Indexes one or more new documents into a custom content source, or updates one or more existing documents
 	 *

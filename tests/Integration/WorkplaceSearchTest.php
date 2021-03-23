@@ -21,7 +21,7 @@ use Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @group integration
+ * @group workplace
  */
 final class WorkplaceSearchTest extends TestCase
 {
