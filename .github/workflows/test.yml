@@ -43,7 +43,7 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Run static analysis
-      run: composer run-script test
+      run: composer run-script phpstan
 
     - name: Run unit test
       run: composer run-script test
