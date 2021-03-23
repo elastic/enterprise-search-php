@@ -84,6 +84,9 @@ class Request implements RequestInterface
         if (is_string($body)) {
             return $body;
         }
+        if (is_object($body)) {
+            $body = self::removeNullValues($body);
+        }
         $contentType = $this->headers['Content-Type'] ?? '';
         switch ($contentType) {
             case 'application/json':
@@ -104,5 +107,17 @@ class Request implements RequestInterface
     {
         $this->headers[$name] = $value;
         return $this;
+    }
+
+    public static function removeNullValues(object $object): object
+    {
+        foreach ($object as $prop => $value) {
+            if (is_null($value)) {
+                unset($object->$prop);
+            } elseif (is_object($value)) {
+                $object->$prop = self::removeNullValues($value);
+            }
+        }
+        return $object;
     }
 }
