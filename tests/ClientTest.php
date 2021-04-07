@@ -24,20 +24,14 @@ use Psr\Log\NullLogger;
 
 final class ClientTest extends TestCase
 {
-    public function testConstructWithEmptyConfig()
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testConstructWithNoConfig()
     {
-        $this->expectException(MissingParameterException::class);
-        $client = new Client([]);
+        $client = new Client();
     }
-
-    public function testConstructWithMissingHost()
-    {
-        $this->expectException(MissingParameterException::class);
-        $client = new Client([
-            'logger' => new NullLogger()
-        ]);
-    }
-    
+  
     /**
      * @doesNotPerformAssertions
      */
@@ -69,7 +63,7 @@ final class ClientTest extends TestCase
         $es = $client->enterpriseSearch();
     }
 
-    public function testEnterpriseSearchConstruct()
+    public function testEnterpriseSearchConstructWithGlobalConfig()
     {
         $client = new Client([
             'host' => 'http://localhost:3002',
@@ -80,6 +74,61 @@ final class ClientTest extends TestCase
         ]);
         $es = $client->enterpriseSearch();
         $this->assertInstanceOf(EnterpriseSearchEndpoints::class, $es);
+    }
+
+    public function testEnterpriseSearchConstructWithLocalConfig()
+    {
+        $client = new Client();
+        $es = $client->enterpriseSearch([
+            'host' => 'http://localhost:3002',
+            'username' => 'foo',
+            'password' => 'bar'
+        ]);
+        $this->assertInstanceOf(EnterpriseSearchEndpoints::class, $es);
+    }
+
+    public function testEnterpriseSearchConstructWithGlobalAndLocalConfig()
+    {
+        $client = new Client([
+            'host' => 'http://localhost:3002'
+        ]);
+        $es = $client->enterpriseSearch([
+            'username' => 'foo',
+            'password' => 'bar'
+        ]);
+        $this->assertInstanceOf(EnterpriseSearchEndpoints::class, $es);
+    }
+
+    public function testEnterpriseSearchOverrideHostGlobal()
+    {
+        $globalHost = 'http://localhost:3002';
+        $localHost  = 'http://localhost:3003';
+        $client = new Client([
+            'host' => $globalHost
+        ]);
+        $es = $client->enterpriseSearch([
+            'host' => $localHost,
+            'username' => 'foo',
+            'password' => 'bar'
+        ]);
+        $uri = (string) $es->getTransport()->getConnectionPool()->nextConnection()->getUri();
+        $this->assertEquals($localHost, $uri);
+    }
+
+    public function testEnterpriseSearchReturnNewObject()
+    {
+        $client = new Client();
+        $es1 = $client->enterpriseSearch([
+            'host' => 'http://localhost:3001',
+            'username' => 'foo',
+            'password' => 'bar'
+        ]);
+        $es2 = $client->enterpriseSearch([
+            'host' => 'http://localhost:3002',
+            'username' => 'faa',
+            'password' => 'baz'
+        ]);
+        $this->assertNotEquals($es1, $es2);
     }
 
     public function testAppSearchConstruct()

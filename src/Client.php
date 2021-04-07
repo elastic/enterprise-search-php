@@ -34,32 +34,39 @@ class Client
     private $config = [];
 
     /**
-     * @var Transport
+     * Set the global config for all the endpoints
+     *
+     * Example:
+     * $config = [
+     *     'host' => 'localhost:3200',
+     *     'enterprise-search' => [
+     *         'username' => 'insert username here',
+     *         'password' => 'insert password here'
+     *     ],
+     *     'app-search' => [
+     *         'api-key' => 'insert API key here'
+     *     ],
+     *     'workplace-search' => [
+     *         'token' => 'insert token here'
+     *     ]
+     * ];
      */
-    private $transport;
-
-    /**
-     * @var AppEndpoints
-     */
-    private $appSearch;
-
-    /**
-     * @var WorkplaceEndpoints
-     */
-    private $workplaceSearch;
-
-    /**
-     * @var EnterpriseEndpoints
-     */
-    private $enterpriseSearch;
-
-    public function __construct(array $config)
+    public function __construct(array $config = [])
     {
         $this->config = $config;
+    }
+
+    /**
+     * Build a Transport object using $config options
+     */
+    private function buildTransport(array $config): Transport
+    {
         $builder = TransportBuilder::create();
         $this->initBuilder($builder, $config);
-        $this->transport = $builder->build();
-        $this->initTransport($this->transport, $config);
+        $transport = $builder->build();
+        $this->initTransport($transport, $config);
+
+        return $transport;
     }
 
     /**
@@ -68,7 +75,11 @@ class Client
     private function initBuilder(TransportBuilder $builder, array $config): void
     {
         if (!isset($config['host'])) {
-            throw new MissingParameterException('You need to specify a host value');
+            throw new MissingParameterException(
+                'Host parameter is missing. You can pass as $config[\'host\'] ' .
+                'in Client::_construct($config), Client::enterpriseSearch($config), ' .
+                'Client::appSearch($config) or Client::workplaceSearch($config)'
+            );
         }
         if (isset($config['host'])) {
             $builder->setHosts([$config['host']]);
@@ -103,68 +114,81 @@ class Client
         $transport->setHeader('Accept-Encoding', 'gzip');
     }
 
-    public function enterpriseSearch(): EnterpriseEndpoints
+    /**
+     * Merge the subarray $part array in $global and merge the result with $config
+     */
+    private function mergeWithPart(array $global, array $config, string $part): array
     {
-        if (!isset($this->enterpriseSearch)) {
-            if (!isset($this->config['enterprise-search']['username'])) {
-                throw new MissingParameterException(
-                    'The [\'enterprise-search\'][\'username\'] parameter is missing. ' .
-                    'You need to pass it in Client::_construct().'
-                );
-            }
-            if (!isset($this->config['enterprise-search']['password'])) {
-                throw new MissingParameterException(
-                    'The [\'enterprise-search\'][\'password\'] parameter is missing. ' .
-                    'You need to pass it in Client::_construct().'
-                );
-            }
-            $transport = clone($this->transport);
-            $transport->setUserInfo(
-                $this->config['enterprise-search']['username'], 
-                $this->config['enterprise-search']['password']
-            );
-            $this->enterpriseSearch = new EnterpriseEndpoints($transport);
+        if (isset($global[$part])) {
+            $global = array_merge($global, $global[$part]);
+            unset($global[$part]);
         }
-        return $this->enterpriseSearch;
+        return array_merge($global, $config);
+    }
+
+    /**
+     * Returns the Enterprise Search instance endpoints
+     * You can override the global configuration using $config
+     */
+    public function enterpriseSearch(array $config = []): EnterpriseEndpoints
+    {
+        $merged = $this->mergeWithPart($this->config, $config, 'enterprise-search');
+        $transport = $this->buildTransport($merged);
+        if (!isset($merged['username'])) {
+            throw new MissingParameterException(
+                'Username parameter is missing. You can pass as $config[\'username\'] '.
+                'in Client::_construct($config) or Client::enterpriseSearch($config).'
+            );
+        }
+        if (!isset($merged['password'])) {
+            throw new MissingParameterException(
+                'Password parameter is missing. You can pass as $config[\'password\'] '.
+                'in Client::_construct($config) or Client::enterpriseSearch($config).'
+            );
+        }
+        $transport->setUserInfo($merged['username'], $merged['password']);
+        
+        return new EnterpriseEndpoints($transport);
     }
 
     /**
      * Returns the App Search instance endpoints
+     * You can override the global configuration using $config
      */
-    public function appSearch(): AppEndpoints
+    public function appSearch(array $config = []): AppEndpoints
     {
-        if (!isset($this->appSearch)) {
-            if (!isset($this->config['app-search']['api-key'])) {
-                throw new MissingParameterException(
-                    'The [\'app-search\'][\'api-key\'] parameter is missing. ' .
-                    'You need to pass it in Client::_construct().'
-                );
-            }
-            $transport = clone($this->transport);
-            // set the authoriazione header
-            $transport->setHeader('Authorization', sprintf("Bearer %s", $this->config['app-search']['api-key']));
-            $this->appSearch = new AppEndpoints($transport);
+        $merged = $this->mergeWithPart($this->config, $config, 'app-search');
+        $transport = $this->buildTransport($merged);
+        if (!isset($merged['api-key'])) {
+            throw new MissingParameterException(
+                'Api-key is missing. You can pass as $config[\'api-key\'] ' .
+                'in Client::_construct($config) or Client::appSearch($config).'
+            );
         }
-        return $this->appSearch;
+        // set the authoriazione header
+        $transport->setHeader('Authorization', sprintf("Bearer %s", $merged['api-key']));
+
+        return new AppEndpoints($transport);
     }
 
     /**
      * Returns the Workplace Search instance endpoints
+     * You can override the global configuration using $config
      */
-    public function workplaceSearch(): WorkplaceEndpoints
+    public function workplaceSearch(array $config = []): WorkplaceEndpoints
     {
-        if (!isset($this->workplaceSearch)) {
-            if (!isset($this->config['workplace-search']['token'])) {
-                throw new MissingParameterException(
-                    'The [\'workplace-search\'][\'token\'] parameter is missing. ' .
-                    'You need to pass it in Client::_construct()'
-                );
-            }
-            $transport = clone($this->transport);
-            // set the authoriazione header
-            $transport->setHeader('Authorization', sprintf("Bearer %s", $this->config['workplace-search']['token']));
-            $this->workplaceSearch = new WorkplaceEndpoints($transport);
+        $merged = $this->mergeWithPart($this->config, $config, 'workplace-search');
+        $transport = $this->buildTransport($merged);
+
+        if (!isset($merged['token'])) {
+            throw new MissingParameterException(
+                'Token parameter is missing. You can pass as $config[\'token\'] ' .
+                'in Client::_construct($config) or Client::workplaceSearch($config).'
+            );
         }
-        return $this->workplaceSearch;
+        // set the authoriazione header
+        $transport->setHeader('Authorization', sprintf("Bearer %s", $merged['token']));
+
+        return new WorkplaceEndpoints($transport);
     }
 }
