@@ -18,6 +18,10 @@ local.properties
 out/
 .idea_modules/
 .php_cs.cache
+.DS_Store
 
 ###  PHPUnit ###
 .phpunit.result.cache
+
+### Build Artefacts ###
+.ci/output
