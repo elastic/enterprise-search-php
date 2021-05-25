@@ -16,7 +16,7 @@ namespace Elastic\EnterpriseSearch\Exception;
 
 use RuntimeException;
 
-class InvalidParameterException extends RuntimeException
+class InvalidParameterException extends RuntimeException implements EnterpriseSearchInterface
 {
 
 }

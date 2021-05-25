@@ -21,46 +21,30 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 /**
  * @internal
  */
-class AnalyticsEvent
+class ContentSourceDisplay
 {
 	/** @var string */
-	public $type;
+	public $title_field;
 
 	/** @var string */
-	public $query_id;
-
-	/** @var int */
-	public $page;
+	public $url_field;
 
 	/** @var string */
-	public $content_source_id;
+	public $color;
 
 	/** @var string */
-	public $document_id;
-
-	/** @var int */
-	public $rank;
+	public $description_field;
 
 	/** @var string */
-	public $event;
+	public $subtitle_field;
 
-	/** @var int */
-	public $score;
+	/** @var array */
+	public $detail_fields;
 
 
-	public function __construct(
-		string $type,
-		string $query_id,
-		int $page,
-		string $content_source_id,
-		string $document_id,
-		int $rank
-	) {
-		$this->type = $type;
-		$this->query_id = $query_id;
-		$this->page = $page;
-		$this->content_source_id = $content_source_id;
-		$this->document_id = $document_id;
-		$this->rank = $rank;
+	public function __construct(string $title_field, string $url_field)
+	{
+		$this->title_field = $title_field;
+		$this->url_field = $url_field;
 	}
 }

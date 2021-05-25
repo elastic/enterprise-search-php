@@ -21,46 +21,30 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 /**
  * @internal
  */
-class AnalyticsEvent
+class ContentSourceUpdateDefinition
 {
 	/** @var string */
-	public $type;
+	public $name;
 
-	/** @var string */
-	public $query_id;
+	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
+	public $schema;
 
-	/** @var int */
-	public $page;
+	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
+	public $display;
 
-	/** @var string */
-	public $content_source_id;
-
-	/** @var string */
-	public $document_id;
-
-	/** @var int */
-	public $rank;
-
-	/** @var string */
-	public $event;
-
-	/** @var int */
-	public $score;
+	/** @var bool */
+	public $is_searchable;
 
 
 	public function __construct(
-		string $type,
-		string $query_id,
-		int $page,
-		string $content_source_id,
-		string $document_id,
-		int $rank
+		string $name,
+		ContentSourceSchema $schema,
+		ContentSourceDisplay $display,
+		bool $is_searchable
 	) {
-		$this->type = $type;
-		$this->query_id = $query_id;
-		$this->page = $page;
-		$this->content_source_id = $content_source_id;
-		$this->document_id = $document_id;
-		$this->rank = $rank;
+		$this->name = $name;
+		$this->schema = $schema;
+		$this->display = $display;
+		$this->is_searchable = $is_searchable;
 	}
 }

@@ -26,7 +26,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class Client
 {
-    const VERSION = '7.12.0beta2';
+    const VERSION = '7.13.0';
 
     /**
      * @var array
@@ -44,10 +44,10 @@ class Client
      *         'password' => 'insert password here'
      *     ],
      *     'app-search' => [
-     *         'api-key' => 'insert API key here'
+     *         'token' => 'insert token or API key here'
      *     ],
      *     'workplace-search' => [
-     *         'token' => 'insert token here'
+     *         'token' => 'insert token or API key here'
      *     ]
      * ];
      */
@@ -136,14 +136,12 @@ class Client
         $transport = $this->buildTransport($merged);
         if (!isset($merged['username'])) {
             throw new MissingParameterException(
-                'Username parameter is missing. You can pass as $config[\'username\'] '.
-                'in Client::_construct($config) or Client::enterpriseSearch($config).'
+                'You need to specify a username for Enterprise Search'
             );
         }
         if (!isset($merged['password'])) {
             throw new MissingParameterException(
-                'Password parameter is missing. You can pass as $config[\'password\'] '.
-                'in Client::_construct($config) or Client::enterpriseSearch($config).'
+                'You need to specify a password for Enterprise Search'
             );
         }
         $transport->setUserInfo($merged['username'], $merged['password']);
@@ -159,14 +157,16 @@ class Client
     {
         $merged = $this->mergeWithPart($this->config, $config, 'app-search');
         $transport = $this->buildTransport($merged);
-        if (!isset($merged['api-key'])) {
+    
+        if (isset($merged['username']) && isset($merged['password'])) {
+            $transport->setUserInfo($merged['username'], $merged['password']);
+        } elseif (isset($merged['token'])) {
+            $transport->setHeader('Authorization', sprintf("Bearer %s", $merged['token']));
+        } else {
             throw new MissingParameterException(
-                'Api-key is missing. You can pass as $config[\'api-key\'] ' .
-                'in Client::_construct($config) or Client::appSearch($config).'
+                'You need to specify a token (API key) or username/password for App Search'
             );
         }
-        // set the authoriazione header
-        $transport->setHeader('Authorization', sprintf("Bearer %s", $merged['api-key']));
 
         return new AppEndpoints($transport);
     }
@@ -180,14 +180,15 @@ class Client
         $merged = $this->mergeWithPart($this->config, $config, 'workplace-search');
         $transport = $this->buildTransport($merged);
 
-        if (!isset($merged['token'])) {
+        if (isset($merged['username']) && isset($merged['password'])) {
+            $transport->setUserInfo($merged['username'], $merged['password']);
+        } elseif (isset($merged['token'])) {
+            $transport->setHeader('Authorization', sprintf("Bearer %s", $merged['token']));
+        } else {
             throw new MissingParameterException(
-                'Token parameter is missing. You can pass as $config[\'token\'] ' .
-                'in Client::_construct($config) or Client::workplaceSearch($config).'
+                'You need to specify a token (API key) or username/password for Workplace Search'
             );
         }
-        // set the authoriazione header
-        $transport->setHeader('Authorization', sprintf("Bearer %s", $merged['token']));
 
         return new WorkplaceEndpoints($transport);
     }

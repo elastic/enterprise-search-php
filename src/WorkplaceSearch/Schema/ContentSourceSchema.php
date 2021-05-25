@@ -16,16 +16,11 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
 /**
  * @internal
  */
-class SearchSettings
+class ContentSourceSchema
 {
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SearchBoosts */
-	public $boosts;
-
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SearchFields */
-	public $search_fields;
 }

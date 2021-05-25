@@ -16,16 +16,19 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
 /**
  * @internal
  */
-class SearchSettings
+class RecordDeletedResponse
 {
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SearchBoosts */
-	public $boosts;
+	/** @var bool */
+	public $deleted;
 
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SearchFields */
-	public $search_fields;
+
+	public function __construct(bool $deleted)
+	{
+		$this->deleted = $deleted;
+	}
 }
