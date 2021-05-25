@@ -16,7 +16,10 @@ namespace Elastic\EnterpriseSearch\Exception;
 
 use Exception;
 
-class ArrayAccessException extends Exception implements EnterpriseSearchInterface
+/**
+ * HTTP server error with 5xx status code
+ */
+class ServerErrorResponseException extends Exception implements EnterpriseSearchInterface
 {
 
 }

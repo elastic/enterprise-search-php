@@ -16,16 +16,23 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+namespace Elastic\EnterpriseSearch\WorkplaceSearch\Request;
+
+use Elastic\EnterpriseSearch\Request\Request;
 
 /**
+ * Deletes a content source by ID
  * @internal
  */
-class SearchSettings
+class DeleteContentSource extends Request
 {
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SearchBoosts */
-	public $boosts;
-
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SearchFields */
-	public $search_fields;
+	/**
+	 * @param string $contentSourceId Unique ID for a Custom API source, provided upon creation of a Custom API Source
+	 */
+	public function __construct(string $contentSourceId)
+	{
+		$this->method = 'DELETE';
+		$content_source_id = urlencode($contentSourceId);
+		$this->path = "/api/ws/v1/sources/$content_source_id";
+	}
 }

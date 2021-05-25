@@ -16,12 +16,12 @@ namespace Elastic\EnterpriseSearch\Response;
 
 use ArrayAccess;
 use Elastic\EnterpriseSearch\Exception\ArrayAccessException;
+use Elastic\EnterpriseSearch\Exception\ClientErrorResponseException;
+use Elastic\EnterpriseSearch\Exception\ServerErrorResponseException;
 use Elastic\Transport\Exception\UnknownContentTypeException;
 use Elastic\Transport\Serializer\CsvSerializer;
-use Elastic\Transport\Serializer\JsonArraySerializer;
-use Elastic\Transport\Serializer\JsonObjectSerializer;
-use Elastic\Transport\Serializer\NDJsonArraySerializer;
-use Elastic\Transport\Serializer\NDJsonObjectSerializer;
+use Elastic\Transport\Serializer\JsonSerializer;
+use Elastic\Transport\Serializer\NDJsonSerializer;
 use Elastic\Transport\Serializer\XmlSerializer;
 use Psr\Http\Message\ResponseInterface as MessageResponseInterface;
 
@@ -45,9 +45,25 @@ class Response implements ResponseInterface, ArrayAccess
      */
     protected $asString;
 
+    /**
+     * @throws ClientErrorResponseException if status code 4xx
+     * @throws ServerErrorResponseException if status code 5xx
+     */
     public function __construct(MessageResponseInterface $response)
     {
         $this->response = $response;
+        $status = $response->getStatusCode();
+        if ($status > 399 && $status < 500) {
+            throw new ClientErrorResponseException(
+                sprintf("%s %s", $status, $response->getReasonPhrase()),
+                $status
+            );
+        } elseif ($status > 499 && $status < 600) {
+            throw new ServerErrorResponseException(
+                sprintf("%s %s", $status, $response->getReasonPhrase()),
+                $status
+            );
+        }
     }
 
     /**
@@ -75,11 +91,11 @@ class Response implements ResponseInterface, ArrayAccess
         }
         $contentType = $this->response->getHeaderLine('Content-Type');
         if (strpos($contentType, 'application/json') !== false) {
-            $this->asArray = JsonArraySerializer::unserialize($this->asString());
+            $this->asArray = JsonSerializer::unserialize($this->asString());
             return $this->asArray;
         }
         if (strpos($contentType, 'application/x-ndjson') !== false) {
-            $this->asArray = NDJsonArraySerializer::unserialize($this->asString());
+            $this->asArray = NDJsonSerializer::unserialize($this->asString());
             return $this->asArray;
         }
         if (strpos($contentType, 'text/csv') !== false) {
@@ -109,11 +125,11 @@ class Response implements ResponseInterface, ArrayAccess
         }
         $contentType = $this->response->getHeaderLine('Content-Type');
         if (strpos($contentType, 'application/json') !== false) {
-            $this->asObject = JsonObjectSerializer::unserialize($this->asString());
+            $this->asObject = JsonSerializer::unserialize($this->asString(), ['type' => 'object']);
             return $this->asObject;
         }
         if (strpos($contentType, 'application/x-ndjson') !== false) {
-            $this->asObject = NDJsonObjectSerializer::unserialize($this->asString());
+            $this->asObject = NDJsonSerializer::unserialize($this->asString(), ['type' => 'object']);
             return $this->asObject;
         }
         if (strpos($contentType, 'text/xml') !== false || strpos($contentType, 'application/xml') !== false) {

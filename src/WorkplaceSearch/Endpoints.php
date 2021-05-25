@@ -28,6 +28,72 @@ use Elastic\EnterpriseSearch\Response\Response;
 class Endpoints extends AbstractEndpoints
 {
 	/**
+	 * Create a content source
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-content-sources-api.html#create-content-source-api
+	 */
+	public function createContentSource(Request\CreateContentSource $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Retrieves all content sources
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-content-sources-api.html#list-content-sources-api
+	 */
+	public function listContentSources(Request\ListContentSources $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Retrieves a content source by ID
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-content-sources-api.html#get-content-source-api
+	 */
+	public function getContentSource(Request\GetContentSource $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Update a content source
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-content-sources-api.html#update-content-source-api
+	 */
+	public function putContentSource(Request\PutContentSource $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Deletes a content source by ID
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-content-sources-api.html#remove-content-source-api
+	 */
+	public function deleteContentSource(Request\DeleteContentSource $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Deletes all documents in a custom content source
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-custom-sources-api.html#delete-all-documents
+	 */
+	public function deleteAllDocuments(Request\DeleteAllDocuments $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
 	 * Indexes one or more new documents into a custom content source, or updates one or more existing documents
 	 *
 	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-custom-sources-api.html#index-and-update
@@ -41,9 +107,20 @@ class Endpoints extends AbstractEndpoints
 	/**
 	 * Deletes a list of documents from a custom content source
 	 *
-	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-custom-sources-api.html#destroy
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-custom-sources-api.html#delete-by-id
 	 */
 	public function deleteDocuments(Request\DeleteDocuments $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Retrieves a document by ID from the specified content source
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-content-sources-api.html#get-document-by-id-api
+	 */
+	public function getDocument(Request\GetDocument $request): Response
 	{
 		return new Response($this->transport->sendRequest($request->getRequest()));
 	}

@@ -14,9 +14,7 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\Exception;
 
-use Exception;
-
-class ArrayAccessException extends Exception implements EnterpriseSearchInterface
+interface EnterpriseSearchInterface
 {
-
+    
 }

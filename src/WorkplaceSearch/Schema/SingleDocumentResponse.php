@@ -21,46 +21,32 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 /**
  * @internal
  */
-class AnalyticsEvent
+class SingleDocumentResponse
 {
 	/** @var string */
-	public $type;
+	public $id;
 
 	/** @var string */
-	public $query_id;
-
-	/** @var int */
-	public $page;
+	public $source;
 
 	/** @var string */
 	public $content_source_id;
 
 	/** @var string */
-	public $document_id;
+	public $last_updated;
 
-	/** @var int */
-	public $rank;
+	/** @var array */
+	public $_allow_permissions;
 
-	/** @var string */
-	public $event;
-
-	/** @var int */
-	public $score;
+	/** @var array */
+	public $_deny_permissions;
 
 
-	public function __construct(
-		string $type,
-		string $query_id,
-		int $page,
-		string $content_source_id,
-		string $document_id,
-		int $rank
-	) {
-		$this->type = $type;
-		$this->query_id = $query_id;
-		$this->page = $page;
+	public function __construct(string $id, string $source, string $content_source_id, string $last_updated)
+	{
+		$this->id = $id;
+		$this->source = $source;
 		$this->content_source_id = $content_source_id;
-		$this->document_id = $document_id;
-		$this->rank = $rank;
+		$this->last_updated = $last_updated;
 	}
 }

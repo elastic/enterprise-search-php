@@ -16,16 +16,26 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
 /**
  * @internal
  */
-class SearchSettings
+class ContentSourcePartialUpdateResponse
 {
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SearchBoosts */
-	public $boosts;
+	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSource */
+	public $updated;
 
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SearchFields */
-	public $search_fields;
+	/** @var array */
+	public $errors;
+
+
+	/**
+	 * @param string[] $errors
+	 */
+	public function __construct(ContentSource $updated, array $errors)
+	{
+		$this->updated = $updated;
+		$this->errors = $errors;
+	}
 }
