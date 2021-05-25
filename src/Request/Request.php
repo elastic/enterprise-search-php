@@ -15,8 +15,8 @@ declare(strict_types=1);
 namespace Elastic\EnterpriseSearch\Request;
 
 use Elastic\Transport\Serializer\CsvSerializer;
-use Elastic\Transport\Serializer\JsonObjectSerializer;
-use Elastic\Transport\Serializer\NDJsonObjectSerializer;
+use Elastic\Transport\Serializer\JsonSerializer;
+use Elastic\Transport\Serializer\NDJsonSerializer;
 use Elastic\Transport\Serializer\TextSerializer;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Message\RequestInterface as MessageRequestInterface;
@@ -84,15 +84,12 @@ class Request implements RequestInterface
         if (is_string($body)) {
             return $body;
         }
-        if (is_object($body)) {
-            $body = self::removeNullValues($body);
-        }
         $contentType = $this->headers['Content-Type'] ?? '';
         switch ($contentType) {
             case 'application/json':
-                return JsonObjectSerializer::serialize($this->body);
+                return JsonSerializer::serialize($this->body, ['remove_null' => true]);
             case 'application/x-ndjson':
-                return NDJsonObjectSerializer::serialize($this->body);
+                return NDJsonSerializer::serialize($this->body, ['remove_null' => true]);
             case 'text/csv':
                 return CsvSerializer::serialize($this->body);
             default:
@@ -107,17 +104,5 @@ class Request implements RequestInterface
     {
         $this->headers[$name] = $value;
         return $this;
-    }
-
-    public static function removeNullValues(object $object): object
-    {
-        foreach ($object as $prop => $value) {
-            if (is_null($value)) {
-                unset($object->$prop);
-            } elseif (is_object($value)) {
-                $object->$prop = self::removeNullValues($value);
-            }
-        }
-        return $object;
     }
 }

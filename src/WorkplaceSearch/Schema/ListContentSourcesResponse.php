@@ -16,16 +16,26 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
 /**
  * @internal
  */
-class SearchSettings
+class ListContentSourcesResponse
 {
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SearchBoosts */
-	public $boosts;
+	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\MetaPage */
+	public $meta;
 
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SearchFields */
-	public $search_fields;
+	/** @var array */
+	public $results;
+
+
+	/**
+	 * @param object[] $results
+	 */
+	public function __construct(MetaPage $meta, array $results)
+	{
+		$this->meta = $meta;
+		$this->results = $results;
+	}
 }

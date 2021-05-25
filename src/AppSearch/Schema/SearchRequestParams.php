@@ -26,7 +26,7 @@ class SearchRequestParams
 	/** @var SimpleObject */
 	public $analytics;
 
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
+	/** @var SearchBoosts */
 	public $boost;
 
 	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
@@ -47,7 +47,7 @@ class SearchRequestParams
 	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
 	public $result_fields;
 
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
+	/** @var SearchFields */
 	public $search_fields;
 
 	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */

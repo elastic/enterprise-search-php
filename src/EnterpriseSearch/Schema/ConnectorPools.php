@@ -32,19 +32,14 @@ class ConnectorPools
 	/** @var Elastic\EnterpriseSearch\EnterpriseSearch\Schema\ConnectorPool */
 	public $publish_worker_pool;
 
-	/** @var Elastic\EnterpriseSearch\EnterpriseSearch\Schema\ConnectorPool */
-	public $status_update_worker_pool;
-
 
 	public function __construct(
 		ConnectorPool $extract_worker_pool,
 		ConnectorPool $subextract_worker_pool,
-		ConnectorPool $publish_worker_pool,
-		ConnectorPool $status_update_worker_pool
+		ConnectorPool $publish_worker_pool
 	) {
 		$this->extract_worker_pool = $extract_worker_pool;
 		$this->subextract_worker_pool = $subextract_worker_pool;
 		$this->publish_worker_pool = $publish_worker_pool;
-		$this->status_update_worker_pool = $status_update_worker_pool;
 	}
 }

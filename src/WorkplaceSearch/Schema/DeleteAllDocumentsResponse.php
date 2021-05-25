@@ -21,46 +21,25 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 /**
  * @internal
  */
-class AnalyticsEvent
+class DeleteAllDocumentsResponse
 {
-	/** @var string */
-	public $type;
-
-	/** @var string */
-	public $query_id;
+	/** @var int */
+	public $total;
 
 	/** @var int */
-	public $page;
+	public $deleted;
 
-	/** @var string */
-	public $content_source_id;
-
-	/** @var string */
-	public $document_id;
-
-	/** @var int */
-	public $rank;
-
-	/** @var string */
-	public $event;
-
-	/** @var int */
-	public $score;
+	/** @var array */
+	public $failures;
 
 
-	public function __construct(
-		string $type,
-		string $query_id,
-		int $page,
-		string $content_source_id,
-		string $document_id,
-		int $rank
-	) {
-		$this->type = $type;
-		$this->query_id = $query_id;
-		$this->page = $page;
-		$this->content_source_id = $content_source_id;
-		$this->document_id = $document_id;
-		$this->rank = $rank;
+	/**
+	 * @param object[] $failures
+	 */
+	public function __construct(int $total, int $deleted, array $failures)
+	{
+		$this->total = $total;
+		$this->deleted = $deleted;
+		$this->failures = $failures;
 	}
 }
