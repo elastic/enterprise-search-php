@@ -1,0 +1,19 @@
+---
+- job:
+    project-type: freestyle
+    node: linux && immutable
+    name: elastic+clients-team+enterprise-search+master
+    display-name: 'elastic / clients-team - enterprise-search # master'
+    description: Testing the clients-team Enterpise Search runners on master.
+    junit_results: "*-junit.xml"
+    parameters:
+      - string:
+          name: branch_specifier
+          default: refs/heads/master
+          description: The Git branch specifier to build
+    triggers:
+      - timed: '@daily'
+    builders:
+      - shell: |-
+          #!/usr/local/bin/runbld
+          STACK_VERSION=7.x-SNAPSHOT RUNSCRIPTS=enterprise-search .ci/run-tests

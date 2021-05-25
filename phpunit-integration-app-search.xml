@@ -4,7 +4,7 @@
          bootstrap="vendor/autoload.php"
          colors="true">
     <testsuites>
-        <testsuite name="Enterprise Search Test Suite">
+        <testsuite name="App Search Integration Tests">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>
@@ -13,4 +13,8 @@
             <group>app-search</group>
         </include>
     </groups>
+    <php>
+        <env name="APP_SEARCH_USER" value="enterprise_search"/>
+        <env name="APP_SEARCH_PASSWORD" value="changeme"/>
+    </php>
 </phpunit>

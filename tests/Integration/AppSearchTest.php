@@ -41,13 +41,17 @@ final class AppSearchTest extends TestCase
         if (!getenv('ENTERPRISE_SEARCH_URL')) {
             $this->markTestSkipped('Cannot execute integration test without ENTERPRISE_SEARCH_URL');
         }
-        if (!getenv('APP_SEARCH_API_KEY')) {
-            $this->markTestSkipped('Cannot execute integration test without APP_SEARCH_API_KEY');
+        if (!getenv('APP_SEARCH_USER')) {
+            $this->markTestSkipped('Cannot execute integration test without ENTERPRISE_SEARCH_USER');
+        }
+        if (!getenv('APP_SEARCH_PASSWORD')) {
+            $this->markTestSkipped('Cannot execute integration test without ENTERPRISE_SEARCH_PASSWORD');
         }
         $this->client = new Client([
             'host'     => getenv('ENTERPRISE_SEARCH_URL'),
             'app-search' => [
-                'api-key' => getenv('APP_SEARCH_API_KEY')
+                'username' => getenv('APP_SEARCH_USER'),
+                'password' => getenv('APP_SEARCH_PASSWORD'),
             ]
         ]);
         $this->appSearch = $this->client->appSearch();
