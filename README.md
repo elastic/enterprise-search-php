@@ -134,7 +134,7 @@ use Elastic\EnterpriseSearch\AppSearch\Request;
 $client = new Client([
     'host' => 'http://localhost:3002',
     'app-search' => [
-        'api-key' => '<insert here the API-KEY>'
+        'token' => '<insert here the API-KEY>'
     ]
 ]);
 
