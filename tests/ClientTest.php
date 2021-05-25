@@ -131,19 +131,41 @@ final class ClientTest extends TestCase
         $this->assertNotEquals($es1, $es2);
     }
 
-    public function testAppSearchConstruct()
+    public function testAppSearchConstructWithToken()
     {
         $client = new Client([
             'host' => 'http://localhost:3002',
             'app-search' => [
-                'api-key' => 'foo'
+                'token' => 'foo'
             ]
         ]);
         $app = $client->appSearch();
         $this->assertInstanceOf(AppSearchEndpoints::class, $app);
     }
 
-    public function testWorkplaceSearchConstruct()
+    public function testAppSearchConstructWithBasicAuth()
+    {
+        $client = new Client([
+            'host' => 'http://localhost:3002',
+            'app-search' => [
+                'username' => 'foo',
+                'password' => 'bar'
+            ]
+        ]);
+        $app = $client->appSearch();
+        $this->assertInstanceOf(AppSearchEndpoints::class, $app);
+    }
+
+    public function testAppSearchConstructWithMissingParameterException()
+    {
+        $client = new Client([
+            'host' => 'http://localhost:3002',
+        ]);
+        $this->expectException(MissingParameterException::class);
+        $workplace = $client->appSearch();
+    }
+
+    public function testWorkplaceSearchConstructWithToken()
     {
         $client = new Client([
             'host' => 'http://localhost:3002',
@@ -153,5 +175,27 @@ final class ClientTest extends TestCase
         ]);
         $workplace = $client->workplaceSearch();
         $this->assertInstanceOf(WorkplaceSearchEndpoints::class, $workplace);
+    }
+
+    public function testWorkplaceSearchConstructWithBasicAuth()
+    {
+        $client = new Client([
+            'host' => 'http://localhost:3002',
+            'workplace-search' => [
+                'username' => 'foo',
+                'password' => 'bar'
+            ]
+        ]);
+        $workplace = $client->workplaceSearch();
+        $this->assertInstanceOf(WorkplaceSearchEndpoints::class, $workplace);
+    }
+
+    public function testWorkplaceSearchConstructWithMissingParameterException()
+    {
+        $client = new Client([
+            'host' => 'http://localhost:3002',
+        ]);
+        $this->expectException(MissingParameterException::class);
+        $workplace = $client->workplaceSearch();
     }
 }

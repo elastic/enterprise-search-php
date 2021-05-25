@@ -64,6 +64,9 @@ final class EnterpriseSearchTest extends TestCase
     {
         $result = $this->enterpriseSearch->getHealth(new Request\GetHealth);
         
+        $response = $result->getResponse();
+        $req = $this->enterpriseSearch->getTransport()->getLastRequest();      
+
         $this->assertTrue(isset($result['name']));
         $this->assertTrue(isset($result['version']));
         $this->assertTrue(isset($result['jvm']));

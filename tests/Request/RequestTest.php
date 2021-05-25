@@ -45,20 +45,4 @@ final class RequestTest extends TestCase
         $this->assertIsArray($headers['X-Foo']);
         $this->assertEquals($headers['X-Foo'][0], 'Bar');
     }
-
-    public function testRemoveNullValues()
-    {
-        $obj = new stdClass();
-        $obj->a = null;
-        $obj->b = 10;
-        $obj->c = new stdClass();
-        $obj->c->d = 20;
-        $obj->c->e = null;
-
-        $result = Request::removeNullValues($obj);
-
-        unset($obj->a);
-        unset($obj->c->e);
-        $this->assertEquals($obj, $result);
-    }
 }
