@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\Tests\Response;
 
-use ArrayIterator;
+use ArrayObject;
 use Elastic\EnterpriseSearch\Exception\ArrayAccessException;
 use Elastic\EnterpriseSearch\Response\Response;
 use Elastic\Transport\Exception\UnknownContentTypeException;
@@ -101,9 +101,8 @@ final class ResponseTest extends TestCase
         $obj1 = new stdClass;
         $obj1->foo = "bar";
 
-        $obj2 = new ArrayIterator();
-        $obj2[] = $obj1;
-        $obj2[] = new stdClass();
+        $obj2 = new ArrayObject([$obj1, new stdClass]);
+
 
         $xml = '<?xml version="1.0" encoding="UTF-8"?><root><foo>bar</foo></root>';
         $simpleXml = new SimpleXMLElement($xml);

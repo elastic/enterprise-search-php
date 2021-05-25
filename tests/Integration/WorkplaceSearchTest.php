@@ -18,6 +18,7 @@ use Elastic\EnterpriseSearch\Client;
 use Elastic\EnterpriseSearch\WorkplaceSearch\Endpoints;
 use Elastic\EnterpriseSearch\WorkplaceSearch\Request;
 use Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
+use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceCreateDefinition;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -35,44 +36,55 @@ final class WorkplaceSearchTest extends TestCase
      */
     private $client;
     
-    /**
-     * @var string
-     */
-    private $id;
-
     public function setUp(): void
     {
         if (!getenv('ENTERPRISE_SEARCH_URL')) {
             $this->markTestSkipped('Cannot execute integration test without ENTERPRISE_SEARCH_URL');
         }
-        if (!getenv('WORKPLACE_SEARCH_ID')) {
-            $this->markTestSkipped('Cannot execute integration test without WORKPLACE_SEARCH_ID');
+        if (!getenv('WORKPLACE_SEARCH_USER')) {
+            $this->markTestSkipped('Cannot execute integration test without WORKPLACE_SEARCH_USER');
         }
-        if (!getenv('WORKPLACE_SEARCH_TOKEN')) {
-            $this->markTestSkipped('Cannot execute integration test without WORKPLACE_SEARCH_TOKEN');
+        if (!getenv('WORKPLACE_SEARCH_PASSWORD')) {
+            $this->markTestSkipped('Cannot execute integration test without WORKPLACE_SEARCH_PASSWORD');
         }
         $this->client = new Client([
             'host'     => getenv('ENTERPRISE_SEARCH_URL'),
             'workplace-search' => [
-                'token' => getenv('WORKPLACE_SEARCH_TOKEN')
+                'username' => getenv('WORKPLACE_SEARCH_USER'),
+                'password' => getenv('WORKPLACE_SEARCH_PASSWORD')
             ]
         ]);
-        $this->id = getenv('WORKPLACE_SEARCH_ID');
         $this->workplaceSearch = $this->client->workplaceSearch();
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\WorkplaceSearch\Endpoints::createContentSource
+     * @covers Elastic\EnterpriseSearch\WorkplaceSearch\Request\CreateContentSource
+     * @return string
+     */
+    public function testCreateContentSource()
+    {
+        $content = new ContentSourceCreateDefinition('php_client_test');
+        $result = $this->workplaceSearch->createContentSource(new Request\CreateContentSource($content));
+        
+        $this->assertEquals(200, $result->getResponse()->getStatusCode());
+        return $result['id'];
     }
 
     /**
      * @covers Elastic\EnterpriseSearch\WorkplaceSearch\Endpoints::indexDocuments
      * @covers Elastic\EnterpriseSearch\WorkplaceSearch\Request\IndexDocuments
+     * @depends testCreateContentSource
+     * @return Schema\Document
      */
-    public function testIndexDocuments()
+    public function testIndexDocuments(string $id)
     {
         $doc = new Schema\Document();
         $doc->id = '1234';
         $doc->title = "The Meaning of Time";
         $doc->body = "Not much. It is a made up thing.";
 
-        $result = $this->workplaceSearch->indexDocuments(new Request\IndexDocuments($this->id, [$doc]));
+        $result = $this->workplaceSearch->indexDocuments(new Request\IndexDocuments($id, [$doc]));
         
         $this->assertTrue(isset($result['results']));
         $this->assertEquals($doc->id, $result['results'][0]['id']);
@@ -84,11 +96,12 @@ final class WorkplaceSearchTest extends TestCase
     /**
      * @covers Elastic\EnterpriseSearch\WorkplaceSearch\Endpoints::deleteDocuments
      * @covers Elastic\EnterpriseSearch\WorkplaceSearch\Request\DeleteDocuments
+     * @depends testCreateContentSource
      * @depends testIndexDocuments
      */
-    public function testDeleteDocuments(Schema\Document $doc)
+    public function testDeleteDocuments(string $id, Schema\Document $doc)
     {
-        $result = $this->workplaceSearch->deleteDocuments(new Request\DeleteDocuments($this->id, [$doc->id]));
+        $result = $this->workplaceSearch->deleteDocuments(new Request\DeleteDocuments($id, [$doc->id]));
         
         $this->assertTrue(isset($result['results']));
         $this->assertEquals($doc->id, $result['results'][0]['id']);

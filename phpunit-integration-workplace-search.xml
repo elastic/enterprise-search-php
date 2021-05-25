@@ -4,13 +4,17 @@
          bootstrap="vendor/autoload.php"
          colors="true">
     <testsuites>
-        <testsuite name="Enterprise Search Test Suite">
+        <testsuite name="Workplace Search Integration Tests">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>
     <groups>
         <include>
-            <group>enterprise</group>
+            <group>workplace</group>
         </include>
     </groups>
+    <php>
+        <env name="WORKPLACE_SEARCH_USER" value="enterprise_search"/>
+        <env name="WORKPLACE_SEARCH_PASSWORD" value="changeme"/>
+    </php>
 </phpunit>
