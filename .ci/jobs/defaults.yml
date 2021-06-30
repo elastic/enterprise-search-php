@@ -1,4 +1,4 @@
----
+
 
 ##### GLOBAL METADATA
 
@@ -12,15 +12,9 @@
     logrotate:
       daysToKeep: 30
       numToKeep: 100
-    parameters:
-    - string:
-        name: branch_specifier
-        default: refs/heads/master
-        description: the Git branch specifier to build (&lt;branchName&gt;, &lt;tagName&gt;,
-          &lt;commitId&gt;, etc.)
     properties:
     - github:
-        url: https://github.com/elastic/clients-team/
+        url: https://github.com/elastic/enterprise-search-php/
     - inject:
         properties-content: HOME=$JENKINS_HOME
     concurrent: true
@@ -29,14 +23,16 @@
     - git:
         name: origin
         credentials-id: f6c7695a-671e-4f4f-a331-acdce44ff9ba
-        reference-repo: /var/lib/jenkins/.git-references/clients-team.git
+        reference-repo: /var/lib/jenkins/.git-references/enterprise-search-php.git
         branches:
         - ${branch_specifier}
-        url: git@github.com:elastic/clients-team.git
-        basedir: ''
+        url: https://github.com/elastic/enterprise-search-php.git
         wipe-workspace: 'True'
     triggers:
     - github
+    vault:
+      # vault read auth/approle/role/clients-ci/role-id
+      role_id: ddbd0d44-0e51-105b-177a-c8fdfd445126
     axes:
     - axis:
         type: slave
@@ -47,11 +43,10 @@
         type: yaml
         filename: .ci/test-matrix.yml
         name: STACK_VERSION
-    # example custom repository environment used in test-matrix
-    # - axis:
-    #    type: yaml
-    #   filename: .ci/test-matrix.yml
-    #   name: <LANGUAGE_VERSION>
+    - axis:
+        type: yaml
+        filename: .ci/test-matrix.yml
+        name: PHP_VERSION
     - axis:
         type: yaml
         filename: .ci/test-matrix.yml
@@ -60,20 +55,20 @@
       exclude-key: exclude
       filename: .ci/test-matrix.yml
     wrappers:
-      - ansicolor
-      - timeout:
-          type: absolute
-          timeout: 120
-          fail: true
-      - timestamps
-      - workspace-cleanup
+    - ansicolor
+    - timeout:
+        type: absolute
+        timeout: 120
+        fail: true
+    - timestamps
+    - workspace-cleanup
     builders:
-      - shell: |-
-          #!/usr/local/bin/runbld
-          .ci/run-tests
+    - shell: |-
+        #!/usr/local/bin/runbld
+        .ci/run-tests
     publishers:
-      - email:
-          recipients: build-lang-clients@elastic.co
-      - junit:
-          results: "build/output/*-junit.xml"
-          allow-empty-results: true
+    - email:
+        recipients: build-lang-clients@elastic.co
+    - junit:
+        results: "tests/*-junit.xml"
+        allow-empty-results: true

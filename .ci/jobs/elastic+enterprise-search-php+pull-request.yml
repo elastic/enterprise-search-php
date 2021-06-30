@@ -1,8 +1,9 @@
 ---
 - job:
-    name: elastic+clients-team+pull-request
-    display-name: 'elastic / clients-team # pull-request'
-    description: Testing of clients-team pull requests.
+    name: elastic+enterprise-search-php+pull-request
+    display-name: 'elastic / enterprise-search-php # pull-request'
+    description: Testing of enterprise-search-php pull requests.
+    junit_results: "tests/*-junit.xml"
     scm:
     - git:
         branches:
@@ -16,4 +17,3 @@
         github-hooks: true
         status-context: clients-ci
         cancel-builds-on-update: true
-    publishers: []
