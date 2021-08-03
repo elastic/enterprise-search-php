@@ -21,29 +21,30 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 /**
  * @internal
  */
-class ContentSourceCreateDefinition
+class SyncJobDefinition
 {
 	/** @var string */
-	public $name;
+	public $id;
 
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
+	/** @var string */
+	public $job_type;
 
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
+	/** @var string */
+	public $status;
 
-	/** @var bool */
-	public $is_searchable;
+	/** @var string */
+	public $created_at;
 
-	/** @var object */
-	public $indexing;
-
-	/** @var object */
-	public $facets;
+	/** @var string */
+	public $last_updated_at;
 
 
-	public function __construct(string $name)
+	public function __construct(string $id, string $job_type, string $status, string $created_at, string $last_updated_at)
 	{
-		$this->name = $name;
+		$this->id = $id;
+		$this->job_type = $job_type;
+		$this->status = $status;
+		$this->created_at = $created_at;
+		$this->last_updated_at = $last_updated_at;
 	}
 }

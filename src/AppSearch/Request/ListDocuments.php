@@ -42,7 +42,7 @@ class ListDocuments extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['page[current]'] = $currentPage;
+		$this->queryParams['query'] = $currentPage;
 		return $this;
 	}
 
@@ -52,7 +52,7 @@ class ListDocuments extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['page[size]'] = $pageSize;
+		$this->queryParams['query'] = $pageSize;
 		return $this;
 	}
 }

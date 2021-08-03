@@ -401,4 +401,59 @@ class Endpoints extends AbstractEndpoints
 	{
 		return new Response($this->transport->sendRequest($request->getRequest()));
 	}
+
+
+	/**
+	 * List the details of all API keys
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/credentials.html#credentials-all
+	 */
+	public function listApiKeys(Request\ListApiKeys $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Create an API key
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/credentials.html#credentials-create
+	 */
+	public function createApiKey(Request\CreateApiKey $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Get the details of an API key
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/credentials.html#credentials-single
+	 */
+	public function getApiKey(Request\GetApiKey $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Update an API key
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/credentials.html#credentials-update
+	 */
+	public function putApiKey(Request\PutApiKey $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Delete an API key
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/credentials.html#credentials-destroy
+	 */
+	public function deleteApiKey(Request\DeleteApiKey $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
 }

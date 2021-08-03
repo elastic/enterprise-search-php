@@ -16,34 +16,25 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
+namespace Elastic\EnterpriseSearch\AppSearch\Request;
+
+use Elastic\EnterpriseSearch\AppSearch\Schema\ApiKey;
+use Elastic\EnterpriseSearch\Request\Request;
 
 /**
+ * Create an API key
  * @internal
  */
-class ContentSourceCreateDefinition
+class CreateApiKey extends Request
 {
-	/** @var string */
-	public $name;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
-
-	/** @var bool */
-	public $is_searchable;
-
-	/** @var object */
-	public $indexing;
-
-	/** @var object */
-	public $facets;
-
-
-	public function __construct(string $name)
+	/**
+	 * @param ApiKey $apiKey API key details
+	 */
+	public function __construct(ApiKey $apiKey)
 	{
-		$this->name = $name;
+		$this->method = 'POST';
+		$this->path = "/api/as/v1/credentials";
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body = $apiKey;
 	}
 }

@@ -21,29 +21,14 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 /**
  * @internal
  */
-class ContentSourceCreateDefinition
+class SyncJobsCommandResponse
 {
-	/** @var string */
-	public $name;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
-
-	/** @var bool */
-	public $is_searchable;
-
-	/** @var object */
-	public $indexing;
-
-	/** @var object */
-	public $facets;
+	/** @var */
+	public $results;
 
 
-	public function __construct(string $name)
+	public function __construct($results)
 	{
-		$this->name = $name;
+		$this->results = $results;
 	}
 }

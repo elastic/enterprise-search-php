@@ -16,34 +16,29 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
+namespace Elastic\EnterpriseSearch\WorkplaceSearch\Request;
+
+use Elastic\EnterpriseSearch\Request\Request;
 
 /**
+ * Get the authenticated user
  * @internal
  */
-class ContentSourceCreateDefinition
+class GetCurrentUser extends Request
 {
-	/** @var string */
-	public $name;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
-
-	/** @var bool */
-	public $is_searchable;
-
-	/** @var object */
-	public $indexing;
-
-	/** @var object */
-	public $facets;
-
-
-	public function __construct(string $name)
+	public function __construct()
 	{
-		$this->name = $name;
+		$this->method = 'GET';
+		$this->path = "/api/ws/v1/whoami";
+	}
+
+
+	/**
+	 * @param bool $getToken Whether or not to include an access token in the response.
+	 */
+	public function setGetToken(bool $getToken): self
+	{
+		$this->queryParams['get_token'] = $getToken;
+		return $this;
 	}
 }

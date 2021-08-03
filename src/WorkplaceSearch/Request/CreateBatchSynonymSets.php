@@ -16,22 +16,25 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+namespace Elastic\EnterpriseSearch\WorkplaceSearch\Request;
+
+use Elastic\EnterpriseSearch\Request\Request;
+use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\SynonymsCreateDefinition;
 
 /**
+ * Create a batch of synonym sets
  * @internal
  */
-class MultiSearchData
+class CreateBatchSynonymSets extends Request
 {
-	/** @var array */
-	public $queries;
-
-
 	/**
-	 * @param SearchRequestParams[] $queries
+	 * @param SynonymsCreateDefinition $synonyms_create_definition
 	 */
-	public function __construct(array $queries)
+	public function __construct(SynonymsCreateDefinition $synonyms_create_definition)
 	{
-		$this->queries = $queries;
+		$this->method = 'POST';
+		$this->path = "/api/ws/v1/synonyms";
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body = $synonyms_create_definition;
 	}
 }

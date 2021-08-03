@@ -21,29 +21,21 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 /**
  * @internal
  */
-class ContentSourceCreateDefinition
+class WhoamiResponse
 {
 	/** @var string */
-	public $name;
+	public $username;
 
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
+	/** @var string */
+	public $email;
 
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
-
-	/** @var bool */
-	public $is_searchable;
-
-	/** @var object */
-	public $indexing;
-
-	/** @var object */
-	public $facets;
+	/** @var string */
+	public $access_token;
 
 
-	public function __construct(string $name)
+	public function __construct(string $username, string $email)
 	{
-		$this->name = $name;
+		$this->username = $username;
+		$this->email = $email;
 	}
 }

@@ -42,7 +42,7 @@ class ListSynonymSets extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['page[current]'] = $currentPage;
+		$this->queryParams['filters[date][to]'] = $currentPage;
 		return $this;
 	}
 
@@ -52,7 +52,7 @@ class ListSynonymSets extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['page[size]'] = $pageSize;
+		$this->queryParams['filters[date][to]'] = $pageSize;
 		return $this;
 	}
 }

@@ -16,34 +16,19 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
+namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 
 /**
  * @internal
  */
-class ContentSourceCreateDefinition
+class MetaPage
 {
-	/** @var string */
-	public $name;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
-
-	/** @var bool */
-	public $is_searchable;
-
 	/** @var object */
-	public $indexing;
-
-	/** @var object */
-	public $facets;
+	public $page;
 
 
-	public function __construct(string $name)
+	public function __construct(object $page)
 	{
-		$this->name = $name;
+		$this->page = $page;
 	}
 }

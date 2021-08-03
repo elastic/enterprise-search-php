@@ -16,34 +16,40 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
+namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+
+use InvalidArgumentException;
 
 /**
  * @internal
  */
-class ContentSourceCreateDefinition
+class ApiKey
 {
 	/** @var string */
 	public $name;
 
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
+	/** @var string */
+	public $type;
 
 	/** @var bool */
-	public $is_searchable;
+	public $access_all_engines;
 
-	/** @var object */
-	public $indexing;
+	/** @var array */
+	public $engines;
 
-	/** @var object */
-	public $facets;
+	/** @var bool */
+	public $write;
+
+	/** @var bool */
+	public $read;
 
 
-	public function __construct(string $name)
+	public function __construct(string $name, string $type)
 	{
 		$this->name = $name;
+		if (!in_array($type, ['private','search','admin'])) {
+			throw new InvalidArgumentException('The $type parameter must be one of these values: private,search,admin');
+		}
+		$this->type = $type;
 	}
 }

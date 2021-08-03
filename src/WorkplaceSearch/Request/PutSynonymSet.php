@@ -19,22 +19,24 @@ declare(strict_types=1);
 namespace Elastic\EnterpriseSearch\WorkplaceSearch\Request;
 
 use Elastic\EnterpriseSearch\Request\Request;
+use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\SynonymsUpdateDefinition;
 
 /**
- * Retrieves a document by ID from the specified content source
+ * Update a synonym set
  * @internal
  */
-class GetDocument extends Request
+class PutSynonymSet extends Request
 {
 	/**
-	 * @param string $contentSourceId Unique ID for a Custom API source, provided upon creation of a Custom API Source
-	 * @param string $documentId Unique ID for a content source document. Provided upon or returned at creation.
+	 * @param string $synonymSetId Unique ID for a content source document. Provided upon or returned at creation.
+	 * @param SynonymsUpdateDefinition $synonyms_update_definition
 	 */
-	public function __construct(string $contentSourceId, string $documentId)
+	public function __construct(string $synonymSetId, SynonymsUpdateDefinition $synonyms_update_definition)
 	{
-		$this->method = 'GET';
-		$content_source_id = urlencode($contentSourceId);
-		$document_id = urlencode($documentId);
-		$this->path = "/api/ws/v1/sources/$content_source_id/documents/$document_id";
+		$this->method = 'PUT';
+		$synonym_set_id = urlencode($synonymSetId);
+		$this->path = "/api/ws/v1/synonyms/$synonym_set_id";
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body = $synonyms_update_definition;
 	}
 }

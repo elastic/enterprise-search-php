@@ -16,34 +16,23 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
+namespace Elastic\EnterpriseSearch\AppSearch\Request;
+
+use Elastic\EnterpriseSearch\Request\Request;
 
 /**
+ * Delete an API key
  * @internal
  */
-class ContentSourceCreateDefinition
+class DeleteApiKey extends Request
 {
-	/** @var string */
-	public $name;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
-
-	/** @var bool */
-	public $is_searchable;
-
-	/** @var object */
-	public $indexing;
-
-	/** @var object */
-	public $facets;
-
-
-	public function __construct(string $name)
+	/**
+	 * @param string $apiKeyName Name of an API key
+	 */
+	public function __construct(string $apiKeyName)
 	{
-		$this->name = $name;
+		$this->method = 'DELETE';
+		$api_key_name = urlencode($apiKeyName);
+		$this->path = "/api/as/v1/credentials/$api_key_name";
 	}
 }

@@ -21,29 +21,14 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 /**
  * @internal
  */
-class ContentSourceCreateDefinition
+class SynonymsListDefinition
 {
-	/** @var string */
-	public $name;
+	/** @var SynonymsPage */
+	public $page;
 
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
+	/** @var SynonymsSort */
+	public $sort;
 
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
-
-	/** @var bool */
-	public $is_searchable;
-
-	/** @var object */
-	public $indexing;
-
-	/** @var object */
-	public $facets;
-
-
-	public function __construct(string $name)
-	{
-		$this->name = $name;
-	}
+	/** @var SynonymsFilter */
+	public $filter;
 }

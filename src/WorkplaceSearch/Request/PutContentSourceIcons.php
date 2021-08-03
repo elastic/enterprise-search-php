@@ -19,22 +19,24 @@ declare(strict_types=1);
 namespace Elastic\EnterpriseSearch\WorkplaceSearch\Request;
 
 use Elastic\EnterpriseSearch\Request\Request;
+use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceIconDefinition;
 
 /**
- * Retrieves a document by ID from the specified content source
+ * Upload content source icons
  * @internal
  */
-class GetDocument extends Request
+class PutContentSourceIcons extends Request
 {
 	/**
 	 * @param string $contentSourceId Unique ID for a Custom API source, provided upon creation of a Custom API Source
-	 * @param string $documentId Unique ID for a content source document. Provided upon or returned at creation.
+	 * @param ContentSourceIconDefinition $content_source_icon_definition
 	 */
-	public function __construct(string $contentSourceId, string $documentId)
+	public function __construct(string $contentSourceId, ContentSourceIconDefinition $content_source_icon_definition)
 	{
-		$this->method = 'GET';
+		$this->method = 'PUT';
 		$content_source_id = urlencode($contentSourceId);
-		$document_id = urlencode($documentId);
-		$this->path = "/api/ws/v1/sources/$content_source_id/documents/$document_id";
+		$this->path = "/api/ws/v1/sources/$content_source_id/icon";
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body = $content_source_icon_definition;
 	}
 }

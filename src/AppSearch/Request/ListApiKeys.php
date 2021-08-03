@@ -21,19 +21,15 @@ namespace Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Returns queries analytics by usage count
+ * List the details of all API keys
  * @internal
  */
-class GetTopQueriesAnalytics extends Request
+class ListApiKeys extends Request
 {
-	/**
-	 * @param string $engineName Name of the engine
-	 */
-	public function __construct(string $engineName)
+	public function __construct()
 	{
 		$this->method = 'GET';
-		$engine_name = urlencode($engineName);
-		$this->path = "/api/as/v1/engines/$engine_name/analytics/queries";
+		$this->path = "/api/as/v1/credentials";
 	}
 
 
@@ -42,7 +38,7 @@ class GetTopQueriesAnalytics extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['query'] = $currentPage;
+		$this->queryParams['filters[date][to]'] = $currentPage;
 		return $this;
 	}
 
@@ -52,17 +48,7 @@ class GetTopQueriesAnalytics extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['query'] = $pageSize;
-		return $this;
-	}
-
-
-	/**
-	 * @param object[] $filters Analytics filters
-	 */
-	public function setFilters(array $filters): self
-	{
-		$this->queryParams['filters[]'] = $filters;
+		$this->queryParams['filters[date][to]'] = $pageSize;
 		return $this;
 	}
 }

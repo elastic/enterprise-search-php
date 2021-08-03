@@ -16,34 +16,23 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
+namespace Elastic\EnterpriseSearch\WorkplaceSearch\Request;
+
+use Elastic\EnterpriseSearch\Request\Request;
 
 /**
+ * Retrieve a synonym set by ID
  * @internal
  */
-class ContentSourceCreateDefinition
+class GetSynonymSet extends Request
 {
-	/** @var string */
-	public $name;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
-
-	/** @var bool */
-	public $is_searchable;
-
-	/** @var object */
-	public $indexing;
-
-	/** @var object */
-	public $facets;
-
-
-	public function __construct(string $name)
+	/**
+	 * @param string $synonymSetId Unique ID for a content source document. Provided upon or returned at creation.
+	 */
+	public function __construct(string $synonymSetId)
 	{
-		$this->name = $name;
+		$this->method = 'GET';
+		$synonym_set_id = urlencode($synonymSetId);
+		$this->path = "/api/ws/v1/synonyms/$synonym_set_id";
 	}
 }

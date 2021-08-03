@@ -16,34 +16,25 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
+namespace Elastic\EnterpriseSearch\WorkplaceSearch\Request;
+
+use Elastic\EnterpriseSearch\Request\Request;
+use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\SynonymsListDefinition;
 
 /**
+ * Retrieves all synonym sets
  * @internal
  */
-class ContentSourceCreateDefinition
+class ListSynonymSets extends Request
 {
-	/** @var string */
-	public $name;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
-
-	/** @var bool */
-	public $is_searchable;
-
-	/** @var object */
-	public $indexing;
-
-	/** @var object */
-	public $facets;
-
-
-	public function __construct(string $name)
+	/**
+	 * @param SynonymsListDefinition $synonyms_list_definition
+	 */
+	public function __construct(SynonymsListDefinition $synonyms_list_definition)
 	{
-		$this->name = $name;
+		$this->method = 'GET';
+		$this->path = "/api/ws/v1/synonyms";
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body = $synonyms_list_definition;
 	}
 }

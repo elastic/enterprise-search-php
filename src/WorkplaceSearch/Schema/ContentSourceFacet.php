@@ -21,29 +21,24 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 /**
  * @internal
  */
-class ContentSourceCreateDefinition
+class ContentSourceFacet
 {
 	/** @var string */
-	public $name;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
+	public $field;
 
 	/** @var bool */
-	public $is_searchable;
+	public $enabled;
 
-	/** @var object */
-	public $indexing;
+	/** @var string */
+	public $display_name;
 
-	/** @var object */
-	public $facets;
+	/** @var string */
+	public $transform;
 
 
-	public function __construct(string $name)
+	public function __construct(string $field, bool $enabled)
 	{
-		$this->name = $name;
+		$this->field = $field;
+		$this->enabled = $enabled;
 	}
 }

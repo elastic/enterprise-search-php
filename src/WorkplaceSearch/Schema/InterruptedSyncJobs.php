@@ -21,29 +21,17 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 /**
  * @internal
  */
-class ContentSourceCreateDefinition
+class InterruptedSyncJobs
 {
-	/** @var string */
-	public $name;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
-
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
-
-	/** @var bool */
-	public $is_searchable;
-
-	/** @var object */
-	public $indexing;
-
-	/** @var object */
-	public $facets;
+	/** @var array */
+	public $interrupted;
 
 
-	public function __construct(string $name)
+	/**
+	 * @param object[] $interrupted
+	 */
+	public function __construct(array $interrupted)
 	{
-		$this->name = $name;
+		$this->interrupted = $interrupted;
 	}
 }

@@ -35,16 +35,16 @@ class ContentSourceUpdateDefinition
 	/** @var bool */
 	public $is_searchable;
 
+	/** @var object */
+	public $indexing;
 
-	public function __construct(
-		string $name,
-		ContentSourceSchema $schema,
-		ContentSourceDisplay $display,
-		bool $is_searchable
-	) {
+	/** @var object */
+	public $facets;
+
+
+	public function __construct(string $name, bool $is_searchable)
+	{
 		$this->name = $name;
-		$this->schema = $schema;
-		$this->display = $display;
 		$this->is_searchable = $is_searchable;
 	}
 }
