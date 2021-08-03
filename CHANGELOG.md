@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.14.0 (2021-08-03)
+
+Stable release for [Elastic Enterprise Search 7.14.0](https://www.elastic.co/guide/en/enterprise-search/master/release-notes-7.14.0.html).
+
 ## 7.13.0 (2021-05-25)
 
 First stable release, created to be compatible with Enterprise Search 7.13
