@@ -1,6 +1,6 @@
 # Changelog
 
-## 7.14.0 (2021-08-03)
+## 7.14.0 (2021-08-04)
 
 Stable release for [Elastic Enterprise Search 7.14.0](https://www.elastic.co/guide/en/enterprise-search/master/release-notes-7.14.0.html).
 
