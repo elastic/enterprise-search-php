@@ -21,8 +21,10 @@ namespace Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Retrieves all engines with optional pagination support
+ * Retrieve all engines
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/engines.html#engines-list
  */
 class ListEngines extends Request
 {
@@ -38,7 +40,7 @@ class ListEngines extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['page[current]'] = $currentPage;
+		$this->queryParams['current_page'] = $currentPage;
 		return $this;
 	}
 
@@ -48,7 +50,7 @@ class ListEngines extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['page[size]'] = $pageSize;
+		$this->queryParams['page_size'] = $pageSize;
 		return $this;
 	}
 }

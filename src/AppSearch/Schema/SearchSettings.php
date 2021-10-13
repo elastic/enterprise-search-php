@@ -28,4 +28,10 @@ class SearchSettings
 
 	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SearchFields */
 	public $search_fields;
+
+	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
+	public $result_fields;
+
+	/** @var int */
+	public $precision;
 }

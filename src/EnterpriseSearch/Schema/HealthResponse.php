@@ -39,12 +39,12 @@ class HealthResponse
 	public $system;
 
 
-	public function __construct(string $name, Version $version, JvmInfo $jvm, FilebeatInfo $filebeat, SystemInfo $system)
+	public function __construct(FilebeatInfo $filebeat, JvmInfo $jvm, string $name, SystemInfo $system, Version $version)
 	{
-		$this->name = $name;
-		$this->version = $version;
-		$this->jvm = $jvm;
 		$this->filebeat = $filebeat;
+		$this->jvm = $jvm;
+		$this->name = $name;
 		$this->system = $system;
+		$this->version = $version;
 	}
 }

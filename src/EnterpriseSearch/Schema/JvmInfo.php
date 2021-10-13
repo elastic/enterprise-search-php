@@ -52,22 +52,22 @@ class JvmInfo
 	 * @param string[] $memory_pools
 	 */
 	public function __construct(
-		int $pid,
-		int $uptime,
-		MemoryUsage $memory_usage,
 		array $memory_pools,
+		MemoryUsage $memory_usage,
+		int $pid,
 		ThreadStats $threads,
-		string $vm_version,
+		int $uptime,
+		string $vm_name,
 		string $vm_vendor,
-		string $vm_name
+		string $vm_version
 	) {
-		$this->pid = $pid;
-		$this->uptime = $uptime;
-		$this->memory_usage = $memory_usage;
 		$this->memory_pools = $memory_pools;
+		$this->memory_usage = $memory_usage;
+		$this->pid = $pid;
 		$this->threads = $threads;
-		$this->vm_version = $vm_version;
-		$this->vm_vendor = $vm_vendor;
+		$this->uptime = $uptime;
 		$this->vm_name = $vm_name;
+		$this->vm_vendor = $vm_vendor;
+		$this->vm_version = $vm_version;
 	}
 }

@@ -18,25 +18,25 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Request;
 
-use Elastic\EnterpriseSearch\AppSearch\Schema\MultiSearchData;
+use Elastic\EnterpriseSearch\AppSearch\Schema\ApiKey;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Run several search in the same request
+ * Create an API key
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/credentials.html#credentials-create
  */
-class MultiSearch extends Request
+class CreateApiKey extends Request
 {
 	/**
-	 * @param string $engineName Name of the engine
-	 * @param MultiSearchData $multiSearchData One or more queries to execute in parallel
+	 * @param ApiKey $api_key
 	 */
-	public function __construct(string $engineName, MultiSearchData $multiSearchData)
+	public function __construct(ApiKey $api_key)
 	{
 		$this->method = 'POST';
-		$engine_name = urlencode($engineName);
-		$this->path = "/api/as/v1/engines/$engine_name/multi_search";
+		$this->path = "/api/as/v1/credentials";
 		$this->headers['Content-Type'] = 'application/json';
-		$this->body = $multiSearchData;
+		$this->body = $api_key;
 	}
 }

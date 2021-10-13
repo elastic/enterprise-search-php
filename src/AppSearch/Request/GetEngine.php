@@ -21,8 +21,10 @@ namespace Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Retrieves an engine by name
+ * Retrieve an engine
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/engines.html#engines-get
  */
 class GetEngine extends Request
 {

@@ -59,6 +59,15 @@ class ContentSource
 	/** @var bool */
 	public $is_searchable;
 
+	/** @var object */
+	public $indexing;
+
+	/** @var object */
+	public $facets;
+
+	/** @var object */
+	public $automatic_query_refinement;
+
 	/** @var int */
 	public $document_count;
 

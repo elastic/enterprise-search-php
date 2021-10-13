@@ -22,21 +22,23 @@ use Elastic\EnterpriseSearch\AppSearch\Schema\SynonymSet;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Create a new synonym set
+ * Create a synonym set
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/synonyms.html#synonyms-create
  */
 class CreateSynonymSet extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
-	 * @param SynonymSet $synonymSet Synonym set description
+	 * @param SynonymSet $synonym_set
 	 */
-	public function __construct(string $engineName, SynonymSet $synonymSet)
+	public function __construct(string $engineName, SynonymSet $synonym_set)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
 		$this->path = "/api/as/v1/engines/$engine_name/synonyms";
 		$this->headers['Content-Type'] = 'application/json';
-		$this->body = $synonymSet;
+		$this->body = $synonym_set;
 	}
 }

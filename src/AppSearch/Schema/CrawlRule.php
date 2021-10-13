@@ -16,30 +16,34 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
+namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 
 /**
  * @internal
  */
-class DeleteAllDocumentsResponse
+class CrawlRule
 {
-	/** @var int */
-	public $total;
+	/** @var string */
+	public $id;
 
 	/** @var int */
-	public $deleted;
+	public $order;
 
-	/** @var array */
-	public $failures;
+	/** @var string */
+	public $policy;
+
+	/** @var string */
+	public $rule;
+
+	/** @var string */
+	public $pattern;
 
 
-	/**
-	 * @param object[] $failures
-	 */
-	public function __construct(int $total, int $deleted, array $failures)
+	public function __construct(int $order, string $policy, string $rule, string $pattern)
 	{
-		$this->total = $total;
-		$this->deleted = $deleted;
-		$this->failures = $failures;
+		$this->order = $order;
+		$this->policy = $policy;
+		$this->rule = $rule;
+		$this->pattern = $pattern;
 	}
 }

@@ -33,10 +33,10 @@ class Timer
 	public $mean;
 
 
-	public function __construct(float $sum, float $max, float $mean)
+	public function __construct(float $max, float $mean, float $sum)
 	{
-		$this->sum = $sum;
 		$this->max = $max;
 		$this->mean = $mean;
+		$this->sum = $sum;
 	}
 }

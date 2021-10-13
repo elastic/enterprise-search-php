@@ -22,14 +22,16 @@ use Elastic\EnterpriseSearch\AppSearch\Schema\Document;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Create or update documents
+ * Create a new document
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/documents.html#documents-create
  */
 class IndexDocuments extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
-	 * @param Document[] $documents List of document to index
+	 * @param Document[] $documents
 	 */
 	public function __construct(string $engineName, array $documents)
 	{

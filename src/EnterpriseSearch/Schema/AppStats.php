@@ -36,11 +36,11 @@ class AppStats
 	public $metrics;
 
 
-	public function __construct(int $pid, string $start, string $end, AppMetrics $metrics)
+	public function __construct(string $end, AppMetrics $metrics, int $pid, string $start)
 	{
-		$this->pid = $pid;
-		$this->start = $start;
 		$this->end = $end;
 		$this->metrics = $metrics;
+		$this->pid = $pid;
+		$this->start = $start;
 	}
 }

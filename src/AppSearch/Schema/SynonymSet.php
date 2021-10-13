@@ -23,6 +23,9 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
  */
 class SynonymSet
 {
+	/** @var string */
+	public $id;
+
 	/** @var array */
 	public $synonyms;
 

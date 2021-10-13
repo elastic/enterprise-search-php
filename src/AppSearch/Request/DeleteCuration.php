@@ -21,8 +21,10 @@ namespace Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Delete a curation by ID
+ * Delete a curation
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/curations.html#curations-destroy
  */
 class DeleteCuration extends Request
 {

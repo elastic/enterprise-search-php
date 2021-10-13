@@ -23,7 +23,10 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
  */
 class SearchRequestParams
 {
-	/** @var SimpleObject */
+	/** @var string */
+	public $query;
+
+	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
 	public $analytics;
 
 	/** @var SearchBoosts */
@@ -38,11 +41,8 @@ class SearchRequestParams
 	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
 	public $group;
 
-	/** @var SearchPageParam */
+	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\PaginationResponseObject */
 	public $page;
-
-	/** @var string */
-	public $query;
 
 	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
 	public $result_fields;
@@ -52,4 +52,10 @@ class SearchRequestParams
 
 	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
 	public $sort;
+
+
+	public function __construct(string $query)
+	{
+		$this->query = $query;
+	}
 }

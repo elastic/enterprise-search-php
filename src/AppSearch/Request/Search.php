@@ -22,21 +22,23 @@ use Elastic\EnterpriseSearch\AppSearch\Schema\SearchRequestParams;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Allows you to search over, facet and filter your data
+ * Submit a search
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/search.html
  */
 class Search extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
-	 * @param SearchRequestParams $searchRequestParams Search options including query text, pages, sorting, facets, and filters
+	 * @param SearchRequestParams $search_request_params
 	 */
-	public function __construct(string $engineName, SearchRequestParams $searchRequestParams)
+	public function __construct(string $engineName, SearchRequestParams $search_request_params)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
 		$this->path = "/api/as/v1/engines/$engine_name/search";
 		$this->headers['Content-Type'] = 'application/json';
-		$this->body = $searchRequestParams;
+		$this->body = $search_request_params;
 	}
 }

@@ -33,10 +33,10 @@ class ConnectorStats
 	public $job_store;
 
 
-	public function __construct(bool $alive, ConnectorPools $pool, JobStore $job_store)
+	public function __construct(bool $alive, JobStore $job_store, ConnectorPools $pool)
 	{
 		$this->alive = $alive;
-		$this->pool = $pool;
 		$this->job_store = $job_store;
+		$this->pool = $pool;
 	}
 }

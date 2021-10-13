@@ -33,10 +33,10 @@ class JobStore
 	public $job_types;
 
 
-	public function __construct(int $waiting, int $working, JobTypes $job_types)
+	public function __construct(JobTypes $job_types, int $waiting, int $working)
 	{
+		$this->job_types = $job_types;
 		$this->waiting = $waiting;
 		$this->working = $working;
-		$this->job_types = $job_types;
 	}
 }

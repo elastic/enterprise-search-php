@@ -18,51 +18,27 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Request;
 
+use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsQueriesParams;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Returns queries analytics by usage count
+ * Query for analytics query data
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/queries.html#queries-top-queries
  */
 class GetTopQueriesAnalytics extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
+	 * @param AnalyticsQueriesParams $analytics_queries_params
 	 */
-	public function __construct(string $engineName)
+	public function __construct(string $engineName, AnalyticsQueriesParams $analytics_queries_params)
 	{
-		$this->method = 'GET';
+		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
 		$this->path = "/api/as/v1/engines/$engine_name/analytics/queries";
-	}
-
-
-	/**
-	 * @param int $currentPage The page to fetch. Defaults to 1
-	 */
-	public function setCurrentPage(int $currentPage): self
-	{
-		$this->queryParams['page[current]'] = $currentPage;
-		return $this;
-	}
-
-
-	/**
-	 * @param int $pageSize The number of results per page
-	 */
-	public function setPageSize(int $pageSize): self
-	{
-		$this->queryParams['page[size]'] = $pageSize;
-		return $this;
-	}
-
-
-	/**
-	 * @param object[] $filters Analytics filters
-	 */
-	public function setFilters(array $filters): self
-	{
-		$this->queryParams['filters[]'] = $filters;
-		return $this;
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body = $analytics_queries_params;
 	}
 }

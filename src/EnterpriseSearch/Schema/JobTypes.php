@@ -36,11 +36,11 @@ class JobTypes
 	public $permissions;
 
 
-	public function __construct(int $full, int $incremental, int $delete, int $permissions)
+	public function __construct(int $delete, int $full, int $incremental, int $permissions)
 	{
+		$this->delete = $delete;
 		$this->full = $full;
 		$this->incremental = $incremental;
-		$this->delete = $delete;
 		$this->permissions = $permissions;
 	}
 }

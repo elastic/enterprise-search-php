@@ -16,23 +16,22 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\WorkplaceSearch\Request;
-
-use Elastic\EnterpriseSearch\Request\Request;
+namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
 /**
- * Deletes all documents in a custom content source
  * @internal
  */
-class DeleteAllDocuments extends Request
+class StartedSyncJobs
 {
+	/** @var array */
+	public $started;
+
+
 	/**
-	 * @param string $contentSourceId Unique ID for a Custom API source, provided upon creation of a Custom API Source
+	 * @param object[] $started
 	 */
-	public function __construct(string $contentSourceId)
+	public function __construct(array $started)
 	{
-		$this->method = 'DELETE';
-		$content_source_id = urlencode($contentSourceId);
-		$this->path = "/api/ws/v1/sources/$content_source_id/documents";
+		$this->started = $started;
 	}
 }

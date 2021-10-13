@@ -21,8 +21,10 @@ namespace Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * List all available documents with optional pagination support
+ * Retrieve all documents
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/documents.html#documents-list
  */
 class ListDocuments extends Request
 {
@@ -42,7 +44,7 @@ class ListDocuments extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['page[current]'] = $currentPage;
+		$this->queryParams['current_page'] = $currentPage;
 		return $this;
 	}
 
@@ -52,7 +54,7 @@ class ListDocuments extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['page[size]'] = $pageSize;
+		$this->queryParams['page_size'] = $pageSize;
 		return $this;
 	}
 }

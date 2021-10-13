@@ -22,21 +22,23 @@ use Elastic\EnterpriseSearch\AppSearch\Schema\SearchSettings;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Update search settings for the engine
+ * Update search settings
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/search-settings.html#search-settings-update
  */
 class PutSearchSettings extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
-	 * @param SearchSettings $searchSettings Search settings
+	 * @param SearchSettings $search_settings
 	 */
-	public function __construct(string $engineName, SearchSettings $searchSettings)
+	public function __construct(string $engineName, SearchSettings $search_settings)
 	{
 		$this->method = 'PUT';
 		$engine_name = urlencode($engineName);
 		$this->path = "/api/as/v1/engines/$engine_name/search_settings";
 		$this->headers['Content-Type'] = 'application/json';
-		$this->body = $searchSettings;
+		$this->body = $search_settings;
 	}
 }

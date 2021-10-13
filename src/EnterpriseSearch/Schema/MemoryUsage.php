@@ -43,18 +43,18 @@ class MemoryUsage
 
 
 	public function __construct(
-		int $heap_init,
-		int $heap_used,
 		int $heap_committed,
+		int $heap_init,
 		int $heap_max,
-		int $non_heap_init,
-		int $non_heap_committed
+		int $heap_used,
+		int $non_heap_committed,
+		int $non_heap_init
 	) {
-		$this->heap_init = $heap_init;
-		$this->heap_used = $heap_used;
 		$this->heap_committed = $heap_committed;
+		$this->heap_init = $heap_init;
 		$this->heap_max = $heap_max;
-		$this->non_heap_init = $non_heap_init;
+		$this->heap_used = $heap_used;
 		$this->non_heap_committed = $non_heap_committed;
+		$this->non_heap_init = $non_heap_init;
 	}
 }

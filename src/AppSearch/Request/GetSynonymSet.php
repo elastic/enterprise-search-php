@@ -21,14 +21,16 @@ namespace Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Retrieve a synonym set by ID
+ * Retrieve a synonym set
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/synonyms.html#synonyms-list-one
  */
 class GetSynonymSet extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
-	 * @param string $synonymSetId Synonym set ID
+	 * @param string $synonymSetId Synonym Set ID
 	 */
 	public function __construct(string $engineName, string $synonymSetId)
 	{

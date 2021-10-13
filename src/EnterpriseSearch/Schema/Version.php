@@ -33,10 +33,10 @@ class Version
 	public $build_date;
 
 
-	public function __construct(string $number, string $build_hash, ?string $build_date)
+	public function __construct(?string $build_date, string $build_hash, string $number)
 	{
-		$this->number = $number;
-		$this->build_hash = $build_hash;
 		$this->build_date = $build_date;
+		$this->build_hash = $build_hash;
+		$this->number = $number;
 	}
 }

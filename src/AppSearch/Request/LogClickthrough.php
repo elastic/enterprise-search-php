@@ -18,45 +18,27 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Request;
 
+use Elastic\EnterpriseSearch\AppSearch\Schema\ClickParamsRequest;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Send data about clicked results
+ * Tracks results that were clicked after a query
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/clickthrough.html
  */
 class LogClickthrough extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
-	 * @param string $queryText Search query text
-	 * @param string $documentId The ID of the document that was clicked on
+	 * @param ClickParamsRequest $click_params_request
 	 */
-	public function __construct(string $engineName, string $queryText, string $documentId)
+	public function __construct(string $engineName, ClickParamsRequest $click_params_request)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
-		$this->queryParams['query'] = $queryText;
-		$this->queryParams['document_id'] = $documentId;
 		$this->path = "/api/as/v1/engines/$engine_name/click";
-	}
-
-
-	/**
-	 * @param string $requestId The request ID returned in the meta tag of a search API response
-	 */
-	public function setRequestId(string $requestId): self
-	{
-		$this->queryParams['request_id'] = $requestId;
-		return $this;
-	}
-
-
-	/**
-	 * @param string[] $tags Array of strings representing additional information you wish to track with the clickthrough
-	 */
-	public function setTags(array $tags): self
-	{
-		$this->queryParams['tags[]'] = $tags;
-		return $this;
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body = $click_params_request;
 	}
 }

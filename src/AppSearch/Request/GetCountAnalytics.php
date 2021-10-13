@@ -18,41 +18,27 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Request;
 
+use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsCountsParams;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Returns the number of clicks and total number of queries over a period
+ * Query for analytics counts data
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/counts.html
  */
 class GetCountAnalytics extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
+	 * @param AnalyticsCountsParams $analytics_counts_params
 	 */
-	public function __construct(string $engineName)
+	public function __construct(string $engineName, AnalyticsCountsParams $analytics_counts_params)
 	{
-		$this->method = 'GET';
+		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
 		$this->path = "/api/as/v1/engines/$engine_name/analytics/counts";
-	}
-
-
-	/**
-	 * @param object[] $filters Analytics filters
-	 */
-	public function setFilters(array $filters): self
-	{
-		$this->queryParams['filters'] = $filters;
-		return $this;
-	}
-
-
-	/**
-	 * @param string $interval You can define an interval along with your date range. Can be either hour or day
-	 */
-	public function setInterval(string $interval): self
-	{
-		$this->queryParams['interval'] = $interval;
-		return $this;
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body = $analytics_counts_params;
 	}
 }

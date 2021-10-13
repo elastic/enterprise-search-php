@@ -28,13 +28,13 @@ class GetDocument extends Request
 {
 	/**
 	 * @param string $contentSourceId Unique ID for a Custom API source, provided upon creation of a Custom API Source
-	 * @param string $externalId Unique ID for a content source document. Provided upon or returned at creation.
+	 * @param string $documentId Unique ID for a content source document. Provided upon or returned at creation.
 	 */
-	public function __construct(string $contentSourceId, string $externalId)
+	public function __construct(string $contentSourceId, string $documentId)
 	{
 		$this->method = 'GET';
 		$content_source_id = urlencode($contentSourceId);
-		$external_id = urlencode($externalId);
-		$this->path = "/api/ws/v1/sources/$content_source_id/documents/$external_id";
+		$document_id = urlencode($documentId);
+		$this->path = "/api/ws/v1/sources/$content_source_id/documents/$document_id";
 	}
 }

@@ -35,6 +35,15 @@ class ContentSourceCreateDefinition
 	/** @var bool */
 	public $is_searchable;
 
+	/** @var object */
+	public $indexing;
+
+	/** @var object */
+	public $facets;
+
+	/** @var object */
+	public $automatic_query_refinement;
+
 
 	public function __construct(string $name)
 	{

@@ -21,14 +21,16 @@ namespace Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Retrieves one or more documents by ID
+ * Retrieve one or more documents
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/documents.html#documents-get
  */
 class GetDocuments extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
-	 * @param string[] $documentIds List of document IDs
+	 * @param string[] $documentIds
 	 */
 	public function __construct(string $engineName, array $documentIds)
 	{
@@ -37,5 +39,15 @@ class GetDocuments extends Request
 		$this->path = "/api/as/v1/engines/$engine_name/documents";
 		$this->headers['Content-Type'] = 'application/json';
 		$this->body = $documentIds;
+	}
+
+
+	/**
+	 * @param string[] $ids List of Document IDs to fetch
+	 */
+	public function setIds(array $ids): self
+	{
+		$this->queryParams['ids'] = $ids;
+		return $this;
 	}
 }

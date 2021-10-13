@@ -21,14 +21,16 @@ namespace Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Add a source engine to an existing meta engine
+ * Add a source engine
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/meta-engines.html#meta-engines-add-source-engines
  */
 class AddMetaEngineSource extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
-	 * @param string[] $sourceEngines List of engine names
+	 * @param string[] $sourceEngines
 	 */
 	public function __construct(string $engineName, array $sourceEngines)
 	{

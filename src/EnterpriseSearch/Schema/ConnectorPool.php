@@ -46,20 +46,20 @@ class ConnectorPool
 
 
 	public function __construct(
-		bool $running,
-		int $queue_depth,
-		int $size,
 		int $busy,
 		int $idle,
-		int $total_scheduled,
-		int $total_completed
+		int $queue_depth,
+		bool $running,
+		int $size,
+		int $total_completed,
+		int $total_scheduled
 	) {
-		$this->running = $running;
-		$this->queue_depth = $queue_depth;
-		$this->size = $size;
 		$this->busy = $busy;
 		$this->idle = $idle;
-		$this->total_scheduled = $total_scheduled;
+		$this->queue_depth = $queue_depth;
+		$this->running = $running;
+		$this->size = $size;
 		$this->total_completed = $total_completed;
+		$this->total_scheduled = $total_scheduled;
 	}
 }

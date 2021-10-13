@@ -21,5 +21,5 @@ use Exception;
  */
 class ClientErrorResponseException extends Exception implements EnterpriseSearchInterface
 {
-
+   use ResponseTrait;
 }

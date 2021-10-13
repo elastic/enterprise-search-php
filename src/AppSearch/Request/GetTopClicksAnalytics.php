@@ -18,61 +18,27 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Request;
 
+use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsClicksParams;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Returns the number of clicks received by a document in descending order
+ * Query for analytics click data
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/clicks.html
  */
 class GetTopClicksAnalytics extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
+	 * @param AnalyticsClicksParams $analytics_clicks_params
 	 */
-	public function __construct(string $engineName)
+	public function __construct(string $engineName, AnalyticsClicksParams $analytics_clicks_params)
 	{
-		$this->method = 'GET';
+		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
 		$this->path = "/api/as/v1/engines/$engine_name/analytics/clicks";
-	}
-
-
-	/**
-	 * @param string $query Filter clicks over a search query
-	 */
-	public function setQuery(string $query): self
-	{
-		$this->queryParams['query'] = $query;
-		return $this;
-	}
-
-
-	/**
-	 * @param int $currentPage The page to fetch. Defaults to 1
-	 */
-	public function setCurrentPage(int $currentPage): self
-	{
-		$this->queryParams['page[current]'] = $currentPage;
-		return $this;
-	}
-
-
-	/**
-	 * @param int $pageSize The number of results per page
-	 */
-	public function setPageSize(int $pageSize): self
-	{
-		$this->queryParams['page[size]'] = $pageSize;
-		return $this;
-	}
-
-
-	/**
-	 * @param object[] $filters Analytics filters
-	 */
-	public function setFilters(array $filters): self
-	{
-		$this->queryParams['filters[]'] = $filters;
-		return $this;
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body = $analytics_clicks_params;
 	}
 }

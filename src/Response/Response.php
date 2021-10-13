@@ -54,15 +54,17 @@ class Response implements ResponseInterface, ArrayAccess
         $this->response = $response;
         $status = $response->getStatusCode();
         if ($status > 399 && $status < 500) {
-            throw new ClientErrorResponseException(
+            $error = new ClientErrorResponseException(
                 sprintf("%s %s", $status, $response->getReasonPhrase()),
                 $status
             );
+            throw $error->setResponse($response);
         } elseif ($status > 499 && $status < 600) {
-            throw new ServerErrorResponseException(
+            $error = new ServerErrorResponseException(
                 sprintf("%s %s", $status, $response->getReasonPhrase()),
                 $status
             );
+            throw $error->setResponse($response);
         }
     }
 

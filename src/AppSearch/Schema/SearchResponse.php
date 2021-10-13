@@ -21,11 +21,21 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 /**
  * @internal
  */
-class SearchPageParam
+class SearchResponse
 {
-	/** @var int */
-	public $current;
+	/** @var */
+	public $meta;
 
-	/** @var int */
-	public $size;
+	/** @var array */
+	public $results;
+
+
+	/**
+	 * @param object[] $results
+	 */
+	public function __construct($meta, array $results)
+	{
+		$this->meta = $meta;
+		$this->results = $results;
+	}
 }

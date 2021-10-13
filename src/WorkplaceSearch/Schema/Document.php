@@ -26,6 +26,9 @@ class Document
 	/** @var string */
 	public $id;
 
+	/** @var string */
+	public $last_updated;
+
 	/** @var array */
 	public $_allow_permissions;
 

@@ -49,4 +49,13 @@ class SearchApiQuery
 
 	/** @var object */
 	public $boosts;
+
+	/** @var */
+	public $source_type;
+
+	/** @var int */
+	public $timeout;
+
+	/** @var array */
+	public $content_sources;
 }

@@ -38,6 +38,18 @@ class ContentSourceDisplay
 	/** @var string */
 	public $subtitle_field;
 
+	/** @var string */
+	public $type_field;
+
+	/** @var string */
+	public $media_type_field;
+
+	/** @var string */
+	public $created_by_field;
+
+	/** @var string */
+	public $updated_by_field;
+
 	/** @var array */
 	public $detail_fields;
 

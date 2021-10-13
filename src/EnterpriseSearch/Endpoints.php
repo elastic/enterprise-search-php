@@ -22,7 +22,7 @@ use Elastic\EnterpriseSearch\AbstractEndpoints;
 use Elastic\EnterpriseSearch\Response\Response;
 
 /**
- * Enterprise Search API
+ * A set of solution-wide APIs for managing Elastic Enterprise Search
  * @internal
  */
 class Endpoints extends AbstractEndpoints

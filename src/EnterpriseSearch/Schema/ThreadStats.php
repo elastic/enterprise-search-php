@@ -37,14 +37,14 @@ class ThreadStats
 
 
 	public function __construct(
-		int $thread_count,
+		int $daemon_thread_count,
 		int $peak_thread_count,
-		int $total_started_thread_count,
-		int $daemon_thread_count
+		int $thread_count,
+		int $total_started_thread_count
 	) {
-		$this->thread_count = $thread_count;
-		$this->peak_thread_count = $peak_thread_count;
-		$this->total_started_thread_count = $total_started_thread_count;
 		$this->daemon_thread_count = $daemon_thread_count;
+		$this->peak_thread_count = $peak_thread_count;
+		$this->thread_count = $thread_count;
+		$this->total_started_thread_count = $total_started_thread_count;
 	}
 }
