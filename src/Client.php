@@ -26,7 +26,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class Client
 {
-    const VERSION = '7.15.0';
+    const VERSION = '7.x-SNAPSHOT';
 
     /**
      * @var array
