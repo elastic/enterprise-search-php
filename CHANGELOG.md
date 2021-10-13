@@ -1,5 +1,12 @@
 # Changelog
 
+## 7.15.0 (2021-10-14)
+
+Release compatible with Enterprise Search, App Search and Workplace Search 7.15
+## 7.14.0 (2021-08-04)
+
+Release compatible with Enterprise Search, App Search and Workplace Search 7.14
+
 ## 7.13.0 (2021-05-25)
 
 First stable release, created to be compatible with Enterprise Search 7.13
