@@ -99,6 +99,18 @@ final class EnterpriseSearchTest extends TestCase
         $this->assertTrue(isset($result['connectors']));
     }
 
+    public function testGetStatsWithIncludeParam()
+    {
+        $request= new Request\GetStats();
+        $request->setInclude(['app', 'connectors']);
+
+        $result = $this->enterpriseSearch->getStats($request);
+
+        $this->assertTrue(isset($result['app']));
+        $this->assertTrue(isset($result['connectors']));
+        $this->assertFalse(isset($result['queues']));
+    }
+
     /**
      * @covers Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints::getVersion
      * @covers Elastic\EnterpriseSearch\EnterpriseSearch\Request\GetStats
