@@ -23,7 +23,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Allows you to search over, facet and filter your data
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/search.html
  */
 class Search extends Request
 {

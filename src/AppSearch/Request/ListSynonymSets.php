@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieve available synonym sets for the engine
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/synonyms.html#synonyms-get
  */
 class ListSynonymSets extends Request
 {
@@ -33,6 +35,7 @@ class ListSynonymSets extends Request
 	{
 		$this->method = 'GET';
 		$engine_name = urlencode($engineName);
+		$this->headers['Content-Type'] = 'application/json';
 		$this->path = "/api/as/v1/engines/$engine_name/synonyms";
 	}
 
@@ -42,7 +45,7 @@ class ListSynonymSets extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['page[current]'] = $currentPage;
+		$this->body['filters']['date']['to'] = $currentPage;
 		return $this;
 	}
 
@@ -52,7 +55,7 @@ class ListSynonymSets extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['page[size]'] = $pageSize;
+		$this->body['filters']['date']['to'] = $pageSize;
 		return $this;
 	}
 }

@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Create a new curation
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/curations.html#curations-create
  */
 class CreateCuration extends Request
 {
@@ -34,7 +36,8 @@ class CreateCuration extends Request
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
-		$this->queryParams['queries[]'] = $queries;
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body['queries'] = $queries;
 		$this->path = "/api/as/v1/engines/$engine_name/curations";
 	}
 
@@ -44,7 +47,7 @@ class CreateCuration extends Request
 	 */
 	public function setPromotedDocIds(array $promotedDocIds): self
 	{
-		$this->queryParams['promoted[]'] = $promotedDocIds;
+		$this->body['promoted'] = $promotedDocIds;
 		return $this;
 	}
 
@@ -54,7 +57,7 @@ class CreateCuration extends Request
 	 */
 	public function setHiddenDocIds(array $hiddenDocIds): self
 	{
-		$this->queryParams['hidden[]'] = $hiddenDocIds;
+		$this->body['hidden'] = $hiddenDocIds;
 		return $this;
 	}
 }

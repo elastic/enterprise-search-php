@@ -23,7 +23,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Update schema for the current engine
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/schema.html#schema-patch
  */
 class PutSchema extends Request
 {

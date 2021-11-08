@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Returns the number of clicks and total number of queries over a period
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/counts.html
  */
 class GetCountAnalytics extends Request
 {
@@ -33,6 +35,7 @@ class GetCountAnalytics extends Request
 	{
 		$this->method = 'GET';
 		$engine_name = urlencode($engineName);
+		$this->headers['Content-Type'] = 'application/json';
 		$this->path = "/api/as/v1/engines/$engine_name/analytics/counts";
 	}
 
@@ -42,7 +45,7 @@ class GetCountAnalytics extends Request
 	 */
 	public function setFilters(array $filters): self
 	{
-		$this->queryParams['filters'] = $filters;
+		$this->body['filters'] = $filters;
 		return $this;
 	}
 
@@ -52,7 +55,7 @@ class GetCountAnalytics extends Request
 	 */
 	public function setInterval(string $interval): self
 	{
-		$this->queryParams['interval'] = $interval;
+		$this->body['interval'] = $interval;
 		return $this;
 	}
 }

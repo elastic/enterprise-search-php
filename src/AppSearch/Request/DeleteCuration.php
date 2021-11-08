@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Delete a curation by ID
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/curations.html#curations-destroy
  */
 class DeleteCuration extends Request
 {

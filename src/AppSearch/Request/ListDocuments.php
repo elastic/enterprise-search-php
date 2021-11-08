@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * List all available documents with optional pagination support
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/documents.html#documents-list
  */
 class ListDocuments extends Request
 {
@@ -33,6 +35,7 @@ class ListDocuments extends Request
 	{
 		$this->method = 'GET';
 		$engine_name = urlencode($engineName);
+		$this->headers['Content-Type'] = 'application/json';
 		$this->path = "/api/as/v1/engines/$engine_name/documents/list";
 	}
 
@@ -42,7 +45,7 @@ class ListDocuments extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['page[current]'] = $currentPage;
+		$this->body['query'] = $currentPage;
 		return $this;
 	}
 
@@ -52,7 +55,7 @@ class ListDocuments extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['page[size]'] = $pageSize;
+		$this->body['query'] = $pageSize;
 		return $this;
 	}
 }
