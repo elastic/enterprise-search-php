@@ -16,6 +16,7 @@ namespace Elastic\EnterpriseSearch\Tests\Request;
 
 use Elastic\EnterpriseSearch\Client;
 use Elastic\EnterpriseSearch\AppSearch\Request;
+use Elastic\EnterpriseSearch\AppSearch\Request\GetApiLogs;
 use Elastic\EnterpriseSearch\AppSearch\Schema;
 use Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints;
 use Elastic\EnterpriseSearch\Exception\ClientErrorResponseException;
@@ -186,6 +187,37 @@ final class AppSearchTest extends TestCase
         $this->assertEquals($id, $result['results'][0]['id']['raw']);
     }
 
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::logClickthrough
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\LogClickthrough
+     * @depends testIndexDocuments
+     */
+    public function testLogClickthrough(string $id)
+    {
+        $request = new Request\LogClickthrough('test', 'search', $id);
+        $request->setTags(['tag1', 'tag2']);
+
+        $result =  $this->appSearch->logClickthrough($request);
+        $this->assertEquals(200, $result->getResponse()->getStatusCode());
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::getApiLogs
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\GetApiLogs
+     */
+    public function testGetApiLogs()
+    {
+        $from = '2018-10-15T00:00:00+00:00';
+        $to = '2018-10-16T00:00:00+00:00';
+
+        $result = $this->appSearch->getApiLogs(
+            new GetApiLogs('test', $from, $to)
+        );
+
+        $this->assertTrue(isset($result['results']));
+        $this->assertEquals($from, $result['meta']['filters']['date']['from']);
+        $this->assertEquals($to, $result['meta']['filters']['date']['to']);
+    }
     /**
      * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::deleteDocuments
      * @covers Elastic\EnterpriseSearch\AppSearch\Request\DeleteDocuments
