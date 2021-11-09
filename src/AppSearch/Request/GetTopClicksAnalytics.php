@@ -51,21 +51,21 @@ class GetTopClicksAnalytics extends Request
 
 
 	/**
-	 * @param int $query The page to fetch. Defaults to 1
+	 * @param int $currentPage The page to fetch. Defaults to 1
 	 */
-	public function setCurrentPage(int $query): self
+	public function setCurrentPage(int $currentPage): self
 	{
-		$this->body['query'] = $query;
+		$this->body['page']['current'] = $currentPage;
 		return $this;
 	}
 
 
 	/**
-	 * @param int $query The number of results per page
+	 * @param int $pageSize The number of results per page
 	 */
-	public function setPageSize(int $query): self
+	public function setPageSize(int $pageSize): self
 	{
-		$this->body['query'] = $query;
+		$this->body['page']['size'] = $pageSize;
 		return $this;
 	}
 

@@ -45,7 +45,7 @@ class ListCurations extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->body['query'] = $currentPage;
+		$this->body['page']['current'] = $currentPage;
 		return $this;
 	}
 
@@ -55,7 +55,7 @@ class ListCurations extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->body['query'] = $pageSize;
+		$this->body['page']['size'] = $pageSize;
 		return $this;
 	}
 }

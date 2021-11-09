@@ -45,21 +45,21 @@ class GetApiLogs extends Request
 
 
 	/**
-	 * @param int $toDate The page to fetch. Defaults to 1
+	 * @param int $currentPage The page to fetch. Defaults to 1
 	 */
-	public function setCurrentPage(int $toDate): self
+	public function setCurrentPage(int $currentPage): self
 	{
-		$this->body['filters']['date']['to'] = $toDate;
+		$this->body['page']['current'] = $currentPage;
 		return $this;
 	}
 
 
 	/**
-	 * @param int $toDate The number of results per page
+	 * @param int $pageSize The number of results per page
 	 */
-	public function setPageSize(int $toDate): self
+	public function setPageSize(int $pageSize): self
 	{
-		$this->body['filters']['date']['to'] = $toDate;
+		$this->body['page']['size'] = $pageSize;
 		return $this;
 	}
 
