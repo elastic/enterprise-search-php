@@ -23,7 +23,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Create or update documents
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/documents.html#documents-create
  */
 class IndexDocuments extends Request
 {

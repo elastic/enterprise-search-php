@@ -19,6 +19,7 @@ declare(strict_types=1);
 namespace Elastic\EnterpriseSearch\AppSearch;
 
 use Elastic\EnterpriseSearch\AbstractEndpoints;
+use Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\Response\Response;
 
 /**

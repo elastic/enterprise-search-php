@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieve a curation by ID
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/curations.html#curations-read
  */
 class GetCuration extends Request
 {

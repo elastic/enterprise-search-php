@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Update an existing curation
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/curations.html#curations-update
  */
 class PutCuration extends Request
 {
@@ -36,7 +38,8 @@ class PutCuration extends Request
 		$this->method = 'PUT';
 		$engine_name = urlencode($engineName);
 		$curation_id = urlencode($curationId);
-		$this->queryParams['queries[]'] = $queries;
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body['queries'] = $queries;
 		$this->path = "/api/as/v1/engines/$engine_name/curations/$curation_id";
 	}
 
@@ -46,7 +49,7 @@ class PutCuration extends Request
 	 */
 	public function setPromotedDocIds(array $promotedDocIds): self
 	{
-		$this->queryParams['promoted[]'] = $promotedDocIds;
+		$this->body['promoted'] = $promotedDocIds;
 		return $this;
 	}
 
@@ -56,7 +59,7 @@ class PutCuration extends Request
 	 */
 	public function setHiddenDocIds(array $hiddenDocIds): self
 	{
-		$this->queryParams['hidden[]'] = $hiddenDocIds;
+		$this->body['hidden'] = $hiddenDocIds;
 		return $this;
 	}
 }

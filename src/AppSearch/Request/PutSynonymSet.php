@@ -23,7 +23,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Update a synonym set by ID
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/synonyms.html#synonyms-update
  */
 class PutSynonymSet extends Request
 {

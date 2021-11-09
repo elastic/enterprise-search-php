@@ -23,7 +23,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Update search settings for the engine
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/search-settings.html#search-settings-update
  */
 class PutSearchSettings extends Request
 {

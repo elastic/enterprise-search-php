@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Provide relevant query suggestions for incomplete queries
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/query-suggestion.html
  */
 class QuerySuggestion extends Request
 {
@@ -34,7 +36,8 @@ class QuerySuggestion extends Request
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
-		$this->queryParams['query'] = $query;
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body['query'] = $query;
 		$this->path = "/api/as/v1/engines/$engine_name/query_suggestion";
 	}
 
@@ -44,7 +47,7 @@ class QuerySuggestion extends Request
 	 */
 	public function setFields(array $fields): self
 	{
-		$this->queryParams['types[documents][fields][]'] = $fields;
+		$this->body['types']['documents']['fields'] = $fields;
 		return $this;
 	}
 
@@ -54,7 +57,7 @@ class QuerySuggestion extends Request
 	 */
 	public function setSize(int $size): self
 	{
-		$this->queryParams['size'] = $size;
+		$this->body['size'] = $size;
 		return $this;
 	}
 }

@@ -22,13 +22,16 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieves all engines with optional pagination support
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/engines.html#engines-list
  */
 class ListEngines extends Request
 {
 	public function __construct()
 	{
 		$this->method = 'GET';
+		$this->headers['Content-Type'] = 'application/json';
 		$this->path = "/api/as/v1/engines";
 	}
 
@@ -38,7 +41,7 @@ class ListEngines extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['page[current]'] = $currentPage;
+		$this->body['page']['current'] = $currentPage;
 		return $this;
 	}
 
@@ -48,7 +51,7 @@ class ListEngines extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['page[size]'] = $pageSize;
+		$this->body['page']['size'] = $pageSize;
 		return $this;
 	}
 }

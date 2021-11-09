@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Creates a new engine
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/engines.html#engines-create
  */
 class CreateEngine extends Request
 {
@@ -32,7 +34,8 @@ class CreateEngine extends Request
 	public function __construct(string $engineName)
 	{
 		$this->method = 'POST';
-		$this->queryParams['name'] = $engineName;
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body['name'] = $engineName;
 		$this->path = "/api/as/v1/engines";
 	}
 
@@ -42,7 +45,7 @@ class CreateEngine extends Request
 	 */
 	public function setLanguage(string $language): self
 	{
-		$this->queryParams['language'] = $language;
+		$this->body['language'] = $language;
 		return $this;
 	}
 
@@ -52,7 +55,7 @@ class CreateEngine extends Request
 	 */
 	public function setType(string $type): self
 	{
-		$this->queryParams['type'] = $type;
+		$this->body['type'] = $type;
 		return $this;
 	}
 
@@ -62,7 +65,7 @@ class CreateEngine extends Request
 	 */
 	public function setSourceEngines(array $sourceEngines): self
 	{
-		$this->queryParams['source_engines[]'] = $sourceEngines;
+		$this->body['source_engines'] = $sourceEngines;
 		return $this;
 	}
 }

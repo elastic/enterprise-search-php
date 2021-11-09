@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Send data about clicked results
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/clickthrough.html
  */
 class LogClickthrough extends Request
 {
@@ -35,8 +37,9 @@ class LogClickthrough extends Request
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
-		$this->queryParams['query'] = $queryText;
-		$this->queryParams['document_id'] = $documentId;
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body['query'] = $queryText;
+		$this->body['document_id'] = $documentId;
 		$this->path = "/api/as/v1/engines/$engine_name/click";
 	}
 
@@ -46,7 +49,7 @@ class LogClickthrough extends Request
 	 */
 	public function setRequestId(string $requestId): self
 	{
-		$this->queryParams['request_id'] = $requestId;
+		$this->body['request_id'] = $requestId;
 		return $this;
 	}
 
@@ -56,7 +59,7 @@ class LogClickthrough extends Request
 	 */
 	public function setTags(array $tags): self
 	{
-		$this->queryParams['tags[]'] = $tags;
+		$this->body['tags'] = $tags;
 		return $this;
 	}
 }
