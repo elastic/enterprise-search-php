@@ -1,5 +1,12 @@
 # Changelog
 
+## 7.13.1 (2021-11-09)
+
+Patch release with the following fixes:
+
+- Removed query string params for App Search endpoints 
+  [#5](https://github.com/elastic/enterprise-search-php/pull/5)
+  
 ## 7.15.0 (2021-10-14)
 
 Release compatible with Enterprise Search, App Search and Workplace Search 7.15
