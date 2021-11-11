@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Delete an API key
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/credentials.html#credentials-destroy
  */
 class DeleteApiKey extends Request
 {

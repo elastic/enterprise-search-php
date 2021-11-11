@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * The API Log displays API request and response data at the Engine level
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/api-logs.html
  */
 class GetApiLogs extends Request
 {
@@ -35,28 +37,29 @@ class GetApiLogs extends Request
 	{
 		$this->method = 'GET';
 		$engine_name = urlencode($engineName);
-		$this->queryParams['filters[date][from]'] = $fromDate;
-		$this->queryParams['filters[date][to]'] = $toDate;
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body['filters']['date']['from'] = $fromDate;
+		$this->body['filters']['date']['to'] = $toDate;
 		$this->path = "/api/as/v1/engines/$engine_name/logs/api";
 	}
 
 
 	/**
-	 * @param int $toDate The page to fetch. Defaults to 1
+	 * @param int $currentPage The page to fetch. Defaults to 1
 	 */
-	public function setCurrentPage(int $toDate): self
+	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['filters[date][to]'] = $toDate;
+		$this->body['page']['current'] = $currentPage;
 		return $this;
 	}
 
 
 	/**
-	 * @param int $toDate The number of results per page
+	 * @param int $pageSize The number of results per page
 	 */
-	public function setPageSize(int $toDate): self
+	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['filters[date][to]'] = $toDate;
+		$this->body['page']['size'] = $pageSize;
 		return $this;
 	}
 
@@ -66,7 +69,7 @@ class GetApiLogs extends Request
 	 */
 	public function setQuery(string $query): self
 	{
-		$this->queryParams['query'] = $query;
+		$this->body['query'] = $query;
 		return $this;
 	}
 
@@ -76,7 +79,7 @@ class GetApiLogs extends Request
 	 */
 	public function setHttpStatusFilter(string $httpStatusFilter): self
 	{
-		$this->queryParams['filters[status]'] = $httpStatusFilter;
+		$this->body['filters']['status'] = $httpStatusFilter;
 		return $this;
 	}
 
@@ -86,7 +89,7 @@ class GetApiLogs extends Request
 	 */
 	public function setHttpMethodFilter(string $httpMethodFilter): self
 	{
-		$this->queryParams['filters[method]'] = $httpMethodFilter;
+		$this->body['filters']['method'] = $httpMethodFilter;
 		return $this;
 	}
 
@@ -96,7 +99,7 @@ class GetApiLogs extends Request
 	 */
 	public function setSortDirection(string $sortDirection): self
 	{
-		$this->queryParams['sort_direction'] = $sortDirection;
+		$this->body['sort_direction'] = $sortDirection;
 		return $this;
 	}
 }

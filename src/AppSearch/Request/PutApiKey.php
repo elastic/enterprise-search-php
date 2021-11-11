@@ -23,7 +23,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Update an API key
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/credentials.html#credentials-update
  */
 class PutApiKey extends Request
 {

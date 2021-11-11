@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Delete an engine by name
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/engines.html#engines-delete
  */
 class DeleteEngine extends Request
 {

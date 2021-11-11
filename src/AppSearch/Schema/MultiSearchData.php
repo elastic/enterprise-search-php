@@ -18,6 +18,8 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 
+use Elastic\EnterpriseSearch\AppSearch\Schema\SearchRequestParams;
+
 /**
  * @internal
  */

@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Get the details of an API key
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/credentials.html#credentials-single
  */
 class GetApiKey extends Request
 {

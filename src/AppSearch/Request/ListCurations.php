@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieve available curations for the engine
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/curations.html#curations-read
  */
 class ListCurations extends Request
 {
@@ -33,6 +35,7 @@ class ListCurations extends Request
 	{
 		$this->method = 'GET';
 		$engine_name = urlencode($engineName);
+		$this->headers['Content-Type'] = 'application/json';
 		$this->path = "/api/as/v1/engines/$engine_name/curations";
 	}
 
@@ -42,7 +45,7 @@ class ListCurations extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['query'] = $currentPage;
+		$this->body['page']['current'] = $currentPage;
 		return $this;
 	}
 
@@ -52,7 +55,7 @@ class ListCurations extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['query'] = $pageSize;
+		$this->body['page']['size'] = $pageSize;
 		return $this;
 	}
 }

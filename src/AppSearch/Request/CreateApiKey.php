@@ -23,7 +23,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Create an API key
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/credentials.html#credentials-create
  */
 class CreateApiKey extends Request
 {

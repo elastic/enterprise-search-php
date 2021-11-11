@@ -22,13 +22,16 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * List the details of all API keys
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/credentials.html#credentials-all
  */
 class ListApiKeys extends Request
 {
 	public function __construct()
 	{
 		$this->method = 'GET';
+		$this->headers['Content-Type'] = 'application/json';
 		$this->path = "/api/as/v1/credentials";
 	}
 
@@ -38,7 +41,7 @@ class ListApiKeys extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['filters[date][to]'] = $currentPage;
+		$this->body['page']['current'] = $currentPage;
 		return $this;
 	}
 
@@ -48,7 +51,7 @@ class ListApiKeys extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['filters[date][to]'] = $pageSize;
+		$this->body['page']['size'] = $pageSize;
 		return $this;
 	}
 }

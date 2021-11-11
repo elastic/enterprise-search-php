@@ -23,7 +23,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Run several search in the same request
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/multi-search.html
  */
 class MultiSearch extends Request
 {

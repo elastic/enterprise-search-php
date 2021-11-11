@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieve current schema for the engine
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/schema.html#schema-read
  */
 class GetSchema extends Request
 {

@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Returns queries analytics by usage count
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/queries.html#queries-top-queries
  */
 class GetTopQueriesAnalytics extends Request
 {
@@ -33,6 +35,7 @@ class GetTopQueriesAnalytics extends Request
 	{
 		$this->method = 'GET';
 		$engine_name = urlencode($engineName);
+		$this->headers['Content-Type'] = 'application/json';
 		$this->path = "/api/as/v1/engines/$engine_name/analytics/queries";
 	}
 
@@ -42,7 +45,7 @@ class GetTopQueriesAnalytics extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['query'] = $currentPage;
+		$this->body['page']['current'] = $currentPage;
 		return $this;
 	}
 
@@ -52,7 +55,7 @@ class GetTopQueriesAnalytics extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['query'] = $pageSize;
+		$this->body['page']['size'] = $pageSize;
 		return $this;
 	}
 
@@ -62,7 +65,7 @@ class GetTopQueriesAnalytics extends Request
 	 */
 	public function setFilters(array $filters): self
 	{
-		$this->queryParams['filters[]'] = $filters;
+		$this->body['filters'] = $filters;
 		return $this;
 	}
 }

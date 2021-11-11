@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Returns the number of clicks received by a document in descending order
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/clicks.html
  */
 class GetTopClicksAnalytics extends Request
 {
@@ -33,6 +35,7 @@ class GetTopClicksAnalytics extends Request
 	{
 		$this->method = 'GET';
 		$engine_name = urlencode($engineName);
+		$this->headers['Content-Type'] = 'application/json';
 		$this->path = "/api/as/v1/engines/$engine_name/analytics/clicks";
 	}
 
@@ -42,27 +45,27 @@ class GetTopClicksAnalytics extends Request
 	 */
 	public function setQuery(string $query): self
 	{
-		$this->queryParams['query'] = $query;
+		$this->body['query'] = $query;
 		return $this;
 	}
 
 
 	/**
-	 * @param int $query The page to fetch. Defaults to 1
+	 * @param int $currentPage The page to fetch. Defaults to 1
 	 */
-	public function setCurrentPage(int $query): self
+	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['query'] = $query;
+		$this->body['page']['current'] = $currentPage;
 		return $this;
 	}
 
 
 	/**
-	 * @param int $query The number of results per page
+	 * @param int $pageSize The number of results per page
 	 */
-	public function setPageSize(int $query): self
+	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['query'] = $query;
+		$this->body['page']['size'] = $pageSize;
 		return $this;
 	}
 
@@ -72,7 +75,7 @@ class GetTopClicksAnalytics extends Request
 	 */
 	public function setFilters(array $filters): self
 	{
-		$this->queryParams['filters[]'] = $filters;
+		$this->body['filters'] = $filters;
 		return $this;
 	}
 }

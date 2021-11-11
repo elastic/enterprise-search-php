@@ -22,7 +22,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Delete a source engine from a meta engine
+ *
  * @internal
+ * @see https://www.elastic.co/guide/en/app-search/current/meta-engines.html#meta-engines-remove-source-engines
  */
 class DeleteMetaEngineSource extends Request
 {
