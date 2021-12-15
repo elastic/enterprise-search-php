@@ -25,3 +25,4 @@ out/
 
 ### Build Artefacts ###
 .ci/output
+html_docs

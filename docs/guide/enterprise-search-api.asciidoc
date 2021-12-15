@@ -3,7 +3,7 @@
 
 === Health API
 
-The documentation of the Health API is reported https://www.elastic.co/guide/en/enterprise-search/current/monitoring-apis.html#health-api-example[here].
+The documentation of the Health API is reported {enterprise-search-ref}/monitoring-apis.html#health-api-example[here].
 
 [source,php]
 ----------------------------
@@ -34,7 +34,7 @@ print_r($response->asArray());
 
 === Managing Read-Only mode:
 
-The documentation of the Read-Only mode API is reported https://www.elastic.co/guide/en/enterprise-search/current/read-only-api.html[here].
+The documentation of the Read-Only mode API is reported {enterprise-search-ref}/read-only-api.html[here].
 
 [source,php]
 ----------------------------
@@ -52,7 +52,7 @@ var_dump($result['enabled']);
 
 === Stats API
 
-The documentation of the Stats API is reported https://www.elastic.co/guide/en/enterprise-search/current/monitoring-apis.html#stats-api[here].
+The documentation of the Stats API is reported {enterprise-search-ref}/monitoring-apis.html#stats-api[here].
 
 [source,php]
 ----------------------------

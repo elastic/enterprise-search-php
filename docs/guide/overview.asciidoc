@@ -20,7 +20,7 @@ This library uses https://github.com/elastic/elastic-transport-php[elastic-trans
 [discrete]
 ==== Enterprise Search, App Search, Workplace Search
 
-The https://github.com/elastic/enterprise-search-php[enterprise-search-php] library contains all the API of https://www.elastic.co/guide/en/enterprise-search/current/index.html[Enterprise Search], https://www.elastic.co/guide/en/app-search/current/index.html[App Search] and https://www.elastic.co/guide/en/workplace-search/current/index.html[Workplace Search].
+The https://github.com/elastic/enterprise-search-php[enterprise-search-php] library contains PHP APIs for {enterprise-search-ref}/index.html[Enterprise Search], {app-search-ref}/index.html[App Search] and {workplace-search-ref}/index.html[Workplace Search].
 
 The result of an endpoint execution is a `Elastic\EnterpriseSearch\Response\Response` object.
 This object contains the deserialization of the JSON response body. The values can be accessed using object properties or array interface.
@@ -46,7 +46,7 @@ $result = $es->getVersion(new Request\GetVersion); // Call the getVersion endpoi
 echo $result->number; // prints the Enterprise Search version (e.g. 7.15.0)
 ----------------------------
 
-You can access the result of each endpoints using object or array interface, as follows:
+You can access the result of each endpoint using an object or array interface, as follows:
 
 [source,php]
 ----------------------------

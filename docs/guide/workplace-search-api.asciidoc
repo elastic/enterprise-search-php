@@ -1,7 +1,7 @@
 [[workplace-search-api]]
 == Workplace Search API
 
-Here is reported a brief overview of the Workplace Search API. For more information please visit the Workplace Search https://www.elastic.co/guide/en/workplace-search/current/workplace-search-api-overview.html[API documentation].
+Here is reported a brief overview of the Workplace Search API. For more information please visit the Workplace Search {workplace-search-ref}/workplace-search-api-overview.html[API documentation].
 
 === Content Sources
 

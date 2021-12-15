@@ -1,7 +1,7 @@
 [[installation]]
 == Installation
 
-You can install Enterprise Search Client using https://getcomposer.org/[composer]:
+You can install the Enterprise Search PHP client using https://getcomposer.org/[composer]:
 
 [source,sh]
 ---------------------------------------------------
