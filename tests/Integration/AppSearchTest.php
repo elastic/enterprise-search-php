@@ -19,10 +19,7 @@ use Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\AppSearch\Request\GetApiLogs;
 use Elastic\EnterpriseSearch\AppSearch\Schema;
 use Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints;
-use Elastic\EnterpriseSearch\Exception\ClientErrorResponseException;
-use Elastic\EnterpriseSearch\Request\Request as RequestRequest;
 use Elastic\Transport\Transport;
-use GuzzleHttp\Psr7\Request as Psr7Request;
 use PHPUnit\Framework\TestCase;
 
 /**

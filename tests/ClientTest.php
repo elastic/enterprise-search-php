@@ -20,7 +20,6 @@ use Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints as EnterpriseSearchEndpo
 use Elastic\EnterpriseSearch\Exception\MissingParameterException;
 use Elastic\EnterpriseSearch\WorkplaceSearch\Endpoints as WorkplaceSearchEndpoints;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\NullLogger;
 
 final class ClientTest extends TestCase
 {
