@@ -1,0 +1,22 @@
+[[installation]]
+== Installation
+
+You can install Enterprise Search Client using https://getcomposer.org/[composer]:
+
+[source,sh]
+---------------------------------------------------
+$ composer require elastic/enterprise-search
+---------------------------------------------------
+
+Or add it to your project's composer.json file:
+
+[source,json]
+---------------------------------------------------
+{
+    "require" : {
+        "elastic/enterprise-search": "^7.15.0"
+    }
+}
+---------------------------------------------------
+
+The version follows the Elastic Stack version so 7.15.0 is compatible with Enterprise Search released in Elastic Stack 7.15.0.

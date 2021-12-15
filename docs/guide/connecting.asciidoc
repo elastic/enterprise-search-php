@@ -1,0 +1,141 @@
+[[connecting]]
+== Connecting
+
+
+This page contains the information you need to connect and use the Client with Elastic Enterprise Search.
+
+**On this page**
+
+* <<authentication>>
+* <<custom_headers>>
+
+
+[discrete]
+[[authentication]]
+=== Authentication
+
+
+This section contains code snippets to show you how to connect to Enterprise Search, App Search, and Workplace Search.
+
+Each service has its own authentication schemes. Enterprise Search uses a basic HTTP authentication with `username` and `password`.
+App Search and Workplace Search use also a `token` (API key).
+
+[discrete]
+[[auth-ent]]
+==== Authenticating with Enterprise Search
+
+Enterprise Search supports HTTP basic authentication with a `username` and `password`.
+
+You can specify the `enterprise-search` configuration in the `Client` initialization:
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+
+$client = new Client([
+    'host' => 'https://id.ent-search.europe-west2.gcp.elastic-cloud.com',
+    'enterprise-search' => [
+        'username' => '<insert here the username>',
+        'password' => '<insert here the password>'
+    ]
+]);
+
+$enterpriseSearch = $client->enterpriseSearch();
+----------------------------
+
+Or pass directly the `username` and `password` in the `enterpriseSearch()` function:
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+
+$client = new Client([
+    'host' => 'https://id.ent-search.europe-west2.gcp.elastic-cloud.com',
+]);
+
+$enterpriseSearch = $client->enterpriseSearch([
+    'username' => '<insert here the username>',
+    'password' => '<insert here the password>'
+]);
+----------------------------
+
+
+[discrete]
+[[auth-as]]
+==== Authenticating with App Search
+
+In your Elastic App Search dashboard, navigate to Credentials and Create a Key for the client to use. Make sure to read https://www.elastic.co/guide/en/app-search/current/authentication.html[the documentation on Authentication] to understand which key you want to use. Once you've created your key, you need to copy the key value to use on your client.
+
+The API key is the `token` that you need to pass in the Client.
+
+You can pass the `token` in the `Client` initialization:
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+
+$client = new Client([
+    'host' => 'https://id.ent-search.europe-west2.gcp.elastic-cloud.com',
+    'app-search' => [
+        'token' => '<insert here the API key>'
+    ]
+]);
+
+$appSearch = $client->appSearch();
+----------------------------
+
+Or pass directly the `token` in the `appSearch()` function:
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+
+$client = new Client([
+    'host' => 'https://id.ent-search.europe-west2.gcp.elastic-cloud.com',
+]);
+
+$appSearch = $client->appSearch([ 'token' => '<insert here the API key>' ]);
+----------------------------
+
+[discrete]
+[[auth-ws]]
+==== Authenticating with Workplace Search
+
+Workplace Search supports multiple authentication methods:
+
+[discrete]
+[[access-tokens]]
+===== Workplace Search admin user access tokens
+
+In your Elastic Workplace Search dashboard navigate to _Sources/Add a Shared Content Source_ and select _Custom API Source_ to create a new source. Name your source (e.g. `Enterprise Search PHP Client`) and once it's created you'll get an `access token` and an `ID`.
+
+You can pass the `token` in the `Client` initialization:
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+
+$client = new Client([
+    'host' => 'https://id.ent-search.europe-west2.gcp.elastic-cloud.com',
+    'workplace-search' => [
+        'token' => '<insert here the access token>'
+    ]
+]);
+
+$workplaceSearch = $client->workplaceSearch();
+----------------------------
+
+Or pass directly the `token` in the `workplaceSearch()` function:
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+
+$client = new Client([
+    'host' => 'https://id.ent-search.europe-west2.gcp.elastic-cloud.com',
+]);
+
+$workplaceSearch = $client->workplaceSearch([ 'token' => '<insert here the access token>' ]);
+----------------------------
+
+

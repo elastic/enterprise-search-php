@@ -1,0 +1,61 @@
+[[enterprise-search-api]]
+== Enterprise Search API
+
+=== Health API
+
+The documentation of the Health API is reported https://www.elastic.co/guide/en/enterprise-search/current/monitoring-apis.html#health-api-example[here].
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+use Elastic\EnterpriseSearch\EnterpriseSearch\Request;
+use Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
+
+$client = new Client([
+    'host' => 'http://localhost:3002',
+    'enterprise-search' => [
+        'username' => '<insert here the username>',
+        'password' => '<insert here the password>'
+    ]
+]);
+
+$enterpriseSearch = $client->enterpriseSearch();
+$response = $enterpriseSearch->getHealth(new Request\GetHealth);
+print_r($response->asArray());
+----------------------------
+
+=== Version API
+
+[source,php]
+----------------------------
+$result = $enterpriseSearch->getVersion(new Request\GetVersion); 
+print_r($response->asArray());
+----------------------------
+
+=== Managing Read-Only mode:
+
+The documentation of the Read-Only mode API is reported https://www.elastic.co/guide/en/enterprise-search/current/read-only-api.html[here].
+
+[source,php]
+----------------------------
+// Set read-only flag state
+$enterpriseSearch->putReadOnly(
+    new Request\PutReadOnly(
+        new ReadOnlyState(true)
+    )
+);
+
+// Get read-only flag state
+$result = $enterpriseSearch->getReadOnly(new Request\GetReadOnly);
+var_dump($result['enabled']);
+----------------------------
+
+=== Stats API
+
+The documentation of the Stats API is reported https://www.elastic.co/guide/en/enterprise-search/current/monitoring-apis.html#stats-api[here].
+
+[source,php]
+----------------------------
+$response = $enterpriseSearch->getStats(new Request\GetStats);
+print_r($response->asArray());
+----------------------------

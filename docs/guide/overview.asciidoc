@@ -1,0 +1,119 @@
+[[overview]]
+== Overview
+
+This is the official PHP client for Elastic Enterprise Search.
+
+[discrete]
+=== Compatibility
+
+Current development happens in the main branch.
+
+The library is compatible with all Elastic Enterprise Search versions since `7.x` but you **have to use a matching major version**:
+
+For **Elastic Enterprise Search 7.0** and later, use the major version 7 (`7.x.y`) of the library.
+
+[discrete]
+=== HTTP Library
+This library uses https://github.com/elastic/elastic-transport-php[elastic-transport], the HTTP PHP client for connecting to Elastic clusters.
+
+
+[discrete]
+==== Enterprise Search, App Search, Workplace Search
+
+The https://github.com/elastic/enterprise-search-php[enterprise-search-php] library contains all the API of https://www.elastic.co/guide/en/enterprise-search/current/index.html[Enterprise Search], https://www.elastic.co/guide/en/app-search/current/index.html[App Search] and https://www.elastic.co/guide/en/workplace-search/current/index.html[Workplace Search].
+
+The result of an endpoint execution is a `Elastic\EnterpriseSearch\Response\Response` object.
+This object contains the deserialization of the JSON response body. The values can be accessed using object properties or array interface.
+For instance, if you want to get the version of the Enterprise Search instance running, you can use the following code:
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+use Elastic\EnterpriseSearch\EnterpriseSearch\Request;
+
+$client = new Client([
+    'host' => 'http://localhost:3002',
+    'enterprise-search' => [
+        'username' => '<insert here the username>',
+        'password' => '<insert here the password>'
+    ]
+]);
+
+$es = $client->enterpriseSearch(); // Enterprise Search endpoints
+
+$result = $es->getVersion(new Request\GetVersion); // Call the getVersion endpoint
+
+echo $result->number; // prints the Enterprise Search version (e.g. 7.15.0)
+----------------------------
+
+You can access the result of each endpoints using object or array interface, as follows:
+
+[source,php]
+----------------------------
+$result = $es->getVersion(new Request\GetVersion);
+
+echo $result->number; // prints the Enterprise Search version (e.g. 7.15.0)
+echo $result['number']; // same as above
+
+var_dump($result->asArray());  // returns all the body response as array
+var_dump($result->asObject()); // returns all the body response as object
+var_dump($result->asString()); // returns all the body response as string (i.e. JSON)
+----------------------------
+
+You can also retrieve the https://www.php-fig.org/psr/psr-7/[PSR-7] response using the `getResponse()` function:
+
+[source,php]
+----------------------------
+$response = $result->getResponse(); // PSR-7 object
+echo $response->getStatusCode();    // e.g. 200
+var_dump($response->getHeaders());  // returns all the response headers
+----------------------------
+
+[discrete]
+=== Logging
+
+You can enable logging using a https://www.php-fig.org/psr/psr-3/[PSR-3] library, for instance you can use https://github.com/Seldaek/monolog[monolog] as follows:
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+// This is the client object to connect to localhost:3002
+// we choose the product API later
+$client = new Client([ 'host' => 'http://localhost:3002' ]);
+
+// Initialize the monolog library
+$logger = new Logger('my-name');
+$logger->pushHandler(new StreamHandler('path/to/your.log', Logger::WARNING));
+
+// Choose the product API of Enterprise Search
+$es = $client->enterpriseSearch([
+    'username' => '<insert here the username>',
+    'password' => '<insert here the password>',
+    'logger'   => $logger
+]);
+----------------------------
+
+In the previous example, we initialized an Enterprise Search instance.
+
+[discrete]
+=== License
+
+Licensed to Elasticsearch B.V. under one or more contributor
+license agreements. See the NOTICE file distributed with
+this work for additional information regarding copyright
+ownership. Elasticsearch B.V. licenses this file to you under
+the Apache License, Version 2.0 (the "License"); you may
+not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.

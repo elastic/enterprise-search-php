@@ -1,0 +1,14 @@
+[[release_notes]]
+== Release Notes
+
+
+[discrete]
+=== 7.x
+
+* <<release_notes_715, 7.15.0 Release Notes>>
+* <<release_notes_714, 7.14.0 Release Notes>>
+* <<release_notes_713, 7.13.0 Release Notes>>
+
+include::715.asciidoc[]
+include::714.asciidoc[]
+include::713.asciidoc[]
