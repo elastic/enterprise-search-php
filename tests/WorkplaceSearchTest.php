@@ -20,6 +20,11 @@ use Psr\Log\NullLogger;
 
 final class WorkplaceSearchTest extends TestCase
 {
+    /**
+     * @var Client
+     */
+    private $client;
+    
     public function setUp(): void
     {
         $this->client = new Client([
