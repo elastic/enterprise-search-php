@@ -1,8 +1,7 @@
 = enterprise-search-php
 
-:doctype: book
-
-include::{asciidoc-dir}/../../shared/attributes.asciidoc[]
+include::{docs-root}/shared/versions/stack/{source_branch}.asciidoc[]
+include::{docs-root}/shared/attributes.asciidoc[]
 
 include::overview.asciidoc[]
 
