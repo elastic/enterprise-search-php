@@ -33,7 +33,7 @@ class GetDocument extends Request
 	{
 		$this->method = 'GET';
 		$content_source_id = urlencode($contentSourceId);
-		$external_id = urlencode($externalId);
+		$document_id = urlencode($externalId);
 		$this->path = "/api/ws/v1/sources/$content_source_id/documents/$document_id";
 	}
 }

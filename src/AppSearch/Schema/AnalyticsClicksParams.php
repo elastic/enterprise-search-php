@@ -18,8 +18,6 @@ declare(strict_types=1);
 namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 
 use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsClicksFilterAllObject;
-use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsFilterDateObject;
-use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsFilterTagObject;
 
 class AnalyticsClicksParams
 {

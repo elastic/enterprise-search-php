@@ -18,10 +18,6 @@ declare(strict_types=1);
 namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 
 use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsCountsFilterAllObject;
-use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsFilterDateObject;
-use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsFilterDocumentIdObject;
-use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsFilterQueryObject;
-use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsFilterTagObject;
 
 class AnalyticsCountsParams
 {

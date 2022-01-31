@@ -18,7 +18,6 @@ declare(strict_types=1);
 namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
 use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\Filter;
-use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\FilterClauses as FilterClauses1;
 
 class FilterClauses
 {
