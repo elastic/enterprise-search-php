@@ -18,6 +18,10 @@ use Elastic\EnterpriseSearch\Client;
 use Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\AppSearch\Request\GetApiLogs;
 use Elastic\EnterpriseSearch\AppSearch\Schema;
+use Elastic\EnterpriseSearch\AppSearch\Schema\ApiLogsFilter;
+use Elastic\EnterpriseSearch\AppSearch\Schema\ApiLogsRequestParams;
+use Elastic\EnterpriseSearch\AppSearch\Schema\ClickParams;
+use Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject;
 use Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints;
 use Elastic\Transport\Transport;
 use PHPUnit\Framework\TestCase;
@@ -191,8 +195,10 @@ final class AppSearchTest extends TestCase
      */
     public function testLogClickthrough(string $id)
     {
-        $request = new Request\LogClickthrough('test', 'search', $id);
-        $request->setTags(['tag1', 'tag2']);
+        $clickParams = new ClickParams('search', $id);
+        $clickParams->tags = ['tag1', 'tag2'];
+
+        $request = new Request\LogClickthrough('test', $clickParams);
 
         $result =  $this->appSearch->logClickthrough($request);
         $this->assertEquals(200, $result->getResponse()->getStatusCode());
@@ -204,16 +210,21 @@ final class AppSearchTest extends TestCase
      */
     public function testGetApiLogs()
     {
-        $from = '2018-10-15T00:00:00+00:00';
-        $to = '2018-10-16T00:00:00+00:00';
+        $date = new SimpleObject();
+        $date->from = '2018-10-15T00:00:00+00:00';
+        $date->to = '2018-10-16T00:00:00+00:00';
 
+        $apiLogsRequestParams = new ApiLogsRequestParams(
+            new ApiLogsFilter($date)
+        );
+        
         $result = $this->appSearch->getApiLogs(
-            new GetApiLogs('test', $from, $to)
+            new GetApiLogs('test', $apiLogsRequestParams)
         );
 
         $this->assertTrue(isset($result['results']));
-        $this->assertEquals($from, $result['meta']['filters']['date']['from']);
-        $this->assertEquals($to, $result['meta']['filters']['date']['to']);
+        $this->assertEquals($date->from, $result['meta']['filters']['date']['from']);
+        $this->assertEquals($date->to, $result['meta']['filters']['date']['to']);
     }
     /**
      * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::deleteDocuments
@@ -317,9 +328,9 @@ final class AppSearchTest extends TestCase
             new Request\ListCrawlerCrawlRequests('test')
         );
 
-        $this->assertTrue(isset($result[0]));
+        $this->assertTrue(!empty($result['results']));
     }
-
+    
     /**
      * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::deleteCrawlerActiveCrawlReques
      * @covers Elastic\EnterpriseSearch\AppSearch\Request\DeleteCrawlerActiveCrawlRequest
