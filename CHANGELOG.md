@@ -2,6 +2,7 @@
 
 ## 7.16.0 (2022-01-31)
 
+- Changed PHP `7.4` as minimum required. Official PHP team support for PHP `7.3` ends on 2021 December 06
 - `Elastic\EnterpriseSearch\AppSearch\Schema\ClickParamsRequest` is now `Elastic\EnterpriseSearch\AppSearch\Schema\ClickParams`
 - Removed `setLimit` in `Elastic\EnterpriseSearch\AppSearch\Request\ListCrawlerCrawlRequests`
 - Added `setPageSize` and `setCurrentPage` in `Elastic\EnterpriseSearch\AppSearch\Request\ListCrawlerCrawlRequests`
