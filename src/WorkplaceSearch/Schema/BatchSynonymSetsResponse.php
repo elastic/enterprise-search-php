@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -19,13 +18,13 @@ declare(strict_types=1);
 namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
 /**
- * @internal
+ * Response from a request to create a batch of synonym sets
  */
 class BatchSynonymSetsResponse
 {
-	/** @var bool */
-	public $has_errors;
+	/** True if any of the requested synonym sets have errors */
+	public bool $has_errors;
 
-	/** @var array */
-	public $synonym_sets;
+	/** The synonym sets requested to be created */
+	public array $synonym_sets;
 }

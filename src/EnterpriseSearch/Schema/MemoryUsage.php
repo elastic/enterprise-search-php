@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -18,28 +17,15 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 
-/**
- * @internal
- */
 class MemoryUsage
 {
-	/** @var int */
-	public $heap_init;
-
-	/** @var int */
-	public $heap_used;
-
-	/** @var int */
-	public $heap_committed;
-
-	/** @var int */
-	public $heap_max;
-
-	/** @var int */
-	public $non_heap_init;
-
-	/** @var int */
-	public $non_heap_committed;
+	public int $heap_init;
+	public int $heap_used;
+	public int $heap_committed;
+	public int $heap_max;
+	public int $non_heap_init;
+	public int $non_heap_committed;
+	public int $object_pending_finalization_count;
 
 
 	public function __construct(
@@ -48,7 +34,8 @@ class MemoryUsage
 		int $heap_max,
 		int $heap_used,
 		int $non_heap_committed,
-		int $non_heap_init
+		int $non_heap_init,
+		int $object_pending_finalization_count
 	) {
 		$this->heap_committed = $heap_committed;
 		$this->heap_init = $heap_init;
@@ -56,5 +43,6 @@ class MemoryUsage
 		$this->heap_used = $heap_used;
 		$this->non_heap_committed = $non_heap_committed;
 		$this->non_heap_init = $non_heap_init;
+		$this->object_pending_finalization_count = $object_pending_finalization_count;
 	}
 }

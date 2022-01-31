@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -18,19 +17,14 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 
-/**
- * @internal
- */
+use Elastic\EnterpriseSearch\EnterpriseSearch\Schema\ConnectorPools;
+use Elastic\EnterpriseSearch\EnterpriseSearch\Schema\JobStore;
+
 class ConnectorStats
 {
-	/** @var bool */
-	public $alive;
-
-	/** @var ConnectorPools */
-	public $pool;
-
-	/** @var JobStore */
-	public $job_store;
+	public bool $alive;
+	public ConnectorPools $pool;
+	public JobStore $job_store;
 
 
 	public function __construct(bool $alive, JobStore $job_store, ConnectorPools $pool)

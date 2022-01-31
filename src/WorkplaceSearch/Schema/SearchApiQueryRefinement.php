@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -19,22 +18,17 @@ declare(strict_types=1);
 namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
 /**
- * @internal
+ * Metadata regarding automatic refinements made to the query
  */
 class SearchApiQueryRefinement
 {
-	/** @var string */
-	public $submitted_query;
-
-	/** @var string */
-	public $decorated_query_html;
-
-	/** @var array */
-	public $refinements;
+	public string $submitted_query;
+	public string $decorated_query_html;
+	public array $refinements;
 
 
 	/**
-	 * @param object[] $refinements
+	 * @param QueryRefinementItem[] $refinementsMetadata regarding automatic refinements made to the query
 	 */
 	public function __construct(string $submitted_query, string $decorated_query_html, array $refinements)
 	{

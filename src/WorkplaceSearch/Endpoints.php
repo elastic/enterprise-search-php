@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -20,10 +19,10 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch;
 
 use Elastic\EnterpriseSearch\AbstractEndpoints;
 use Elastic\EnterpriseSearch\Response\Response;
+use Elastic\EnterpriseSearch\WorkplaceSearch\Request;
 
 /**
  * A set of product-specific APIs for Elastic Workplace Search
- * @internal
  */
 class Endpoints extends AbstractEndpoints
 {
@@ -99,6 +98,17 @@ class Endpoints extends AbstractEndpoints
 	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-custom-sources-api.html#delete-documents-by-query
 	 */
 	public function deleteDocumentsByQuery(Request\DeleteDocumentsByQuery $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Lists documents from a custom content source
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-custom-sources-api.html#list-documents
+	 */
+	public function listDocuments(Request\ListDocuments $request): Response
 	{
 		return new Response($this->transport->sendRequest($request->getRequest()));
 	}

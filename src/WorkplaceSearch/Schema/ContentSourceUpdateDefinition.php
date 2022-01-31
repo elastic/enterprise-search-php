@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -18,31 +17,28 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
+use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay;
+use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema;
+
 /**
- * @internal
+ * Definition to update a Workplace Search Content Source
  */
 class ContentSourceUpdateDefinition
 {
-	/** @var string */
-	public $name;
+	/** The human readable display name for this Content Source. */
+	public string $name;
 
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceSchema */
-	public $schema;
+	/** The schema that each document in this Content Source will adhere to. */
+	public ContentSourceSchema $schema;
 
-	/** @var Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ContentSourceDisplay */
-	public $display;
+	/** The display details which governs which fields will be displayed, and in what order, in the search results. */
+	public ContentSourceDisplay $display;
 
-	/** @var bool */
-	public $is_searchable;
-
-	/** @var object */
-	public $indexing;
-
-	/** @var object */
-	public $facets;
-
-	/** @var object */
-	public $automatic_query_refinement;
+	/** Whether or not this Content Source will be searchable on the search page. */
+	public bool $is_searchable;
+	public object $indexing;
+	public object $facets;
+	public object $automatic_query_refinement;
 
 
 	public function __construct(string $name, bool $is_searchable)

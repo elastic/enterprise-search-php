@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -18,35 +17,15 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 
-/**
- * @internal
- */
 class ProcessCrawl
 {
-	/** @var string */
-	public $id;
-
-	/** @var bool */
-	public $dry_run;
-
-	/** @var int */
-	public $total_url_count;
-
-	/** @var int */
-	public $denied_url_count;
-
-	/** @var array */
-	public $domains;
-
-	/** @var bool */
-	public $process_all_domains;
-
-	/** @var string */
-	public $created_at;
-
-	/** @var string */
-	public $begun_at;
-
-	/** @var string */
-	public $completed_at;
+	public string $id;
+	public bool $dry_run;
+	public int $total_url_count;
+	public int $denied_url_count;
+	public array $domains;
+	public bool $process_all_domains;
+	public string $created_at;
+	public string $begun_at;
+	public string $completed_at;
 }

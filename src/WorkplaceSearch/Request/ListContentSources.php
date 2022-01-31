@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -22,7 +21,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Retrieves all content sources
- * @internal
+ * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-content-sources-api.html#list-content-sources-api
  */
 class ListContentSources extends Request
 {
@@ -38,7 +37,7 @@ class ListContentSources extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['current_page'] = $currentPage;
+		$this->queryParams['page[current]'] = $currentPage;
 		return $this;
 	}
 
@@ -48,7 +47,7 @@ class ListContentSources extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['page_size'] = $pageSize;
+		$this->queryParams['page[size]'] = $pageSize;
 		return $this;
 	}
 }

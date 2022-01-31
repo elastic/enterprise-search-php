@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -19,14 +18,69 @@ declare(strict_types=1);
 namespace Elastic\EnterpriseSearch\AppSearch;
 
 use Elastic\EnterpriseSearch\AbstractEndpoints;
+use Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\Response\Response;
 
 /**
  * A set of product-specific APIs for Elastic App Search
- * @internal
  */
 class Endpoints extends AbstractEndpoints
 {
+	/**
+	 * Retrieve adaptive relevance settings
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/adaptive-relevance-api-reference.html#adaptive-relevance-api-get-engine-adaptive-relevance-settings
+	 */
+	public function getAdaptiveRelevanceSettings(Request\GetAdaptiveRelevanceSettings $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Update adaptive relevance settings
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/adaptive-relevance-api-reference.html#adaptive-relevance-api-put-engine-adaptive-relevance-settings
+	 */
+	public function putAdaptiveRelevanceSettings(Request\PutAdaptiveRelevanceSettings $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Retrieve adaptive relevance
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/adaptive-relevance-api-reference.html#adaptive-relevance-api-get-engine-adaptive-relevance-suggestions
+	 */
+	public function listAdaptiveRelevanceSuggestions(Request\ListAdaptiveRelevanceSuggestions $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Update adaptive relevance
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/adaptive-relevance-api-reference.html#adaptive-relevance-api-put-engine-adaptive-relevance-suggestions
+	 */
+	public function putAdaptiveRelevanceSuggestions(Request\PutAdaptiveRelevanceSuggestions $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Retrieve adaptive relevance
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/adaptive-relevance-api-reference.html#adaptive-relevance-api-get-engine-adaptive-relevance-suggestions-query
+	 */
+	public function getAdaptiveRelevanceSuggestions(Request\GetAdaptiveRelevanceSuggestions $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
 	/**
 	 * Query for analytics click data
 	 *
@@ -215,6 +269,17 @@ class Endpoints extends AbstractEndpoints
 
 
 	/**
+	 * List crawler domains
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html#web-crawler-apis-get-crawler-domain
+	 */
+	public function listCrawlerDomains(Request\ListCrawlerDomains $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
 	 * Create a crawler domain
 	 *
 	 * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html#web-crawler-apis-post-crawler-domains
@@ -382,7 +447,7 @@ class Endpoints extends AbstractEndpoints
 	/**
 	 * Trace a history of a crawled URL
 	 *
-	 * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html
+	 * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html#web-crawler-apis-post-crawler-trace-url
 	 */
 	public function getCrawlerUrlTracingResult(Request\GetCrawlerUrlTracingResult $request): Response
 	{
@@ -393,7 +458,7 @@ class Endpoints extends AbstractEndpoints
 	/**
 	 * Validate URL with Crawler
 	 *
-	 * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html
+	 * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html#web-crawler-apis-post-crawler-validate-url
 	 */
 	public function getCrawlerUrlValidationResult(Request\GetCrawlerUrlValidationResult $request): Response
 	{
@@ -404,7 +469,7 @@ class Endpoints extends AbstractEndpoints
 	/**
 	 * Validate Domain with Crawler
 	 *
-	 * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html
+	 * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html#web-crawler-apis-post-crawler-validate-domain
 	 */
 	public function getCrawlerDomainValidationResult(Request\GetCrawlerDomainValidationResult $request): Response
 	{

@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -18,22 +17,12 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 
-/**
- * @internal
- */
 class SystemInfo
 {
-	/** @var string */
-	public $java_version;
-
-	/** @var string */
-	public $jruby_version;
-
-	/** @var string */
-	public $os_name;
-
-	/** @var string */
-	public $os_version;
+	public string $java_version;
+	public string $jruby_version;
+	public string $os_name;
+	public string $os_version;
 
 
 	public function __construct(string $java_version, string $jruby_version, string $os_name, string $os_version)

@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -18,20 +17,17 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 
-/**
- * @internal
- */
 class DeniedUrls
 {
-	/** @var int */
-	public $total_url_count;
+	/** Total count of URLs analyzed by process crawl */
+	public int $total_url_count;
 
-	/** @var int */
-	public $denied_url_count;
+	/** Total count of URLs identified for deletion by process crawl */
+	public int $denied_url_count;
 
-	/** @var int */
-	public $sample_size;
+	/** Count of denied URLs provided in sample */
+	public int $sample_size;
 
-	/** @var array */
-	public $denied_urls_sample;
+	/** Sample of URLs identified for deletion by process crawl */
+	public array $denied_urls_sample;
 }

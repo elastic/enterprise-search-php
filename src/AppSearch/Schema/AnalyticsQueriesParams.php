@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -18,19 +17,15 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 
-/**
- * @internal
- */
+use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsFilterClicksObject;
+use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsFilterDateObject;
+use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsFilterResultsObject;
+use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsFilterTagObject;
+use Elastic\EnterpriseSearch\AppSearch\Schema\AnalyticsQueriesFilterAllObject;
+
 class AnalyticsQueriesParams
 {
-	/** @var */
+	/** @var AnalyticsFilterClicksObject|AnalyticsFilterResultsObject|AnalyticsFilterTagObject|AnalyticsFilterDateObject|AnalyticsQueriesFilterAllObject */
 	public $filters;
-
-	/** @var object */
-	public $page;
-
-
-	public function __construct()
-	{
-	}
+	public object $page;
 }

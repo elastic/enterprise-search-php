@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -22,15 +21,15 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Issue commands to a Content Source's sync jobs
- * @internal
+ * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-sync-jobs-api.html#command-sync-jobs-api
  */
 class CommandSyncJobs extends Request
 {
 	/**
 	 * @param string $contentSourceId Unique ID for a Custom API source, provided upon creation of a Custom API Source
-	 * @param  $sync_jobs_command
+	 * @param mixed $sync_jobs_command
 	 */
-	public function __construct(string $contentSourceId, $sync_jobs_command)
+	public function __construct(string $contentSourceId, mixed $sync_jobs_command)
 	{
 		$this->method = 'POST';
 		$content_source_id = urlencode($contentSourceId);
@@ -41,11 +40,11 @@ class CommandSyncJobs extends Request
 
 
 	/**
-	 * @param [] $jobType The type of sync job to consider
+	 * @param string[] $jobType The type of sync job to consider
 	 */
 	public function setJobType(array $jobType): self
 	{
-		$this->queryParams['job_type'] = $jobType;
+		$this->queryParams['job_type'] = implode(',', $jobType);
 		return $this;
 	}
 }
