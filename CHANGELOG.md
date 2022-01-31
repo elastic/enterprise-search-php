@@ -8,6 +8,7 @@
 - Added `setPageSize` and `setCurrentPage` in `Elastic\EnterpriseSearch\AppSearch\Request\ListCrawlerCrawlRequests`
 - Fixed pagination parameter
   [#10](https://github.com/elastic/enterprise-search-php/issues/10)
+  
 ## 7.13.1 (2021-11-09)
 
 Patch release with the following fixes:
