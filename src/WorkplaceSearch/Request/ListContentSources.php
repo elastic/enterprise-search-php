@@ -37,11 +37,7 @@ class ListContentSources extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-<<<<<<< HEAD
-		$this->queryParams['current_page'] = $currentPage;
-=======
 		$this->queryParams['page[current]'] = $currentPage;
->>>>>>> 7.16
 		return $this;
 	}
 
@@ -51,11 +47,7 @@ class ListContentSources extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-<<<<<<< HEAD
-		$this->queryParams['page_size'] = $pageSize;
-=======
 		$this->queryParams['page[size]'] = $pageSize;
->>>>>>> 7.16
 		return $this;
 	}
 }
