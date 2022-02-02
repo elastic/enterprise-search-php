@@ -1,0 +1,95 @@
+[[app-search-api]]
+== App Search API
+
+This document includes examples for different API requests. Please refer to the {app-search-ref}/index.html[Elastic App Search Documentation] for more information, particularly the {app-search-ref}/api-reference.html[API Reference].
+
+=== Engines
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\AppSearch\Request;
+use Elastic\EnterpriseSearch\AppSearch\Schema;
+use Elastic\EnterpriseSearch\Client;
+
+$client = new Client([
+    'host' => 'http://localhost:3002',
+    'app-search' => [
+        'token' => '<insert here the API key>'
+    ]
+]);
+$appSearch = $client->appSearch();
+
+// Create an engine
+$result = $appSearch->createEngine(
+    new Request\CreateEngine(
+        new Schema\Engine('videogames')
+    )
+);
+print_r($result->asArray());
+
+// List all engines
+$result = $appSearch->listEngines();
+print_r($result->asArray());
+
+// Get an engine
+$result = $appSearch->getEngine(
+    new Request\GetEngine('videogames')
+);
+print_r($result->asArray());
+
+// Delete an engine
+$result = $appSearch->deleteEngine(
+    new Request\DeleteEngine('videogames')
+);
+var_dump($result['deleted']);
+----------------------------
+
+=== Documents
+
+[source,php]
+----------------------------
+$engineName = 'videogames';
+
+$id = 'Mr1064';
+$doc = new Schema\Document($id);
+$doc->title = 'Super Luigi 64';
+$doc->description = 'A classic 3D videogame';
+
+// Index documents
+$result = $appSearch->indexDocuments(
+    new Request\IndexDocuments($engineName, [$doc])
+);
+
+// List documents
+$result = $appSearch->listDocuments(
+    new Request\ListDocuments($engineName)
+);
+print_r($result->asArray());
+
+// Get document(s) by ID:
+$result = $appSearch->getDocuments(
+    new Request\GetDocuments($engineName, [$id])
+);
+print_r($result->asArray());
+
+// Delete a document
+$result = $appSearch->deleteDocuments(
+    new Request\DeleteDocuments($engineName, [$id])
+);
+print_r($result->asArray());
+----------------------------
+
+=== Search
+
+[source,php]
+----------------------------
+$engineName = 'videogames';
+
+// Single Search
+$search = new Schema\SearchRequestParams('luigi');
+
+$result = $this->appSearch->search(
+    new Request\Search($engineName, $search)
+);
+print_r($result->asArray());
+----------------------------

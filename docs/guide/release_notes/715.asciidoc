@@ -1,0 +1,8 @@
+[[release_notes_715]]
+=== 7.15 Release notes
+
+[discrete]
+[[release_notes_7151]]
+=== 7.15.0 Release notes
+
+Release created to be compatible with the **7.15** API of [Enterprise Search](https://www.elastic.co/enterprise-search), [App Search](https://www.elastic.co/app-search/) and [Workplace Search](https://www.elastic.co/workplace-search).

@@ -1,0 +1,48 @@
+[[workplace-search-api]]
+== Workplace Search API
+
+Here is reported a brief overview of the Workplace Search API. For more information please visit the Workplace Search {workplace-search-ref}/workplace-search-api-overview.html[API documentation].
+
+=== Content Sources
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+use Elastic\EnterpriseSearch\WorkplaceSearch\Request;
+use Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
+
+$client = new Client([
+    'host' => 'http://localhost:3002',
+    'workplace-search' => [
+        'token' => '<insert here the API key>'
+    ]
+]);
+$workplace = $client->workplaceSearch();
+
+// Create a custom content source
+$content = new ContentSourceCreateDefinition('test');
+$result = $workplace->createContentSource(
+    new Request\CreateContentSource($content)
+);
+$sourceId = $result['id'] ?? null;
+----------------------------
+
+=== Documents
+
+[source,php]
+----------------------------
+// Index a document in content source $sourceId
+$doc = new Schema\Document();
+$doc->id = '1234';
+$doc->title = "The Meaning of Time";
+$doc->body = "Not much. It is a made up thing.";
+
+$result = $workplace->indexDocuments(
+    new Request\IndexDocuments($sourceId, [$doc])
+);
+
+// Delete documents
+$result = $workplace->deleteDocuments(
+    new Request\DeleteDocuments($sourceId, [$doc->id])
+);
+----------------------------

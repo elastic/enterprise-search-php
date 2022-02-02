@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -20,10 +19,10 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch;
 
 use Elastic\EnterpriseSearch\AbstractEndpoints;
 use Elastic\EnterpriseSearch\Response\Response;
+use Elastic\EnterpriseSearch\WorkplaceSearch\Request;
 
 /**
- * Workplace Search API
- * @internal
+ * A set of product-specific APIs for Elastic Workplace Search
  */
 class Endpoints extends AbstractEndpoints
 {
@@ -83,11 +82,33 @@ class Endpoints extends AbstractEndpoints
 
 
 	/**
-	 * Deletes all documents in a custom content source
+	 * Upload content source icons
 	 *
-	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-custom-sources-api.html#delete-all-documents
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-content-sources-api.html#upload-content-source-icon-api
 	 */
-	public function deleteAllDocuments(Request\DeleteAllDocuments $request): Response
+	public function putContentSourceIcons(Request\PutContentSourceIcons $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Deletes documents by query in a custom content source
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-custom-sources-api.html#delete-documents-by-query
+	 */
+	public function deleteDocumentsByQuery(Request\DeleteDocumentsByQuery $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Lists documents from a custom content source
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-custom-sources-api.html#list-documents
+	 */
+	public function listDocuments(Request\ListDocuments $request): Response
 	{
 		return new Response($this->transport->sendRequest($request->getRequest()));
 	}
@@ -182,6 +203,17 @@ class Endpoints extends AbstractEndpoints
 
 
 	/**
+	 * Issue commands to a Content Source's sync jobs
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-sync-jobs-api.html#command-sync-jobs-api
+	 */
+	public function commandSyncJobs(Request\CommandSyncJobs $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
 	 * Lists all permissions for all users
 	 *
 	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-document-permissions-api.html#list
@@ -231,6 +263,105 @@ class Endpoints extends AbstractEndpoints
 	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-document-permissions-api.html#remove-one
 	 */
 	public function removeUserPermissions(Request\RemoveUserPermissions $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Retrieve a synonym set by ID
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-synonyms-api.html#show-synonym
+	 */
+	public function getSynonymSet(Request\GetSynonymSet $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Update a synonym set
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-synonyms-api.html#update-synonym
+	 */
+	public function putSynonymSet(Request\PutSynonymSet $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Delete a synonym set
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-synonyms-api.html#delete-synonym
+	 */
+	public function deleteSynonymSet(Request\DeleteSynonymSet $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Retrieves all synonym sets
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-synonyms-api.html#list-synonyms
+	 */
+	public function listSynonymSets(Request\ListSynonymSets $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Create a batch of synonym sets
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-synonyms-api.html#create-synonyms
+	 */
+	public function createBatchSynonymSets(Request\CreateBatchSynonymSets $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Get current triggers blocklist
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/automatic-query-refinement-blocklist.html
+	 */
+	public function getTriggersBlocklist(Request\GetTriggersBlocklist $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Update current triggers blocklist
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/automatic-query-refinement-blocklist.html
+	 */
+	public function putTriggersBlocklist(Request\PutTriggersBlocklist $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Retrieves a content source's automatic query refinement details
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-content-sources-api.html#get-automatic-query-refinement-details-api
+	 */
+	public function getAutoQueryRefinementDetails(Request\GetAutoQueryRefinementDetails $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Get the authenticated user
+	 *
+	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-user-api.html#get-current-user-api
+	 */
+	public function getCurrentUser(Request\GetCurrentUser $request): Response
 	{
 		return new Response($this->transport->sendRequest($request->getRequest()));
 	}

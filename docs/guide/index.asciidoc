@@ -1,0 +1,18 @@
+= enterprise-search-php
+
+include::{docs-root}/shared/versions/stack/{source_branch}.asciidoc[]
+include::{docs-root}/shared/attributes.asciidoc[]
+
+include::overview.asciidoc[]
+
+include::installation.asciidoc[]
+
+include::connecting.asciidoc[]
+
+include::enterprise-search-api.asciidoc[]
+
+include::app-search-api.asciidoc[]
+
+include::workplace-search-api.asciidoc[]
+
+include::release_notes/index.asciidoc[]

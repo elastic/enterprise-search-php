@@ -140,8 +140,11 @@ $client = new Client([
 
 $app = $client->appSearch();
 
-$result = $app->createEngine(
-    new Request\CreateEngine('test') // create a 'test' engine
+// Create a 'test' engine
+$result = $appSearch->createEngine(
+    new Request\CreateEngine(
+        new Schema\Engine('test')
+    )
 );
 
 var_dump($result->name); // test
@@ -179,7 +182,7 @@ $doc->title = "The Meaning of Time";
 $doc->body = "Not much. It is a made up thing.";
 
 $result = $workplace->indexDocuments(
-    new Request\IndexDocuments('<insert here the Unique ID>', [$doc])
+    new Request\IndexDocuments('<content source ID>', [$doc])
 );
 
 var_dump($result->results); // return the results

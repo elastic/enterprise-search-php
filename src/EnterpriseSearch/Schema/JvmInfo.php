@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -18,56 +17,45 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 
-/**
- * @internal
- */
+use Elastic\EnterpriseSearch\EnterpriseSearch\Schema\JavaGcInfo;
+use Elastic\EnterpriseSearch\EnterpriseSearch\Schema\MemoryUsage;
+use Elastic\EnterpriseSearch\EnterpriseSearch\Schema\ThreadStats;
+
 class JvmInfo
 {
-	/** @var int */
-	public $pid;
-
-	/** @var int */
-	public $uptime;
-
-	/** @var MemoryUsage */
-	public $memory_usage;
-
-	/** @var array */
-	public $memory_pools;
-
-	/** @var ThreadStats */
-	public $threads;
-
-	/** @var string */
-	public $vm_version;
-
-	/** @var string */
-	public $vm_vendor;
-
-	/** @var string */
-	public $vm_name;
+	public int $pid;
+	public int $uptime;
+	public MemoryUsage $memory_usage;
+	public array $memory_pools;
+	public ThreadStats $threads;
+	public string $vm_version;
+	public string $vm_vendor;
+	public string $vm_name;
+	public JavaGcInfo $gc;
 
 
 	/**
 	 * @param string[] $memory_pools
 	 */
 	public function __construct(
-		int $pid,
-		int $uptime,
-		MemoryUsage $memory_usage,
 		array $memory_pools,
+		MemoryUsage $memory_usage,
+		int $pid,
 		ThreadStats $threads,
-		string $vm_version,
+		JavaGcInfo $gc,
+		int $uptime,
+		string $vm_name,
 		string $vm_vendor,
-		string $vm_name
+		string $vm_version
 	) {
-		$this->pid = $pid;
-		$this->uptime = $uptime;
-		$this->memory_usage = $memory_usage;
 		$this->memory_pools = $memory_pools;
+		$this->memory_usage = $memory_usage;
+		$this->pid = $pid;
 		$this->threads = $threads;
-		$this->vm_version = $vm_version;
-		$this->vm_vendor = $vm_vendor;
+		$this->gc = $gc;
+		$this->uptime = $uptime;
 		$this->vm_name = $vm_name;
+		$this->vm_vendor = $vm_vendor;
+		$this->vm_version = $vm_version;
 	}
 }

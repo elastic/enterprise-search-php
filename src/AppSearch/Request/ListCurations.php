@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -21,8 +20,8 @@ namespace Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Retrieve available curations for the engine
- * @internal
+ * Retrieve all curations
+ * @see https://www.elastic.co/guide/en/app-search/current/curations.html#curations-read
  */
 class ListCurations extends Request
 {
@@ -32,6 +31,7 @@ class ListCurations extends Request
 	public function __construct(string $engineName)
 	{
 		$this->method = 'GET';
+		$this->headers['Content-Type'] = 'application/json';
 		$engine_name = urlencode($engineName);
 		$this->path = "/api/as/v1/engines/$engine_name/curations";
 	}
@@ -42,7 +42,7 @@ class ListCurations extends Request
 	 */
 	public function setCurrentPage(int $currentPage): self
 	{
-		$this->queryParams['page[current]'] = $currentPage;
+		$this->body['page']['current'] = $currentPage;
 		return $this;
 	}
 
@@ -52,7 +52,7 @@ class ListCurations extends Request
 	 */
 	public function setPageSize(int $pageSize): self
 	{
-		$this->queryParams['page[size]'] = $pageSize;
+		$this->body['page']['size'] = $pageSize;
 		return $this;
 	}
 }

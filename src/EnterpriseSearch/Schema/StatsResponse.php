@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -18,17 +17,33 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 
-/**
- * @internal
- */
+use Elastic\EnterpriseSearch\EnterpriseSearch\Schema\AppStats;
+use Elastic\EnterpriseSearch\EnterpriseSearch\Schema\ConnectorStats;
+use Elastic\EnterpriseSearch\EnterpriseSearch\Schema\HttpStats;
+use Elastic\EnterpriseSearch\EnterpriseSearch\Schema\ProductUsageInfo;
+use Elastic\EnterpriseSearch\EnterpriseSearch\Schema\QueueStats;
+
 class StatsResponse
 {
-	/** @var AppStats */
-	public $app;
+	public string $cluster_uuid;
+	public HttpStats $http;
+	public AppStats $app;
+	public QueueStats $queues;
+	public ConnectorStats $connectors;
+	public ProductUsageInfo $product_usage;
 
-	/** @var QueueStats */
-	public $queues;
 
-	/** @var ConnectorStats */
-	public $connectors;
+	public function __construct(
+		string $cluster_uuid,
+		HttpStats $http,
+		AppStats $app,
+		QueueStats $queues,
+		ConnectorStats $connectors
+	) {
+		$this->cluster_uuid = $cluster_uuid;
+		$this->http = $http;
+		$this->app = $app;
+		$this->queues = $queues;
+		$this->connectors = $connectors;
+	}
 }

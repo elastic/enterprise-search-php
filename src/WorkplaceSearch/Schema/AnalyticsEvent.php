@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -18,34 +17,35 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
+use InvalidArgumentException;
+
 /**
- * @internal
+ * Workplace Search analytics event
  */
 class AnalyticsEvent
 {
-	/** @var string */
-	public $type;
+	public string $type;
 
-	/** @var string */
-	public $query_id;
+	/** query identifier for the event */
+	public string $query_id;
 
-	/** @var int */
-	public $page;
+	/** page number of the document in the query result set */
+	public int $page;
 
-	/** @var string */
-	public $content_source_id;
+	/** content source identifier for the event document */
+	public string $content_source_id;
 
-	/** @var string */
-	public $document_id;
+	/** document identifier for the event */
+	public string $document_id;
 
-	/** @var int */
-	public $rank;
+	/** rank of the document in the overall result set */
+	public int $rank;
 
-	/** @var string */
-	public $event;
+	/** the target identifier for a click event */
+	public string $event;
 
-	/** @var int */
-	public $score;
+	/** the feedback score, constrained to the values -1 or 1 */
+	public int $score;
 
 
 	public function __construct(
@@ -56,6 +56,9 @@ class AnalyticsEvent
 		string $document_id,
 		int $rank
 	) {
+		if (!in_array($type, ['click','feedback'])) {
+			throw new InvalidArgumentException('The $type parameter must be one of these values: click,feedback');
+		}
 		$this->type = $type;
 		$this->query_id = $query_id;
 		$this->page = $page;

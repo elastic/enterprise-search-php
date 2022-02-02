@@ -16,7 +16,12 @@ namespace Elastic\EnterpriseSearch\Tests\Request;
 
 use Elastic\EnterpriseSearch\Client;
 use Elastic\EnterpriseSearch\AppSearch\Request;
+use Elastic\EnterpriseSearch\AppSearch\Request\GetApiLogs;
 use Elastic\EnterpriseSearch\AppSearch\Schema;
+use Elastic\EnterpriseSearch\AppSearch\Schema\ApiLogsFilter;
+use Elastic\EnterpriseSearch\AppSearch\Schema\ApiLogsRequestParams;
+use Elastic\EnterpriseSearch\AppSearch\Schema\ClickParams;
+use Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject;
 use Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints;
 use Elastic\Transport\Transport;
 use PHPUnit\Framework\TestCase;
@@ -71,7 +76,11 @@ final class AppSearchTest extends TestCase
      */
     public function testCreateEngine()
     {
-        $result = $this->appSearch->createEngine(new Request\CreateEngine('test'));
+        $result = $this->appSearch->createEngine(
+            new Request\CreateEngine(
+                new Schema\Engine('test')
+            )
+        );
         
         $this->assertEquals('test', $result['name']);
         $this->assertEquals(0, $result['document_count']);
@@ -85,7 +94,9 @@ final class AppSearchTest extends TestCase
      */
     public function testGetEngine()
     {
-        $result = $this->appSearch->getEngine(new Request\GetEngine('test'));
+        $result = $this->appSearch->getEngine(
+            new Request\GetEngine('test')
+        );
         
         $this->assertEquals('test', $result['name']);
         $this->assertEquals(0, $result['document_count']);
@@ -110,7 +121,9 @@ final class AppSearchTest extends TestCase
         $doc->visitors = 1296283;
         $doc->world_heritage_site = false;
 
-        $result = $this->appSearch->indexDocuments(new Request\IndexDocuments('test', [$doc]));
+        $result = $this->appSearch->indexDocuments(
+            new Request\IndexDocuments('test', [$doc])
+        );
         
         $this->assertCount(1, $result->asArray());
         $this->assertEquals($id, $result[0]['id']);
@@ -130,7 +143,9 @@ final class AppSearchTest extends TestCase
      */
     public function testGetDocuments(string $id)
     {
-        $result = $this->appSearch->getDocuments(new Request\GetDocuments('test', [$id]));
+        $result = $this->appSearch->getDocuments(
+            new Request\GetDocuments('test', [$id])
+        );
         
         $this->assertCount(1, $result->asArray());
         $this->assertEquals($result[0]['id'], $id);
@@ -143,8 +158,7 @@ final class AppSearchTest extends TestCase
      */
     public function testSearch(string $id)
     {
-        $search = new Schema\SearchRequestParams();
-        $search->query = 'valley';
+        $search = new Schema\SearchRequestParams('valley');
 
         $result = $this->appSearch->search(
             new Request\Search('test', $search)
@@ -161,8 +175,8 @@ final class AppSearchTest extends TestCase
      */
     public function testSearchFields(string $id)
     {
-        $search = new Schema\SearchRequestParams();
-        $search->query = 'valley';
+        $search = new Schema\SearchRequestParams('valley');
+        
         $search->search_fields = new Schema\SearchFields;
         $search->search_fields->title = new Schema\SimpleObject;
         
@@ -175,17 +189,175 @@ final class AppSearchTest extends TestCase
     }
 
     /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::logClickthrough
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\LogClickthrough
+     * @depends testIndexDocuments
+     */
+    public function testLogClickthrough(string $id)
+    {
+        $clickParams = new ClickParams('search', $id);
+        $clickParams->tags = ['tag1', 'tag2'];
+
+        $request = new Request\LogClickthrough('test', $clickParams);
+
+        $result =  $this->appSearch->logClickthrough($request);
+        $this->assertEquals(200, $result->getResponse()->getStatusCode());
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::getApiLogs
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\GetApiLogs
+     */
+    public function testGetApiLogs()
+    {
+        $date = new SimpleObject();
+        $date->from = '2018-10-15T00:00:00+00:00';
+        $date->to = '2018-10-16T00:00:00+00:00';
+
+        $apiLogsRequestParams = new ApiLogsRequestParams(
+            new ApiLogsFilter($date)
+        );
+        
+        $result = $this->appSearch->getApiLogs(
+            new GetApiLogs('test', $apiLogsRequestParams)
+        );
+
+        $this->assertTrue(isset($result['results']));
+        $this->assertEquals($date->from, $result['meta']['filters']['date']['from']);
+        $this->assertEquals($date->to, $result['meta']['filters']['date']['to']);
+    }
+    /**
      * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::deleteDocuments
      * @covers Elastic\EnterpriseSearch\AppSearch\Request\DeleteDocuments
      * @depends testIndexDocuments
      */
     public function testDeleteDocuments(string $id)
     {
-        $result = $this->appSearch->deleteDocuments(new Request\DeleteDocuments('test', [$id]));
+        $result = $this->appSearch->deleteDocuments(
+            new Request\DeleteDocuments('test', [$id])
+        );
 
         $this->assertCount(1, $result->asArray());
         $this->assertEquals($id, $result[0]['id']);
         $this->assertTrue($result[0]['deleted']);
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::createCrawlerDomain
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\CreateCrawlerDomain
+     * @depends testCreateEngine
+     */
+    public function testCreateCrawlerDomain()
+    {
+        $name = 'https://www.elastic.co';
+        $domain = new Schema\Domain;
+        $domain->name = $name;
+
+        $result = $this->appSearch->createCrawlerDomain(
+            new Request\CreateCrawlerDomain(
+                'test', 
+                $domain
+            )
+        );
+
+        $this->assertTrue(isset($result['id']));
+        $this->assertTrue(isset($result['entry_points']));
+        $this->assertTrue(isset($result['default_crawl_rule']));
+
+        $this->assertEquals($name, $result->name);
+        $this->assertEquals(0, $result->document_count);
+
+        return $result['id'];
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::createCrawlerCrawlRequest
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\CreateCrawlerCrawlRequest
+     * @depends testCreateEngine
+     */
+    public function testCreateCrawlerCrawlRequest()
+    {
+        $result = $this->appSearch->createCrawlerCrawlRequest(
+            new Request\CreateCrawlerCrawlRequest('test')
+        );
+
+        $this->assertTrue(isset($result['id']));
+        $this->assertTrue(isset($result['status']));
+
+        return $result['id'];
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::getCrawlerCrawlRequest
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\GetCrawlerCrawlRequest
+     * @depends testCreateCrawlerCrawlRequest
+     */
+    public function testGetCrawlerCrawlRequest(string $id)
+    {
+        $result = $this->appSearch->getCrawlerCrawlRequest(
+            new Request\GetCrawlerCrawlRequest('test', $id)
+        );
+
+        $this->assertTrue(isset($result['id']));
+        $this->assertTrue(isset($result['status']));
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::getCrawlerActiveCrawlRequest
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\GetCrawlerActiveCrawlRequest
+     * @depends testCreateCrawlerCrawlRequest
+     */
+    public function testGetCrawlerActiveCrawlRequest(string $id)
+    {
+        $result = $this->appSearch->getCrawlerActiveCrawlRequest(
+            new Request\GetCrawlerActiveCrawlRequest('test')
+        );
+
+        $this->assertTrue(isset($result['id']));
+        $this->assertTrue(isset($result['status']));
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::listCrawlerCrawlRequests
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\ListCrawlerCrawlRequests
+     * @depends testGetCrawlerActiveCrawlRequest
+     */
+    public function testListCrawlerCrawlRequest()
+    {
+        $result = $this->appSearch->listCrawlerCrawlRequests(
+            new Request\ListCrawlerCrawlRequests('test')
+        );
+
+        $this->assertTrue(!empty($result['results']));
+    }
+    
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::deleteCrawlerActiveCrawlReques
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\DeleteCrawlerActiveCrawlRequest
+     * @depends testListCrawlerCrawlRequest
+     */
+    public function testDeleteCrawlerCrawlRequest()
+    {
+        $result = $this->appSearch->deleteCrawlerActiveCrawlRequest(
+            new Request\DeleteCrawlerActiveCrawlRequest('test')
+        );
+
+        $this->assertTrue(isset($result['id']));
+        $this->assertEquals('canceling', $result['status']);
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::deleteCrawlerDomain
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\DeleteCrawlerDomain
+     * @depends testCreateCrawlerDomain
+     */
+    public function testDeleteCrawlerDomain(string $id)
+    {
+        $result = $this->appSearch->deleteCrawlerDomain(
+            new Request\DeleteCrawlerDomain('test', $id)
+        );
+
+        $this->assertTrue($result['deleted']);
     }
 
     /**
@@ -195,7 +367,9 @@ final class AppSearchTest extends TestCase
      */
     public function testDeleteEngine()
     {
-        $result = $this->appSearch->deleteEngine(new Request\DeleteEngine('test'));
+        $result = $this->appSearch->deleteEngine(
+            new Request\DeleteEngine('test')
+        );
 
         $this->assertTrue($result['deleted']);
     }

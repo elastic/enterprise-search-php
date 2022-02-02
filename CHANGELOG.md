@@ -1,22 +1,24 @@
 # Changelog
 
-## 7.14.1 (2021-11-11)
+## 7.16.0 (2022-01-31)
 
-Patch release with the following fixes:
-
-- Removed query string params for App Search endpoints 
-  [#5](https://github.com/elastic/enterprise-search-php/pull/5)
+- Changed PHP `7.4` as minimum required. Official PHP team support for PHP `7.3` ends on 2021 December 06
+- `Elastic\EnterpriseSearch\AppSearch\Schema\ClickParamsRequest` is now `Elastic\EnterpriseSearch\AppSearch\Schema\ClickParams`
+- Removed `setLimit` in `Elastic\EnterpriseSearch\AppSearch\Request\ListCrawlerCrawlRequests`
+- Added `setPageSize` and `setCurrentPage` in `Elastic\EnterpriseSearch\AppSearch\Request\ListCrawlerCrawlRequests`
+- Fixed pagination parameter
+  [#10](https://github.com/elastic/enterprise-search-php/issues/10)
+  
 ## 7.13.1 (2021-11-09)
 
 Patch release with the following fixes:
 
 - Removed query string params for App Search endpoints 
   [#5](https://github.com/elastic/enterprise-search-php/pull/5)
-
+  
 ## 7.15.0 (2021-10-14)
 
 Release compatible with Enterprise Search, App Search and Workplace Search 7.15
-
 ## 7.14.0 (2021-08-04)
 
 Release compatible with Enterprise Search, App Search and Workplace Search 7.14

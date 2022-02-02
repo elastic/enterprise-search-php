@@ -1,0 +1,16 @@
+[[release_notes_714]]
+=== 7.14 Release notes
+
+[discrete]
+[[release_notes_7141]]
+=== 7.14.1 Release notes
+
+Patch release with the following fixes:
+
+- Removed query string params for App Search endpoints  [#5](https://github.com/elastic/enterprise-search-php/pull/5)
+
+[discrete]
+[[release_notes_7140]]
+=== 7.14.0 Release notes
+
+Release created to be compatible with the **7.14** API of [Enterprise Search](https://www.elastic.co/enterprise-search), [App Search](https://www.elastic.co/app-search/) and [Workplace Search](https://www.elastic.co/workplace-search).

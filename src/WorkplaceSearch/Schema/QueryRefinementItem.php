@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -18,23 +17,23 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 
+use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\Filter;
+
 /**
- * @internal
+ * Specifics regarding how this part of the query was refined
  */
 class QueryRefinementItem
 {
-	/** @var string */
-	public $term;
+	/** The term(s) used for the trigger */
+	public string $term;
 
-	/** @var array */
-	public $position;
+	/** The start and end position the term(s) exist in the original query */
+	public array $position;
 
-	/** @var string */
-	public $trigger_type;
+	/** The type of trigger created */
+	public string $trigger_type;
 
-	/** @var string */
-	public $trigger_filter_type;
-
-	/** @var Filter */
-	public $filter;
+	/** The type of filter created from this trigger */
+	public string $trigger_filter_type;
+	public Filter $filter;
 }

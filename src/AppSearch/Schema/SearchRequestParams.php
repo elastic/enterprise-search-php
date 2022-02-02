@@ -1,13 +1,12 @@
 <?php
 
 /**
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -18,38 +17,27 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 
-/**
- * @internal
- */
+use Elastic\EnterpriseSearch\AppSearch\Schema\PaginationResponseObject;
+use Elastic\EnterpriseSearch\AppSearch\Schema\SearchBoosts;
+use Elastic\EnterpriseSearch\AppSearch\Schema\SearchFields;
+use Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject;
+
 class SearchRequestParams
 {
-	/** @var SimpleObject */
-	public $analytics;
+	public string $query;
+	public SimpleObject $analytics;
+	public SearchBoosts $boost;
+	public SimpleObject $facets;
+	public SimpleObject $filters;
+	public SimpleObject $group;
+	public PaginationResponseObject $page;
+	public SimpleObject $result_fields;
+	public SearchFields $search_fields;
+	public SimpleObject $sort;
 
-	/** @var SearchBoosts */
-	public $boost;
 
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
-	public $facets;
-
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
-	public $filters;
-
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
-	public $group;
-
-	/** @var SearchPageParam */
-	public $page;
-
-	/** @var string */
-	public $query;
-
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
-	public $result_fields;
-
-	/** @var SearchFields */
-	public $search_fields;
-
-	/** @var Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject */
-	public $sort;
+	public function __construct(string $query)
+	{
+		$this->query = $query;
+	}
 }
