@@ -9,6 +9,12 @@
 - Fixed pagination parameter
   [#10](https://github.com/elastic/enterprise-search-php/issues/10)
   
+## 7.14.1 (2021-11-11)
+
+Patch release with the following fixes:
+
+- Removed query string params for App Search endpoints 
+  [#5](https://github.com/elastic/enterprise-search-php/pull/5)
 ## 7.13.1 (2021-11-09)
 
 Patch release with the following fixes:
