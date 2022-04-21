@@ -200,7 +200,7 @@ class Response implements ResponseInterface, ArrayAccess
      * 
      * @see https://www.php.net/manual/en/class.arrayaccess.php
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->asArray()[$offset];
     }
