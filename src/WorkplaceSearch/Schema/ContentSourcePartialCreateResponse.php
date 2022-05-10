@@ -1,11 +1,6 @@
 <?php
 
 /**
-<<<<<<< HEAD
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
-=======
->>>>>>> 7.16
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php

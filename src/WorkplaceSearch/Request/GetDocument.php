@@ -1,20 +1,12 @@
 <?php
 
 /**
-<<<<<<< HEAD
- * NOTE: THIS FILE IS AUTO-GENERATED, DO NOT EDIT
- *
-=======
->>>>>>> 7.16
  * Elastic Enterprise Search
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
-<<<<<<< HEAD
-=======
  * @generated This file is generated, please do not edit
->>>>>>> 7.16
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License

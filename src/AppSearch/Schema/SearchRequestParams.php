@@ -33,7 +33,7 @@ class SearchRequestParams
 	public PaginationResponseObject $page;
 	public SimpleObject $result_fields;
 	public SearchFields $search_fields;
-	public SimpleObject $sort;
+	public array $sort;
 
 
 	public function __construct(string $query)
