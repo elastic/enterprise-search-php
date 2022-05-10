@@ -19,6 +19,7 @@ out/
 .idea_modules/
 .php_cs.cache
 .DS_Store
+.vscode
 
 ###  PHPUnit ###
 .phpunit.result.cache
