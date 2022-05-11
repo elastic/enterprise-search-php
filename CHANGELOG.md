@@ -1,5 +1,12 @@
 # Changelog
 
+## 7.17.0 (2022-05-11)
+
+- Fixed support of array in `sort` parameter for AppSearch::search()
+  [#11](https://github.com/elastic/enterprise-search-php/issues/11)
+- Fixed PHP 8.1 deprecation notice on `Elastic\EnterpriseSearch\Response\Response::offsetGet`
+  [#16](https://github.com/elastic/enterprise-search-php/issues/16)
+
 ## 7.16.0 (2022-01-31)
 
 - Changed PHP `7.4` as minimum required. Official PHP team support for PHP `7.3` ends on 2021 December 06
