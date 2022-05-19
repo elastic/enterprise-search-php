@@ -25,10 +25,10 @@ class Curation
 	public array $queries;
 
 	/** List of promoted document IDs */
-	public array $promotedDocIds;
+	public array $promoted;
 
 	/** List of hidden document IDs */
-	public array $hiddenDocIds;
+	public array $hidden;
 	public object $suggestion;
 
 
