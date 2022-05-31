@@ -18,6 +18,7 @@ use Elastic\EnterpriseSearch\Client;
 use Elastic\EnterpriseSearch\AppSearch\Request;
 use Elastic\EnterpriseSearch\AppSearch\Schema;
 use Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints;
+use Elastic\EnterpriseSearch\Exception\EnterpriseSearchInterface;
 use Elastic\Transport\Transport;
 use PHPUnit\Framework\TestCase;
 
@@ -209,6 +210,27 @@ final class AppSearchTest extends TestCase
 
         $this->assertCount(1, $result['results']);
         $this->assertEquals($id, $result['results'][0]['id']['raw']);
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::createCuration
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\CreateCuration
+     * @covers Elastic\EnterpriseSearch\AppSearch\Schema\Curation
+     * @depends testCreateEngine
+     */
+    public function testCreateCuration()
+    {
+        $curation = new Schema\Curation(['park']);
+        $curation->promoted = [
+            "park_death-valley"
+        ];
+
+        $result = $this->appSearch->createCuration(
+            new Request\CreateCuration('test', $curation)
+        );
+
+        $this->assertEquals(200, $result->getResponse()->getStatusCode());
+        $this->assertArrayHasKey('id', $result->asArray());
     }
 
     /**
