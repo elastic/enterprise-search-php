@@ -6,7 +6,6 @@
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -22,7 +21,9 @@ use Elastic\EnterpriseSearch\WorkplaceSearch\Schema\ExternalIdentity;
 
 /**
  * Adds a new external identity
+ *
  * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-external-identities-api.html#add-external-identity
+ * @generated This file is generated, please do not edit
  */
 class CreateExternalIdentity extends Request
 {

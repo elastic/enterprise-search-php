@@ -6,7 +6,6 @@
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
  * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @generated This file is generated, please do not edit
  *
  * Licensed to Elasticsearch B.V under one or more agreements
  * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
@@ -21,7 +20,9 @@ use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Get information about the resource usage of the application, the state of different internal queues, etc.
+ *
  * @see https://www.elastic.co/guide/en/enterprise-search/current/monitoring-apis.html#stats-api-example
+ * @generated This file is generated, please do not edit
  */
 class GetStats extends Request
 {
