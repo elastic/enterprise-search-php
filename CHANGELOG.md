@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.17.1 (2022-06-01)
+
+- Fixed AppSearch Curation API hidden and promoted properties
+  [#19](https://github.com/elastic/enterprise-search-php/pull/19)
+  
 ## 7.17.0 (2022-05-11)
 
 - Fixed support of array in `sort` parameter for AppSearch::search()
