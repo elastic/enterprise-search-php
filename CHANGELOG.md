@@ -1,6 +1,6 @@
 # Changelog
 
-## 7.17.1 (2022-06-01)
+## 7.17.1 (2022-06-03)
 
 - Fixed AppSearch Curation API hidden and promoted properties
   [#19](https://github.com/elastic/enterprise-search-php/pull/19)
