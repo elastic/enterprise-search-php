@@ -16,12 +16,7 @@ namespace Elastic\EnterpriseSearch\Tests\Request;
 
 use Elastic\EnterpriseSearch\Client;
 use Elastic\EnterpriseSearch\AppSearch\Request;
-use Elastic\EnterpriseSearch\AppSearch\Request\GetApiLogs;
 use Elastic\EnterpriseSearch\AppSearch\Schema;
-use Elastic\EnterpriseSearch\AppSearch\Schema\ApiLogsFilter;
-use Elastic\EnterpriseSearch\AppSearch\Schema\ApiLogsRequestParams;
-use Elastic\EnterpriseSearch\AppSearch\Schema\ClickParams;
-use Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject;
 use Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints;
 use Elastic\Transport\Transport;
 use PHPUnit\Framework\TestCase;
@@ -73,6 +68,7 @@ final class AppSearchTest extends TestCase
     /**
      * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::createEngine
      * @covers Elastic\EnterpriseSearch\AppSearch\Request\CreateEngine
+     * @covers Elastic\EnterpriseSearch\AppSearch\Schema\Engine
      */
     public function testCreateEngine()
     {
@@ -106,6 +102,7 @@ final class AppSearchTest extends TestCase
     /**
      * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::indexDocuments
      * @covers Elastic\EnterpriseSearch\AppSearch\Request\IndexDocuments
+     * @covers Elastic\EnterpriseSearch\AppSearch\Schema\Document
      * @depends testCreateEngine
      */
     public function testIndexDocuments()
@@ -154,6 +151,7 @@ final class AppSearchTest extends TestCase
     /**
      * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::search
      * @covers Elastic\EnterpriseSearch\AppSearch\Request\Search
+     * @covers Elastic\EnterpriseSearch\AppSearch\Schema\SearchRequestParams
      * @depends testIndexDocuments
      */
     public function testSearch(string $id)
@@ -171,6 +169,7 @@ final class AppSearchTest extends TestCase
     /**
      * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::search
      * @covers Elastic\EnterpriseSearch\AppSearch\Request\Search
+     * @covers Elastic\EnterpriseSearch\AppSearch\Schema\SearchRequestParams
      * @depends testIndexDocuments
      */
     public function testSearchFields(string $id)
@@ -189,13 +188,59 @@ final class AppSearchTest extends TestCase
     }
 
     /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::search
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\Search
+     * @covers Elastic\EnterpriseSearch\AppSearch\Schema\SearchRequestParams
+     * @depends testIndexDocuments
+     * @see https://github.com/elastic/enterprise-search-php/issues/11
+     */
+    public function testSearchWithSort(string $id)
+    {
+        
+        $search = new Schema\SearchRequestParams('valley');
+        $search->sort = [
+            ['visitors' => 'desc'], 
+            ['title' => 'desc']
+        ];
+
+        $result = $this->appSearch->search(
+            new Request\Search('test', $search)
+        );
+
+        $this->assertCount(1, $result['results']);
+        $this->assertEquals($id, $result['results'][0]['id']['raw']);
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::createCuration
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\CreateCuration
+     * @covers Elastic\EnterpriseSearch\AppSearch\Schema\Curation
+     * @depends testCreateEngine
+     */
+    public function testCreateCuration()
+    {
+        $curation = new Schema\Curation(['park']);
+        $curation->promoted = [
+            "park_death-valley"
+        ];
+
+        $result = $this->appSearch->createCuration(
+            new Request\CreateCuration('test', $curation)
+        );
+
+        $this->assertEquals(200, $result->getResponse()->getStatusCode());
+        $this->assertArrayHasKey('id', $result->asArray());
+    }
+
+    /**
      * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::logClickthrough
      * @covers Elastic\EnterpriseSearch\AppSearch\Request\LogClickthrough
+     * @covers Elastic\EnterpriseSearch\AppSearch\Schema\ClickParams
      * @depends testIndexDocuments
      */
     public function testLogClickthrough(string $id)
     {
-        $clickParams = new ClickParams('search', $id);
+        $clickParams = new Schema\ClickParams('search', $id);
         $clickParams->tags = ['tag1', 'tag2'];
 
         $request = new Request\LogClickthrough('test', $clickParams);
@@ -207,19 +252,22 @@ final class AppSearchTest extends TestCase
     /**
      * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::getApiLogs
      * @covers Elastic\EnterpriseSearch\AppSearch\Request\GetApiLogs
+     * @covers Elastic\EnterpriseSearch\AppSearch\Schema\SimpleObject
+     * @covers Elastic\EnterpriseSearch\AppSearch\Schema\ApiLogsRequestParams
+     * @covers Elastic\EnterpriseSearch\AppSearch\Schema\ApiLogsFilter
      */
     public function testGetApiLogs()
     {
-        $date = new SimpleObject();
+        $date = new Schema\SimpleObject();
         $date->from = '2018-10-15T00:00:00+00:00';
         $date->to = '2018-10-16T00:00:00+00:00';
 
-        $apiLogsRequestParams = new ApiLogsRequestParams(
-            new ApiLogsFilter($date)
+        $apiLogsRequestParams = new Schema\ApiLogsRequestParams(
+            new Schema\ApiLogsFilter($date)
         );
         
         $result = $this->appSearch->getApiLogs(
-            new GetApiLogs('test', $apiLogsRequestParams)
+            new Request\GetApiLogs('test', $apiLogsRequestParams)
         );
 
         $this->assertTrue(isset($result['results']));
@@ -245,6 +293,7 @@ final class AppSearchTest extends TestCase
     /**
      * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::createCrawlerDomain
      * @covers Elastic\EnterpriseSearch\AppSearch\Request\CreateCrawlerDomain
+     * @covers Elastic\EnterpriseSearch\AppSearch\Schema\Domain
      * @depends testCreateEngine
      */
     public function testCreateCrawlerDomain()

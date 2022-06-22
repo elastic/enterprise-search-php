@@ -110,7 +110,7 @@ final class ClientTest extends TestCase
             'username' => 'foo',
             'password' => 'bar'
         ]);
-        $uri = (string) $es->getTransport()->getConnectionPool()->nextConnection()->getUri();
+        $uri = (string) $es->getTransport()->getNodePool()->nextNode()->getUri();
         $this->assertEquals($localHost, $uri);
     }
 
