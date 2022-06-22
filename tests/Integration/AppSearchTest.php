@@ -258,9 +258,10 @@ final class AppSearchTest extends TestCase
      */
     public function testGetApiLogs()
     {
-        $date = new Schema\SimpleObject();
-        $date->from = '2018-10-15T00:00:00+00:00';
-        $date->to = '2018-10-16T00:00:00+00:00';
+        $date = new Schema\Date(
+            '2018-10-15T00:00:00+00:00',
+            '2018-10-16T00:00:00+00:00'
+        );
 
         $apiLogsRequestParams = new Schema\ApiLogsRequestParams(
             new Schema\ApiLogsFilter($date)
