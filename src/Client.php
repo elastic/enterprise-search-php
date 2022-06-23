@@ -43,10 +43,14 @@ class Client
      *         'password' => 'insert password here'
      *     ],
      *     'app-search' => [
-     *         'token' => 'insert token or API key here'
+     *         'token' => 'insert token from Elasticsearch',
+     *          // or
+     *         'apiKey' => 'insert API key from App Search Credentials'
      *     ],
      *     'workplace-search' => [
-     *         'token' => 'insert token or API key here'
+     *         'token' => 'insert token or API key here',
+     *          // or
+     *         'apiKey' => 'insert API key from Workplace Search API key or OAuth'
      *     ]
      * ];
      */
