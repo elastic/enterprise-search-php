@@ -1,14 +1,24 @@
 [[release_notes]]
 == Release Notes
 
+[discrete]
+=== 8.x
+
+* <<release_notes_80, 8.0.0 Release Notes>>
+
+include::80.asciidoc[]
 
 [discrete]
 === 7.x
 
+* <<release_notes_717, 7.17.0 Release Notes>>
+* <<release_notes_716, 7.16.0 Release Notes>>
 * <<release_notes_715, 7.15.0 Release Notes>>
 * <<release_notes_714, 7.14.0 Release Notes>>
 * <<release_notes_713, 7.13.0 Release Notes>>
 
+include::717.asciidoc[]
+include::716.asciidoc[]
 include::715.asciidoc[]
 include::714.asciidoc[]
 include::713.asciidoc[]

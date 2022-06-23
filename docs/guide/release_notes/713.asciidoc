@@ -7,7 +7,7 @@
 
 Patch release with the following fixes:
 
-- Removed query string params for App Search endpoints  [#5](https://github.com/elastic/enterprise-search-php/pull/5)
+- Removed query string params for App Search endpoints  https://github.com/elastic/enterprise-search-php/pull/5[#5]
 
 [discrete]
 [[release_notes_7130]]
@@ -22,5 +22,5 @@ This is the first stable release!
 
 This release contains the following fixes compared with the previous `7.12.0 beta2`:
 
-- Added config for specific endpoint class [PR #2](https://github.com/elastic/enterprise-search-php/pull/2)
+- Added config for specific endpoint class https://github.com/elastic/enterprise-search-php/pull/2[PR #2]
 This feature adds the ability to specify a specific config for each API namespace (EnterpriseSearch, AppSearch and WorkplaceSearch).

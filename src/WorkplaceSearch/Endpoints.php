@@ -5,12 +5,11 @@
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
- * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @generated This file is generated, please do not edit
+ * @license   https://opensource.org/licenses/MIT MIT License
  *
- * Licensed to Elasticsearch B.V under one or more agreements
- * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
- * See the LICENSE file in the project root for more information
+ * Licensed to Elasticsearch B.V under one or more agreements.
+ * Elasticsearch B.V licenses this file to you under the MIT License.
+ * See the LICENSE file in the project root for more information.
  */
 
 declare(strict_types=1);
@@ -19,10 +18,11 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch;
 
 use Elastic\EnterpriseSearch\AbstractEndpoints;
 use Elastic\EnterpriseSearch\Response\Response;
-use Elastic\EnterpriseSearch\WorkplaceSearch\Request;
 
 /**
  * A set of product-specific APIs for Elastic Workplace Search
+ *
+ * @generated This file is generated, please do not edit
  */
 class Endpoints extends AbstractEndpoints
 {
@@ -208,61 +208,6 @@ class Endpoints extends AbstractEndpoints
 	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-sync-jobs-api.html#command-sync-jobs-api
 	 */
 	public function commandSyncJobs(Request\CommandSyncJobs $request): Response
-	{
-		return new Response($this->transport->sendRequest($request->getRequest()));
-	}
-
-
-	/**
-	 * Lists all permissions for all users
-	 *
-	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-document-permissions-api.html#list
-	 */
-	public function listPermissions(Request\ListPermissions $request): Response
-	{
-		return new Response($this->transport->sendRequest($request->getRequest()));
-	}
-
-
-	/**
-	 * Lists all permissions for one user
-	 *
-	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-document-permissions-api.html#list-one
-	 */
-	public function getUserPermissions(Request\GetUserPermissions $request): Response
-	{
-		return new Response($this->transport->sendRequest($request->getRequest()));
-	}
-
-
-	/**
-	 * Creates a new set of permissions or over-writes all existing permissions
-	 *
-	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-document-permissions-api.html#add-all
-	 */
-	public function putUserPermissions(Request\PutUserPermissions $request): Response
-	{
-		return new Response($this->transport->sendRequest($request->getRequest()));
-	}
-
-
-	/**
-	 * Adds one or more new permissions atop existing permissions
-	 *
-	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-document-permissions-api.html#add-one
-	 */
-	public function addUserPermissions(Request\AddUserPermissions $request): Response
-	{
-		return new Response($this->transport->sendRequest($request->getRequest()));
-	}
-
-
-	/**
-	 * Removes one or more permissions from an existing set of permissions
-	 *
-	 * @see https://www.elastic.co/guide/en/workplace-search/current/workplace-search-document-permissions-api.html#remove-one
-	 */
-	public function removeUserPermissions(Request\RemoveUserPermissions $request): Response
 	{
 		return new Response($this->transport->sendRequest($request->getRequest()));
 	}
