@@ -7,12 +7,11 @@ This page contains the information you need to connect and use the Client with E
 **On this page**
 
 * <<authentication>>
-
+* <<elastic_cloud>>
 
 [discrete]
 [[authentication]]
 === Authentication
-
 
 This section contains code snippets to show you how to connect to Enterprise Search, App Search, and Workplace Search.
 
@@ -139,3 +138,116 @@ $workplaceSearch = $client->workplaceSearch([ 'token' => '<insert here the acces
 ----------------------------
 
 
+[discrete]
+[[elastic_cloud]]
+=== Elastic Cloud
+
+If you want to use https://www.elastic.co/cloud/[Elastic Cloud] you have many options
+to configure the `enterprise-search-php` client.
+
+The first settings is the `host` domain to connect. You can copy the endpoint URL
+from the Deployment page of the Elastic cloud dashboard:
+
+image::images/copy_endpoint.png[alt="Copy endpoint",align="center"]
+
+After, you need to choose the authentication mechanism for connecting to Enterprise
+Search, App Search and Workplace Search.
+
+[discrete]
+[[auth-cloud-es]]
+==== Authenticating with Enterprise Search in Cloud
+
+You can use username (`elastic`) and password (the one given during the deployment).
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+
+$client = new Client([
+    'host' => 'url/from/Elastic/Cloud/dashborad',
+    'enterprise-search' => [
+        'username' => 'elastic'
+        'password' => 'the password from the deployment'
+    ]
+]);
+
+$es = $client->enterpriseSearch();
+----------------------------
+
+Or you can use the API Key created in the https://www.elastic.co/guide/en/kibana/master/api-keys.html#api-keys[Management > API Keys].
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+
+$client = new Client([
+    'host' => 'url/from/Elastic/Cloud/dashborad',
+    'enterprise-search' => [
+        'apiKey' => 'the API Key from Management'
+    ]
+]);
+
+$es = $client->enterpriseSearch();
+----------------------------
+
+
+[discrete]
+[[auth-cloud-app]]
+==== Authenticating with App Search in Cloud
+
+For App Search you can use different authentication mechanisms:
+
+- username and password, as for Enteprise Search;
+- https://www.elastic.co/guide/en/app-search/current/authentication.html#authentication-elasticsearch-tokens[Elasticsearch token];
+- API key from the https://www.elastic.co/guide/en/app-search/current/authentication.html#authentication-api-keys[App Search Credentials].
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+
+$client = new Client([
+    'host' => 'url/from/Elastic/Cloud/dashborad',
+    'app-search' => [
+        'username' => 'elastic'
+        'password' => 'the password from the deployment',
+        // or
+        'token' => 'token created from Elasticsearch get token API',
+        // or
+        'apiKey' => 'the API Key from App Search Credentials'
+    ]
+]);
+
+$app = $client->appSearch();
+----------------------------
+
+[discrete]
+[[auth-cloud-workplace]]
+==== Authenticating with Workplace Search in Cloud
+
+For Workplace Search you can use different authentication mechanisms:
+
+- username and password, as for Enteprise Search;
+- https://www.elastic.co/guide/en/app-search/current/authentication.html#authentication-elasticsearch-tokens[Elasticsearch token];
+- https://www.elastic.co/guide/en/workplace-search/current/workplace-search-api-authentication.html#auth-token[Workplace Search API key]
+- https://www.elastic.co/guide/en/workplace-search/current/workplace-search-api-authentication.html#oauth-token[Workplace Search OAuth token]
+
+[source,php]
+----------------------------
+use Elastic\EnterpriseSearch\Client;
+
+$client = new Client([
+    'host' => 'url/from/Elastic/Cloud/dashborad',
+    'app-search' => [
+        'username' => 'elastic'
+        'password' => 'the password from the deployment',
+        // or
+        'token' => 'token created from Elasticsearch get token API',
+        // or
+        'apiKey' => 'the API Key from Workplace Search API key'
+        // or
+        'apiKey' => 'the token from Workplace Search OAuth'
+    ]
+]);
+
+$workplace = $client->workplaceSearch();
+----------------------------
