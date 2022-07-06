@@ -139,7 +139,7 @@ class Endpoints extends AbstractEndpoints
 	/**
 	 * Extract content from a URL
 	 *
-	 * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html
+	 * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html#web-crawler-apis-post-crawler-extract-url
 	 */
 	public function getCrawlerUrlExtractionResult(Request\GetCrawlerUrlExtractionResult $request): Response
 	{

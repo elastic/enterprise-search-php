@@ -26,7 +26,6 @@ class CrawlerOverviewResponse
 
 	/** @var null|CrawlRequest */
 	public $most_recent_crawl_request;
-	public bool $onboarding_completed;
 
 
 	/**
@@ -34,11 +33,10 @@ class CrawlerOverviewResponse
 	 * @param SimpleObject[] $events
 	 * @param null|CrawlRequest $most_recent_crawl_request
 	 */
-	public function __construct(array $domains, array $events, $most_recent_crawl_request, bool $onboarding_completed)
+	public function __construct(array $domains, array $events, $most_recent_crawl_request)
 	{
 		$this->domains = $domains;
 		$this->events = $events;
 		$this->most_recent_crawl_request = $most_recent_crawl_request;
-		$this->onboarding_completed = $onboarding_completed;
 	}
 }

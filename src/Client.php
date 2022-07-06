@@ -21,16 +21,12 @@ use Elastic\EnterpriseSearch\Exception\MissingParameterException;
 use Elastic\EnterpriseSearch\WorkplaceSearch\Endpoints as WorkplaceEndpoints;
 use Elastic\Transport\Transport;
 use Elastic\Transport\TransportBuilder;
-use Throwable;
 
 class Client
 {
-    const VERSION = '8.x';
+    const VERSION = '8.2.0';
 
-    /**
-     * @var array
-     */
-    private $config = [];
+    private array $config = [];
 
     /**
      * Set the global config for all the endpoints

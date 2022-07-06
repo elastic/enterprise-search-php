@@ -23,25 +23,13 @@ use Psr\Http\Message\RequestInterface as MessageRequestInterface;
 
 class Request implements RequestInterface
 {
-    /**
-     * @var string
-     */
-    protected $method = 'GET';
+    protected string $method = 'GET';
 
-    /**
-     * @var string
-     */
-    protected $path = '';
+    protected string $path = '';
 
-    /**
-     * @var array
-     */
-    protected $headers = [];
+    protected array $headers = [];
 
-    /**
-     * @var array
-     */
-    protected $queryParams = [];
+    protected array $queryParams = [];
 
     /**
      * @var mixed

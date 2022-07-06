@@ -21,7 +21,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 /**
  * Extract content from a URL
  *
- * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html
+ * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html#web-crawler-apis-post-crawler-extract-url
  * @generated This file is generated, please do not edit
  */
 class GetCrawlerUrlExtractionResult extends Request
