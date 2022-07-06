@@ -22,6 +22,7 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 class CrawlRequestOverridesParameters
 {
 	public int $max_crawl_depth;
+	public bool $sitemap_discovery_disabled;
 	public array $domain_allowlist;
 	public array $seed_urls;
 	public array $sitemap_urls;
