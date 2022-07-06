@@ -14,21 +14,19 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\EnterpriseSearch\Request;
-
-use Elastic\EnterpriseSearch\Request\Request;
+namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 
 /**
- * Get version information for this server
- *
- * @see https://www.elastic.co/guide/en/enterprise-search/current/monitoring-apis.html#monitoring-apis-version-api
  * @generated This file is generated, please do not edit
  */
-class GetVersion extends Request
+class EsSearchParams
 {
-	public function __construct()
+	public EsSearchRequestParam $request;
+	public EsSearchAnalyticsParam $analytics;
+
+
+	public function __construct(EsSearchRequestParam $request)
 	{
-		$this->method = 'GET';
-		$this->path = "/api/ent/v1/internal/version";
+		$this->request = $request;
 	}
 }

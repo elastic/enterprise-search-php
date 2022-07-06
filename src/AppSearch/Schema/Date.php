@@ -21,13 +21,13 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
  */
 class Date
 {
-	public string $from;
 	public string $to;
+	public string $from;
 
 
-	public function __construct(string $from, string $to)
+	public function __construct(string $to, string $from)
 	{
-		$this->from = $from;
 		$this->to = $to;
+		$this->from = $from;
 	}
 }

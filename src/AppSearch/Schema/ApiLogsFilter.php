@@ -21,12 +21,12 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
  */
 class ApiLogsFilter
 {
-	public Date $date;
+	public ApiLogsFilterDate $date;
 	public int $status;
 	public string $method;
 
 
-	public function __construct(Date $date)
+	public function __construct(ApiLogsFilterDate $date)
 	{
 		$this->date = $date;
 	}

@@ -22,5 +22,5 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 class AdaptiveRelevanceSuggestionParams
 {
 	public PaginationResponseObject $page;
-	public string $filters;
+	public Filters $filters;
 }

@@ -731,6 +731,17 @@ class Endpoints extends AbstractEndpoints
 
 
 	/**
+	 * Run a search
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/elasticsearch-search-api-reference.html
+	 */
+	public function searchEsSearch(Request\SearchEsSearch $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
 	 * Retrieve API logs
 	 *
 	 * @see https://www.elastic.co/guide/en/app-search/current/api-logs.html
@@ -780,6 +791,17 @@ class Endpoints extends AbstractEndpoints
 	 * @see https://www.elastic.co/guide/en/app-search/current/search.html
 	 */
 	public function search(Request\Search $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Retrieve the search query
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/search-explain.html
+	 */
+	public function searchExplain(Request\SearchExplain $request): Response
 	{
 		return new Response($this->transport->sendRequest($request->getRequest()));
 	}

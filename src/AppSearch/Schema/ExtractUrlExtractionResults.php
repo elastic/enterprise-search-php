@@ -28,7 +28,7 @@ class ExtractUrlExtractionResults
 
 
 	/**
-	 * @param string [] $content_hash_fields
+	 * @param string[] $content_hash_fields
 	 * @param ExtractUrlValidationWarning[] $meta_tag_warnings
 	 */
 	public function __construct(

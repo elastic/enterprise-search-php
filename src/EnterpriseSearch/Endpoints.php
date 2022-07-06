@@ -73,7 +73,7 @@ class Endpoints extends AbstractEndpoints
 	/**
 	 * Get version information for this server
 	 *
-	 * @see https://www.elastic.co/guide/en/enterprise-search/current/management-apis.html
+	 * @see https://www.elastic.co/guide/en/enterprise-search/current/monitoring-apis.html#monitoring-apis-version-api
 	 */
 	public function getVersion(Request\GetVersion $request): Response
 	{
