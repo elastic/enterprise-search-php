@@ -18,8 +18,7 @@ use Elastic\Transport\Transport;
 
 class AbstractEndpoints
 {
-    /** @var Transport */
-	protected $transport;
+	protected Transport $transport;
 
 	public function __construct(Transport $transport)
 	{

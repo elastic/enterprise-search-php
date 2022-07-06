@@ -30,20 +30,11 @@ use Psr\Http\Message\ResponseInterface as MessageResponseInterface;
  */
 class Response implements ResponseInterface, ArrayAccess
 {
-    /**
-     * @var array
-     */
-    protected $asArray;
+    protected array $asArray;
 
-    /**
-     * @var object
-     */
-    protected $asObject;
+    protected object $asObject;
 
-    /**
-     * @var string
-     */
-    protected $asString;
+    protected string $asString;
 
     /**
      * @throws ClientErrorResponseException if status code 4xx
