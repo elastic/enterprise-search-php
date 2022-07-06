@@ -1,5 +1,25 @@
 # Changelog
 
+## 8.1.0 (2022-07-06)
+
+Release compatible with Enterprise Search, App Search and Workplace Search 8.1
+
+## 8.0.0 (2022-06-23)
+
+This is the first stable release of version 8.
+
+This major release includes the following changes:
+
+- License changed from Apache-2.0 to MIT
+
+- Usage of the `elastic-transport-php` version 8.x, https://github.com/elastic/elastic-transport-php/blob/master/CHANGELOG.md[here the CHANGELOG]
+
+We didn't change the existing API architecture of the client, if you notice
+something you can open an https://github.com/elastic/enterprise-search-php/issues[issue on github], thanks!
+
+For a list of BC breaks in Enterprise Search server you can read the
+https://www.elastic.co/guide/en/enterprise-search/current/release-notes-8.0.0.html[8.0 release notes]
+
 ## 7.17.1 (2022-06-03)
 
 - Fixed AppSearch Curation API hidden and promoted properties
