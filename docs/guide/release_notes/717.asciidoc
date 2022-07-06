@@ -1,0 +1,21 @@
+[[release_notes_717]]
+=== 7.17 Release notes
+
+[discrete]
+[[release_notes_7171]]
+=== 7.17.1 Release notes
+
+Patch release with the following fixes:
+
+- Fixed AppSearch `Curation` API with `hidden` and `promoted` properties https://github.com/elastic/enterprise-search-php/pull/19[#19]
+
+[discrete]
+[[release_notes_7170]]
+=== 7.17.0 Release notes
+
+Release created to be compatible with the **7.17** API of https://www.elastic.co/enterprise-search[Enterprise Search], https://www.elastic.co/app-search/[App Search] and https://www.elastic.co/workplace-search[Workplace Search].
+
+This release introduces the following fixes:
+
+- Fixed support of array in `sort` parameter for `AppSearch::search()` https://github.com/elastic/enterprise-search-php/issues/11[#11]
+- Fixed PHP 8.1 deprecation notice on `Elastic\EnterpriseSearch\Response\Response::offsetGet` https://github.com/elastic/enterprise-search-php/issues/16[#16]

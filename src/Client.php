@@ -4,10 +4,10 @@
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
- * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @license   https://opensource.org/licenses/MIT MIT License
  *
  * Licensed to Elasticsearch B.V under one or more agreements.
- * Elasticsearch B.V licenses this file to you under the Apache 2.0 License.
+ * Elasticsearch B.V licenses this file to you under the MIT License.
  * See the LICENSE file in the project root for more information.
  */
 declare(strict_types=1);
@@ -21,12 +21,11 @@ use Elastic\EnterpriseSearch\Exception\MissingParameterException;
 use Elastic\EnterpriseSearch\WorkplaceSearch\Endpoints as WorkplaceEndpoints;
 use Elastic\Transport\Transport;
 use Elastic\Transport\TransportBuilder;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use Throwable;
 
 class Client
 {
-    const VERSION = '7.x';
+    const VERSION = '8.0.0';
 
     /**
      * @var array
@@ -44,10 +43,14 @@ class Client
      *         'password' => 'insert password here'
      *     ],
      *     'app-search' => [
-     *         'token' => 'insert token or API key here'
+     *         'token' => 'insert token from Elasticsearch',
+     *          // or
+     *         'apiKey' => 'insert API key from App Search Credentials'
      *     ],
      *     'workplace-search' => [
-     *         'token' => 'insert token or API key here'
+     *         'token' => 'insert token or API key here',
+     *          // or
+     *         'apiKey' => 'insert API key from Workplace Search API key or OAuth'
      *     ]
      * ];
      */
@@ -134,18 +137,7 @@ class Client
     {
         $merged = $this->mergeWithPart($this->config, $config, 'enterprise-search');
         $transport = $this->buildTransport($merged);
-        if (!isset($merged['username'])) {
-            throw new MissingParameterException(
-                'You need to specify a username for Enterprise Search'
-            );
-        }
-        if (!isset($merged['password'])) {
-            throw new MissingParameterException(
-                'You need to specify a password for Enterprise Search'
-            );
-        }
-        $transport->setUserInfo($merged['username'], $merged['password']);
-        
+        $this->setAuthentication($transport, $merged, 'ApiKey');
         return new EnterpriseEndpoints($transport);
     }
 
@@ -157,16 +149,7 @@ class Client
     {
         $merged = $this->mergeWithPart($this->config, $config, 'app-search');
         $transport = $this->buildTransport($merged);
-    
-        if (isset($merged['username']) && isset($merged['password'])) {
-            $transport->setUserInfo($merged['username'], $merged['password']);
-        } elseif (isset($merged['token'])) {
-            $transport->setHeader('Authorization', sprintf("Bearer %s", $merged['token']));
-        } else {
-            throw new MissingParameterException(
-                'You need to specify a token (API key) or username/password for App Search'
-            );
-        }
+        $this->setAuthentication($transport, $merged);
 
         return new AppEndpoints($transport);
     }
@@ -179,17 +162,31 @@ class Client
     {
         $merged = $this->mergeWithPart($this->config, $config, 'workplace-search');
         $transport = $this->buildTransport($merged);
-
-        if (isset($merged['username']) && isset($merged['password'])) {
-            $transport->setUserInfo($merged['username'], $merged['password']);
-        } elseif (isset($merged['token'])) {
-            $transport->setHeader('Authorization', sprintf("Bearer %s", $merged['token']));
-        } else {
-            throw new MissingParameterException(
-                'You need to specify a token (API key) or username/password for Workplace Search'
-            );
-        }
+        $this->setAuthentication($transport, $merged);
 
         return new WorkplaceEndpoints($transport);
+    }
+
+    /**
+     * Set the authentication mechanism using username and password,
+     * token or apiKey
+     */
+    private function setAuthentication(Transport $transport, array $config, string $method = 'Bearer')
+    {
+        if (isset($config['username']) && isset($config['password'])) {
+            $transport->setUserInfo($config['username'], $config['password']);
+            return;
+        }  
+        if (isset($config['token'])) {
+            $transport->setHeader('Authorization', sprintf("Bearer %s", $config['token']));
+            return;
+        } 
+        if (isset($config['apiKey'])) {
+            $transport->setHeader('Authorization', sprintf("%s %s", $method, $config['apiKey']));
+            return;
+        }
+        throw new MissingParameterException(
+            'You need to use an authentication method: username and password, token or apiKey'
+        );
     }
 }

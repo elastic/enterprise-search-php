@@ -5,33 +5,40 @@
  *
  * @link      https://github.com/elastic/enterprise-search-php
  * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
- * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @generated This file is generated, please do not edit
+ * @license   https://opensource.org/licenses/MIT MIT License
  *
- * Licensed to Elasticsearch B.V under one or more agreements
- * Elasticsearch B.V licenses this file to you under the Apache 2.0 License
- * See the LICENSE file in the project root for more information
+ * Licensed to Elasticsearch B.V under one or more agreements.
+ * Elasticsearch B.V licenses this file to you under the MIT License.
+ * See the LICENSE file in the project root for more information.
  */
 
 declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Request;
 
+use Elastic\EnterpriseSearch\AppSearch\Schema\CrawlRequestOverridesParameters;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
  * Create a crawl request
+ *
  * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html#web-crawler-apis-post-crawler-crawl-requests
+ * @generated This file is generated, please do not edit
  */
 class CreateCrawlerCrawlRequest extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
+	 * @param CrawlRequestOverridesParameters $crawl_request_overrides_parameters
 	 */
-	public function __construct(string $engineName)
-	{
+	public function __construct(
+		string $engineName,
+		CrawlRequestOverridesParameters $crawl_request_overrides_parameters = null
+	) {
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
-		$this->path = "/api/as/v0/engines/$engine_name/crawler/crawl_requests";
+		$this->path = "/api/as/v1/engines/$engine_name/crawler/crawl_requests";
+		$this->headers['Content-Type'] = 'application/json';
+		$this->body = $crawl_request_overrides_parameters;
 	}
 }
