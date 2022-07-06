@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.1.0 (2022-07-06)
+
+Release compatible with Enterprise Search, App Search and Workplace Search 8.1
+
 ## 8.0.0 (2022-06-23)
 
 This is the first stable release of version 8.
