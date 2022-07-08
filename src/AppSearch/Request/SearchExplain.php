@@ -16,27 +16,27 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Request;
 
-use Elastic\EnterpriseSearch\AppSearch\Schema\CrawlRequestOverrides;
+use Elastic\EnterpriseSearch\AppSearch\Schema\SearchRequestParams;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**
- * Create a crawl request
+ * Retrieve the search query
  *
- * @see https://www.elastic.co/guide/en/app-search/current/web-crawler-api-reference.html#web-crawler-apis-post-crawler-crawl-requests
+ * @see https://www.elastic.co/guide/en/app-search/current/search-explain.html
  * @generated This file is generated, please do not edit
  */
-class CreateCrawlerCrawlRequest extends Request
+class SearchExplain extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
-	 * @param CrawlRequestOverrides $crawl_request_overrides
+	 * @param SearchRequestParams $search_request_params
 	 */
-	public function __construct(string $engineName, CrawlRequestOverrides $crawl_request_overrides = null)
+	public function __construct(string $engineName, SearchRequestParams $search_request_params = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
-		$this->path = "/api/as/v1/engines/$engine_name/crawler/crawl_requests";
+		$this->path = "/api/as/v0/engines/$engine_name/search_explain";
 		$this->headers['Content-Type'] = 'application/json';
-		$this->body = $crawl_request_overrides;
+		$this->body = $search_request_params;
 	}
 }

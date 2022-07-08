@@ -21,7 +21,7 @@ use Elastic\EnterpriseSearch\Request\Request;
 /**
  * Get version information for this server
  *
- * @see https://www.elastic.co/guide/en/enterprise-search/current/management-apis.html
+ * @see https://www.elastic.co/guide/en/enterprise-search/current/monitoring-apis.html#monitoring-apis-version-api
  * @generated This file is generated, please do not edit
  */
 class GetVersion extends Request

@@ -19,15 +19,14 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 /**
  * @generated This file is generated, please do not edit
  */
-class Date
+class EsSearchAnalyticsParam
 {
-	public string $to;
-	public string $from;
+	public string $query;
+	public array $tags;
 
 
-	public function __construct(string $from, string $to)
+	public function __construct(string $query)
 	{
-		$this->from = $from;
-		$this->to = $to;
+		$this->query = $query;
 	}
 }

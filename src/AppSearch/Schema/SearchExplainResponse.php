@@ -19,15 +19,17 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 /**
  * @generated This file is generated, please do not edit
  */
-class Date
+class SearchExplainResponse
 {
-	public string $to;
-	public string $from;
+	public object $meta;
+	public string $query_string;
+	public SimpleObject $query_body;
 
 
-	public function __construct(string $from, string $to)
+	public function __construct(object $meta, string $query_string, SimpleObject $query_body)
 	{
-		$this->from = $from;
-		$this->to = $to;
+		$this->meta = $meta;
+		$this->query_string = $query_string;
+		$this->query_body = $query_body;
 	}
 }

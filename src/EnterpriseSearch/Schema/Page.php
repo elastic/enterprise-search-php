@@ -14,20 +14,24 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 
 /**
  * @generated This file is generated, please do not edit
  */
-class Date
+class Page
 {
-	public string $to;
-	public string $from;
+	public int $current;
+	public int $total_pages;
+	public int $total_results;
+	public int $size;
 
 
-	public function __construct(string $from, string $to)
+	public function __construct(int $current, int $total_pages, int $total_results, int $size)
 	{
-		$this->from = $from;
-		$this->to = $to;
+		$this->current = $current;
+		$this->total_pages = $total_pages;
+		$this->total_results = $total_results;
+		$this->size = $size;
 	}
 }

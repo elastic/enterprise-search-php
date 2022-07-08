@@ -14,20 +14,21 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+namespace Elastic\EnterpriseSearch\EnterpriseSearch\Request;
+
+use Elastic\EnterpriseSearch\Request\Request;
 
 /**
+ * Retrieve information about search engines
+ *
+ * @see https://www.elastic.co/guide/en/enterprise-search/current/search-engines-apis.html
  * @generated This file is generated, please do not edit
  */
-class Date
+class GetSearchEngines extends Request
 {
-	public string $to;
-	public string $from;
-
-
-	public function __construct(string $from, string $to)
+	public function __construct()
 	{
-		$this->from = $from;
-		$this->to = $to;
+		$this->method = 'GET';
+		$this->path = "/api/search_engines";
 	}
 }

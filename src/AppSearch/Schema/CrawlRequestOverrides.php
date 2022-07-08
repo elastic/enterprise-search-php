@@ -19,15 +19,13 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 /**
  * @generated This file is generated, please do not edit
  */
-class Date
+class CrawlRequestOverrides
 {
-	public string $to;
-	public string $from;
+	public CrawlRequestOverridesParameters $overrides;
 
 
-	public function __construct(string $from, string $to)
+	public function __construct(CrawlRequestOverridesParameters $overrides)
 	{
-		$this->from = $from;
-		$this->to = $to;
+		$this->overrides = $overrides;
 	}
 }

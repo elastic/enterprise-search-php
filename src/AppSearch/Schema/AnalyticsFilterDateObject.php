@@ -21,10 +21,10 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
  */
 class AnalyticsFilterDateObject
 {
-	public object $date;
+	public Date $date;
 
 
-	public function __construct(object $date)
+	public function __construct(Date $date)
 	{
 		$this->date = $date;
 	}

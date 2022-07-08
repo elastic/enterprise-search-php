@@ -14,20 +14,25 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 
 /**
  * @generated This file is generated, please do not edit
  */
-class Date
+class SearchEngine
 {
-	public string $to;
-	public string $from;
+	public string $name;
+	public int $document_count;
+	public array $search_indices;
 
 
-	public function __construct(string $from, string $to)
+	/**
+	 * @param string[] $search_indices
+	 */
+	public function __construct(string $name, int $document_count, array $search_indices)
 	{
-		$this->from = $from;
-		$this->to = $to;
+		$this->name = $name;
+		$this->document_count = $document_count;
+		$this->search_indices = $search_indices;
 	}
 }

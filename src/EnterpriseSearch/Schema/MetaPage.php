@@ -14,20 +14,18 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 
 /**
  * @generated This file is generated, please do not edit
  */
-class Date
+class MetaPage
 {
-	public string $to;
-	public string $from;
+	public Page $page;
 
 
-	public function __construct(string $from, string $to)
+	public function __construct(Page $page)
 	{
-		$this->from = $from;
-		$this->to = $to;
+		$this->page = $page;
 	}
 }

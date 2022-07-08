@@ -27,6 +27,17 @@ use Elastic\EnterpriseSearch\Response\Response;
 class Endpoints extends AbstractEndpoints
 {
 	/**
+	 * Retrieve information about search engines
+	 *
+	 * @see https://www.elastic.co/guide/en/enterprise-search/current/search-engines-apis.html
+	 */
+	public function getSearchEngines(Request\GetSearchEngines $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
 	 * Get information on the health of a deployment and basic statistics around resource usage
 	 *
 	 * @see https://www.elastic.co/guide/en/enterprise-search/current/monitoring-apis.html#health-api-example
@@ -73,7 +84,7 @@ class Endpoints extends AbstractEndpoints
 	/**
 	 * Get version information for this server
 	 *
-	 * @see https://www.elastic.co/guide/en/enterprise-search/current/management-apis.html
+	 * @see https://www.elastic.co/guide/en/enterprise-search/current/monitoring-apis.html#monitoring-apis-version-api
 	 */
 	public function getVersion(Request\GetVersion $request): Response
 	{

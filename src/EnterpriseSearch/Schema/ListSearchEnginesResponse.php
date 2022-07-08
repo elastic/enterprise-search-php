@@ -14,20 +14,23 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 
 /**
  * @generated This file is generated, please do not edit
  */
-class Date
+class ListSearchEnginesResponse
 {
-	public string $to;
-	public string $from;
+	public MetaPage $meta;
+	public array $results;
 
 
-	public function __construct(string $from, string $to)
+	/**
+	 * @param SearchEngine[] $results
+	 */
+	public function __construct(MetaPage $meta, array $results)
 	{
-		$this->from = $from;
-		$this->to = $to;
+		$this->meta = $meta;
+		$this->results = $results;
 	}
 }

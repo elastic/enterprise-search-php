@@ -19,15 +19,8 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 /**
  * @generated This file is generated, please do not edit
  */
-class Date
+class Filters
 {
-	public string $to;
-	public string $from;
-
-
-	public function __construct(string $from, string $to)
-	{
-		$this->from = $from;
-		$this->to = $to;
-	}
+	public array $status;
+	public string $type;
 }
