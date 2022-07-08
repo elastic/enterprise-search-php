@@ -797,6 +797,17 @@ class Endpoints extends AbstractEndpoints
 
 
 	/**
+	 * Submit a multi search
+	 *
+	 * @see https://www.elastic.co/guide/en/app-search/current/multi-search.html
+	 */
+	public function multiSearch(Request\MultiSearch $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
 	 * Retrieve the search query
 	 *
 	 * @see https://www.elastic.co/guide/en/app-search/current/search-explain.html
