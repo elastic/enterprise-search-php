@@ -25,9 +25,9 @@ class Date
 	public string $from;
 
 
-	public function __construct(string $to, string $from)
+	public function __construct(string $from, string $to)
 	{
-		$this->to = $to;
 		$this->from = $from;
+		$this->to = $to;
 	}
 }
