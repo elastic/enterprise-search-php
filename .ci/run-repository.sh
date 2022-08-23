@@ -12,7 +12,7 @@ script_path=$(dirname $(realpath -s $0))
 source $script_path/functions/imports.sh
 set -euo pipefail
 
-PHP_VERSION=${PHP_VERSION-7.4-cli}
+PHP_VERSION=${PHP_VERSION-8.0-cli}
 
 echo -e "\033[34;1mINFO:\033[0m VERSION: ${STACK_VERSION}\033[0m"
 echo -e "\033[34;1mINFO:\033[0m TEST_SUITE: ${TEST_SUITE}\033[0m"
