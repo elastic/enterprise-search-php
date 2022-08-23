@@ -1,12 +1,12 @@
 ---
 - job:
-    name: elastic+enterprise-search-php+8.2
-    display-name: 'elastic / enterprise-search-php # 8.2'
-    description: Testing the enterprise-search-php 8.2 branch.
+    name: elastic+enterprise-search-php+8.4
+    display-name: 'elastic / enterprise-search-php # 8.4'
+    description: Testing the enterprise-search-php 8.4 branch.
     parameters:
     - string:
         name: branch_specifier
-        default: refs/heads/8.2
+        default: refs/heads/8.4
         description: the Git branch specifier to build (&lt;branchName&gt;, &lt;tagName&gt;,
           &lt;commitId&gt;, etc.)
     triggers:
