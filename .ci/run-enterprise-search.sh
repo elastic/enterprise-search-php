@@ -54,6 +54,7 @@ docker run \
   --env "elasticsearch.ssl.certificate=/usr/share/app-search/config/certs/testnode.crt" \
   --env "elasticsearch.ssl.certificate_authority=/usr/share/app-search/config/certs/ca.crt" \
   --env "elasticsearch.ssl.key=/usr/share/app-search/config/certs/testnode.key" \
+  --env "ELASTICSEARCH_SEARCH_API=true" \
   --volume $ssl_cert:/usr/share/app-search/config/certs/testnode.crt \
   --volume $ssl_key:/usr/share/app-search/config/certs/testnode.key \
   --volume $ssl_ca:/usr/share/app-search/config/certs/ca.crt \

@@ -21,6 +21,7 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
  *
  * @generated This file is generated, please do not edit
  */
+#[\AllowDynamicProperties]
 class CreatedSynonymSetResponse
 {
 	/** The id of the created set, or null if invalid */

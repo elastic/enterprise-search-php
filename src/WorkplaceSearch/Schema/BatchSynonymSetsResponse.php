@@ -21,6 +21,7 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
  *
  * @generated This file is generated, please do not edit
  */
+#[\AllowDynamicProperties]
 class BatchSynonymSetsResponse
 {
 	/** True if any of the requested synonym sets have errors */

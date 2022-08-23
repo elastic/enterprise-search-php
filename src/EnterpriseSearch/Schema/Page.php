@@ -19,6 +19,7 @@ namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 /**
  * @generated This file is generated, please do not edit
  */
+#[\AllowDynamicProperties]
 class Page
 {
 	public int $current;

@@ -19,9 +19,10 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 /**
  * @generated This file is generated, please do not edit
  */
+#[\AllowDynamicProperties]
 class ListSynonymSetResponseMeta
 {
 	public Page $page;
-	public ListSynonymSetResponseMetaFilter $filter;
-	public ListSynonymSetResponseMetaSort $sort;
+	public Filter $filter;
+	public Sort $sort;
 }

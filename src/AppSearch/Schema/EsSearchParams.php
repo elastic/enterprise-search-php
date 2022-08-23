@@ -19,14 +19,7 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 /**
  * @generated This file is generated, please do not edit
  */
+#[\AllowDynamicProperties]
 class EsSearchParams
 {
-	public EsSearchRequestParam $request;
-	public EsSearchAnalyticsParam $analytics;
-
-
-	public function __construct(EsSearchRequestParam $request)
-	{
-		$this->request = $request;
-	}
 }

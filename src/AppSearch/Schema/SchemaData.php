@@ -19,6 +19,7 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 /**
  * @generated This file is generated, please do not edit
  */
+#[\AllowDynamicProperties]
 class SchemaData
 {
 }

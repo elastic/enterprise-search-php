@@ -16,9 +16,11 @@ namespace Elastic\EnterpriseSearch\Tests\Request;
 
 use Elastic\EnterpriseSearch\Client;
 use Elastic\EnterpriseSearch\AppSearch\Request;
+use Elastic\EnterpriseSearch\AppSearch\Request\Search;
 use Elastic\EnterpriseSearch\AppSearch\Schema;
 use Elastic\EnterpriseSearch\EnterpriseSearch\Endpoints;
 use Elastic\Transport\Transport;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -209,6 +211,37 @@ final class AppSearchTest extends TestCase
 
         $this->assertCount(1, $result['results']);
         $this->assertEquals($id, $result['results'][0]['id']['raw']);
+    }
+
+    /**
+     * @covers Elastic\EnterpriseSearch\AppSearch\Endpoints::searchEsSearch
+     * @covers Elastic\EnterpriseSearch\AppSearch\Request\SearchEsSearch
+     * @covers Elastic\EnterpriseSearch\AppSearch\Schema\EsSearchParams
+     * @depends testIndexDocuments
+     */
+    public function testSearchEsSearch(string $id)
+    {
+        if (!getenv('ELASTICSEARCH_API_KEY')) {
+            $this->markTestSkipped(sprintf(
+                "I cannot execute %s without ELASTICSEARCH_API_KEY env variable",
+                __FUNCTION__
+            ));
+        }
+
+        $searchParams = new Schema\EsSearchParams();
+        $searchParams->query = [
+            'match' => [
+                'title' => 'Death Valley'
+            ]
+        ];
+        
+        $result = $this->appSearch->searchEsSearch(
+            (new Request\SearchEsSearch('test', $searchParams))
+                ->setAuthorization(getenv('ELASTICSEARCH_API_KEY'))
+        );
+        
+        $this->assertCount(1, $result['hits']['hits']);
+        $this->assertEquals($id, $result['hits']['hits'][0]['_id']);
     }
 
     /**

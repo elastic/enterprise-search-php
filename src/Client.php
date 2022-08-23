@@ -24,7 +24,7 @@ use Elastic\Transport\TransportBuilder;
 
 class Client
 {
-    const VERSION = '8.3.0';
+    const VERSION = '8.4.x';
 
     private array $config = [];
 

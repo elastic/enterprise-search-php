@@ -23,6 +23,7 @@ use InvalidArgumentException;
  *
  * @generated This file is generated, please do not edit
  */
+#[\AllowDynamicProperties]
 class ApiKey
 {
 	public string $id;

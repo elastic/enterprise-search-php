@@ -19,6 +19,7 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 /**
  * @generated This file is generated, please do not edit
  */
+#[\AllowDynamicProperties]
 class Document
 {
 	public string $id;

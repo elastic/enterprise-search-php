@@ -21,6 +21,7 @@ use InvalidArgumentException;
 /**
  * @generated This file is generated, please do not edit
  */
+#[\AllowDynamicProperties]
 class CrawlRequest
 {
 	public string $id;
