@@ -1,0 +1,9 @@
+# Files to exclude when creating archive
+/.ci export-ignore
+/.github export-ignore
+/tests export-ignore
+/util export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/phpunit-integration-*.xml export-ignore
+/phpunit.xml.dist export-ignore
