@@ -93,3 +93,38 @@ $result = $this->appSearch->search(
 );
 print_r($result->asArray());
 ----------------------------
+
+=== Elasticsearch Search API (beta)
+
+This is a beta feature that can be used to search using the Elasticsearch API.
+You can use the `Request\SearchEsSearch` to perform a https://www.elastic.co/guide/en/elasticsearch/reference/current/search-your-data.html[search query]
+using the Elasticsearch API.
+
+For more information about this feature you can read the Elasticsearch search API for App Search
+https://www.elastic.co/guide/en/app-search/current/elasticsearch-search-api-reference.html#elasticsearch-search-api-reference[documentation].
+
+In order to use the `Request\SearchEsSearch` endpoint you need to have an Elasticsearch
+OAuth2 token, you can read how to generate one https://www.elastic.co/guide/en/app-search/current/authentication.html#authentication-elasticsearch-tokens[here].
+
+[source,php]
+----------------------------
+$engineName = 'videogames';
+
+// Elasticsearch query 
+$searchParams = new Schema\EsSearchParams();
+$searchParams->query = [
+    'match' => [
+        'title' => 'Super Luigi 64'
+    ]
+];
+
+// This is the Elasticsearch token API (Bearer)
+$elasticsearchApiKey = 'xxx';
+
+$result = $this->appSearch->searchEsSearch(
+    (new Request\SearchEsSearch($engineName, $searchParams))
+        ->setAuthorization($elasticsearchApiKey)
+);
+
+print_r($result->asArray()); // Elasticsearch result in ['hits']['hits']
+----------------------------
