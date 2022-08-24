@@ -1,0 +1,14 @@
+[[release_notes_84]]
+=== 8.4 Release notes
+
+[discrete]
+[[release_notes_840]]
+=== 8.4.0 Release notes
+
+Release created to be compatible with the **8.4** API of https://www.elastic.co/enterprise-search[Enterprise Search], https://www.elastic.co/app-search/[App Search] and https://www.elastic.co/workplace-search[Workplace Search].
+
+This release includes also the following fix:
+
+- Fixed 8.1 deprecation warning for ArrayAccess::offsetGet()
+  https://github.com/elastic/enterprise-search-php/pull/25[#25]
+  

@@ -1,5 +1,14 @@
 # Changelog
 
+## 8.4.0 (2022-08-24)
+
+Release compatible with Enterprise Search, App Search and Workplace Search 8.3.
+
+This release includes the following fixes:
+
+- Fixed 8.1 deprecation warning for ArrayAccess::offsetGet()
+  [#25](https://github.com/elastic/enterprise-search-php/pull/25)
+
 ## 8.3.0 (2022-07-08)
 
 Release compatible with Enterprise Search, App Search and Workplace Search 8.3
