@@ -14,7 +14,8 @@ use Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
 $client = new Client([
     'host' => 'http://localhost:3002',
     'workplace-search' => [
-        'token' => '<insert here the API key>'
+        'token' => '<insert here the token>'
+        // or 'apiKey' => '<insert here the API key>'
     ]
 ]);
 $workplace = $client->workplaceSearch();
