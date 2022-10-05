@@ -5,6 +5,12 @@ Here is reported a brief overview of the Workplace Search API. For more informat
 
 === Content Sources
 
+To store some document in Workplace Search you need to create a content source.
+A content source is usually a third-party service like GitHub, Google Drive, or Dropbox. 
+You can also build your own connectors using Custom API sources, which allows you to create unique content repositories on the platform and send any data to Workplace Search via uniquely identifiable endpoints.
+
+In the following example we create a custom `test` content source.
+
 [source,php]
 ----------------------------
 use Elastic\EnterpriseSearch\Client;
@@ -28,7 +34,14 @@ $result = $workplace->createContentSource(
 $sourceId = $result['id'] ?? null;
 ----------------------------
 
-=== Documents
+We need to store the `sourceId` since it's required to perform other operations, like index a document.
+
+=== Index documents
+
+To store a document in Workplace Search you need to perform an index operation.
+YOu can add one or more document at time.
+
+In the following example we store only one document. You can specify multiple documents using the array.
 
 [source,php]
 ----------------------------
@@ -41,9 +54,43 @@ $doc->body = "Not much. It is a made up thing.";
 $result = $workplace->indexDocuments(
     new Request\IndexDocuments($sourceId, [$doc])
 );
+----------------------------
 
-// Delete documents
+== Search documents
+
+To search for a document in Workplace Search you need to have an OAuth2 token.
+The search API requires a different authentication, using OAuth2, since this feature is typically executed form an external application using a custom search experience.
+To have a better understanding of the search experience in Workplace Search we suggest to read the https://www.elastic.co/guide/en/workplace-search/current/building-custom-search-workplace-search.html[Building Custom Search Experiences] documentation page. 
+
+Once you have configured your OAuth Application for Search, you can request an OAuth2 token using the https://www.elastic.co/guide/en/workplace-search/current/building-custom-search-workplace-search.html#authenticating-search-user-confidential[Confidential OAuth Flow] or the https://www.elastic.co/guide/en/workplace-search/current/building-custom-search-workplace-search.html#authenticating-search-user-implicit[Implicit OAuth Flow]
+
+[source,php]
+----------------------------
+$workplace = $client->workplaceSearch([
+    'token' => 'xxx' // OAuth2 token
+]);
+
+$search = new Schema\SearchApiQuery();
+$search->query = '<insert here the term to search>';
+
+$result = $workplace->search(
+    new Request\Search($search)
+);
+
+print_r($result->asArray());
+----------------------------
+
+== Delete documents
+
+You can delete one or more documents in Workplace Search using the delete API.
+You need to specify the sourceId and one or more ID of the documents to be deleted.
+
+[source,php]
+----------------------------
+// Delete one document
+$docId = '1234';
+
 $result = $workplace->deleteDocuments(
-    new Request\DeleteDocuments($sourceId, [$doc->id])
+    new Request\DeleteDocuments($sourceId, [$docId])
 );
 ----------------------------
