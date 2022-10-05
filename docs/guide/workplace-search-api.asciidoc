@@ -39,7 +39,7 @@ We need to store the `sourceId` since it's required to perform other operations,
 === Index documents
 
 To store a document in Workplace Search you need to perform an index operation.
-YOu can add one or more document at time.
+You can add one or more document at time.
 
 In the following example we store only one document. You can specify multiple documents using the array.
 
