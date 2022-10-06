@@ -56,7 +56,7 @@ $result = $workplace->indexDocuments(
 );
 ----------------------------
 
-== Search documents
+=== Search documents
 
 To search for a document in Workplace Search you need to have an OAuth2 token.
 The search API requires a different authentication, using OAuth2, since this feature is typically executed form an external application using a custom search experience.
@@ -80,7 +80,7 @@ $result = $workplace->search(
 print_r($result->asArray());
 ----------------------------
 
-== Delete documents
+=== Delete documents
 
 You can delete one or more documents in Workplace Search using the delete API.
 You need to specify the sourceId and one or more ID of the documents to be deleted.
