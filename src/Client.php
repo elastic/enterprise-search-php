@@ -21,10 +21,11 @@ use Elastic\EnterpriseSearch\Exception\MissingParameterException;
 use Elastic\EnterpriseSearch\WorkplaceSearch\Endpoints as WorkplaceEndpoints;
 use Elastic\Transport\Transport;
 use Elastic\Transport\TransportBuilder;
+use GuzzleHttp\Client as GuzzleHttpClient;
 
 class Client
 {
-    const VERSION = '8.4.0';
+    const VERSION = '8.5.0';
 
     private array $config = [];
 
@@ -61,6 +62,7 @@ class Client
     private function buildTransport(array $config): Transport
     {
         $builder = TransportBuilder::create();
+        // Set default HTTP client if empty
         $this->initBuilder($builder, $config);
         $transport = $builder->build();
         $this->initTransport($transport, $config);
@@ -84,12 +86,20 @@ class Client
             $builder->setHosts([$config['host']]);
             unset($config['host']);
         }
+        $httpClient = false;
         foreach ($config as $key => $value) {
             $set = 'set' . ucfirst($key);
             if (method_exists($builder, $set)) {
                 $builder->$set($value);
                 unset($config[$key]);
             }
+            if ($set === 'setClient') {
+                $httpClient = true;
+            }
+        }
+        // If not specified, set the default HTTP client to Guzzle
+        if (!$httpClient) {
+            $builder->setClient(new GuzzleHttpClient());
         }
     }
 

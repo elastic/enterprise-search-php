@@ -18,7 +18,7 @@ use Elastic\Transport\Serializer\CsvSerializer;
 use Elastic\Transport\Serializer\JsonSerializer;
 use Elastic\Transport\Serializer\NDJsonSerializer;
 use Elastic\Transport\Serializer\TextSerializer;
-use Nyholm\Psr7\Factory\Psr17Factory;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 use Psr\Http\Message\RequestInterface as MessageRequestInterface;
 
 class Request implements RequestInterface
@@ -41,22 +41,12 @@ class Request implements RequestInterface
      */
     public function getRequest(): MessageRequestInterface
     {
-        $factory = new Psr17Factory();
-
         $path = $this->path;
         if (!empty($this->queryParams)) {
            $path .= '?' . http_build_query($this->queryParams);
         }
-        $request = $factory->createRequest($this->method, $path);
-        foreach ($this->headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-        if (!empty($this->body)) {
-            $content = $this->serializeBody($this->body);
-            $stream = $factory->createStream($content);
-            $request = $request->withBody($stream);
-        }
-        return $request;
+        $content = empty($this->body) ?: $this->serializeBody($this->body);
+        return new Psr7Request($this->method, $path, $this->headers, $content);
     }
 
     /**
