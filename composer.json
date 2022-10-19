@@ -24,6 +24,9 @@
         "guzzlehttp/guzzle": "^7.0",
         "phpstan/phpstan": "^1.8"
     },
+    "suggest": {
+        "guzzlehttp/guzzle": "We suggest to use Guzzle as PSR-18 HTTP library"
+    },
     "autoload": {
         "psr-4": {
             "Elastic\\EnterpriseSearch\\": "src/"
