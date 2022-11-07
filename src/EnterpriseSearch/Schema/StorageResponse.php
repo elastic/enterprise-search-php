@@ -14,16 +14,23 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 
 /**
  * @generated This file is generated, please do not edit
  */
-class SearchSettings
+class StorageResponse
 {
-	public SearchBoosts $boosts;
-	public SearchFields $search_fields;
-	public SimpleObject $result_fields;
-	public int $precision;
-	public bool $precision_enabled;
+	public array $indices;
+	public StorageSummary $summary;
+
+
+	/**
+	 * @param IndexInfo[] $indices
+	 */
+	public function __construct(array $indices, StorageSummary $summary)
+	{
+		$this->indices = $indices;
+		$this->summary = $summary;
+	}
 }

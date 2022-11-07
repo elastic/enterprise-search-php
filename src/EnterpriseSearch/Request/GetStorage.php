@@ -14,16 +14,21 @@
 
 declare(strict_types=1);
 
-namespace Elastic\EnterpriseSearch\AppSearch\Schema;
+namespace Elastic\EnterpriseSearch\EnterpriseSearch\Request;
+
+use Elastic\EnterpriseSearch\Request\Request;
 
 /**
+ * Get information on the application indices and the space used
+ *
+ * @see https://www.elastic.co/guide/en/enterprise-search/current/storage-api.html#get-storage-api
  * @generated This file is generated, please do not edit
  */
-class SearchSettings
+class GetStorage extends Request
 {
-	public SearchBoosts $boosts;
-	public SearchFields $search_fields;
-	public SimpleObject $result_fields;
-	public int $precision;
-	public bool $precision_enabled;
+	public function __construct()
+	{
+		$this->method = 'GET';
+		$this->path = "/api/ent/v1/internal/storage";
+	}
 }
