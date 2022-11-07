@@ -35,7 +35,7 @@ class SearchExplain extends Request
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
-		$this->path = "/api/as/v0/engines/$engine_name/search_explain";
+		$this->path = "/api/as/v1/engines/$engine_name/search_explain";
 		$this->headers['Content-Type'] = 'application/json';
 		$this->body = $search_request_params;
 	}

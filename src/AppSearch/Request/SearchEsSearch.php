@@ -29,13 +29,15 @@ class SearchEsSearch extends Request
 {
 	/**
 	 * @param string $engineName Name of the engine
+	 * @param string $authorization The Elasticsearch token API
 	 * @param EsSearchParams $es_search_params
 	 */
-	public function __construct(string $engineName, EsSearchParams $es_search_params = null)
+	public function __construct(string $engineName, string $authorization, EsSearchParams $es_search_params = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
-		$this->path = "/api/as/v0/engines/$engine_name/elasticsearch/_search";
+		$this->headers['Authorization'] = $authorization;
+		$this->path = "/api/as/v1/engines/$engine_name/elasticsearch/_search";
 		$this->headers['Content-Type'] = 'application/json';
 		$this->body = $es_search_params;
 	}

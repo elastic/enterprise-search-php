@@ -82,6 +82,39 @@ class Endpoints extends AbstractEndpoints
 
 
 	/**
+	 * Get information on the application indices and the space used
+	 *
+	 * @see https://www.elastic.co/guide/en/enterprise-search/current/storage-api.html#get-storage-api
+	 */
+	public function getStorage(Request\GetStorage $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Get information on the outdated application indices
+	 *
+	 * @see https://www.elastic.co/guide/en/enterprise-search/current/storage-api.html#get-stale-storage-api
+	 */
+	public function getStaleStorage(Request\GetStaleStorage $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
+	 * Cleanup outdated application indices
+	 *
+	 * @see https://www.elastic.co/guide/en/enterprise-search/current/storage-api.html#delete-stale-storage-api
+	 */
+	public function deleteStaleStorage(Request\DeleteStaleStorage $request): Response
+	{
+		return new Response($this->transport->sendRequest($request->getRequest()));
+	}
+
+
+	/**
 	 * Get version information for this server
 	 *
 	 * @see https://www.elastic.co/guide/en/enterprise-search/current/monitoring-apis.html#monitoring-apis-version-api
