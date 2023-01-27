@@ -37,7 +37,7 @@ class EsqueuesMeJobInfo
 		int $processing_latency,
 		int $time_since_last_scheduled,
 		int $time_since_last_processed,
-		int $total_processed
+		int $total_processed,
 	) {
 		$this->created_at = $created_at;
 		$this->scheduled_at = $scheduled_at;

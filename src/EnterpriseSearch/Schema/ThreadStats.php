@@ -31,7 +31,7 @@ class ThreadStats
 		int $daemon_thread_count,
 		int $peak_thread_count,
 		int $thread_count,
-		int $total_started_thread_count
+		int $total_started_thread_count,
 	) {
 		$this->daemon_thread_count = $daemon_thread_count;
 		$this->peak_thread_count = $peak_thread_count;

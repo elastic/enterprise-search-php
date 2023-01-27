@@ -33,7 +33,7 @@ class CreateExternalIdentity extends Request
 	 */
 	public function __construct(
 		string $contentSourceId,
-		ExternalIdentityCreateDefinition $external_identity_create_definition
+		ExternalIdentityCreateDefinition $external_identity_create_definition,
 	) {
 		$this->method = 'POST';
 		$content_source_id = urlencode($contentSourceId);

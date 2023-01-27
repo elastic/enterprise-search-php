@@ -33,7 +33,7 @@ class ListAdaptiveRelevanceSuggestions extends Request
 	 */
 	public function __construct(
 		string $engineName,
-		AdaptiveRelevanceSuggestionParams $adaptive_relevance_suggestion_params = null
+		AdaptiveRelevanceSuggestionParams $adaptive_relevance_suggestion_params = null,
 	) {
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

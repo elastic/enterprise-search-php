@@ -85,7 +85,7 @@ class ContentSource
 		array $groups,
 		string $name,
 		string $context,
-		bool $is_searchable
+		bool $is_searchable,
 	) {
 		$this->id = $id;
 		$this->service_type = $service_type;

@@ -29,7 +29,7 @@ class ConnectorPools
 	public function __construct(
 		ConnectorPool $extract_worker_pool,
 		ConnectorPool $publish_worker_pool,
-		ConnectorPool $subextract_worker_pool
+		ConnectorPool $subextract_worker_pool,
 	) {
 		$this->extract_worker_pool = $extract_worker_pool;
 		$this->publish_worker_pool = $publish_worker_pool;

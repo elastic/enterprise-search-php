@@ -35,7 +35,7 @@ class StatsResponse
 		HttpStats $http,
 		AppStats $app,
 		QueueStats $queues,
-		ConnectorStats $connectors
+		ConnectorStats $connectors,
 	) {
 		$this->cluster_uuid = $cluster_uuid;
 		$this->http = $http;

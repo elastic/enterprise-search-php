@@ -37,7 +37,7 @@ class CrawlerNodeStats
 		CrawlerStatusCodesInfo $status_codes,
 		CrawlerQueueSizesInfo $queue_size,
 		int $active_threads,
-		CrawlerWorkersInfo $workers
+		CrawlerWorkersInfo $workers,
 	) {
 		$this->pages_visited = $pages_visited;
 		$this->urls_allowed = $urls_allowed;

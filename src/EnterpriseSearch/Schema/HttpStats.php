@@ -31,7 +31,7 @@ class HttpStats
 		Connections $connections,
 		RequestDurationMs $request_duration_ms,
 		NetworkBytes $network_bytes,
-		Responses $responses
+		Responses $responses,
 	) {
 		$this->connections = $connections;
 		$this->request_duration_ms = $request_duration_ms;

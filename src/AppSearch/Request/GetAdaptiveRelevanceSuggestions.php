@@ -35,7 +35,7 @@ class GetAdaptiveRelevanceSuggestions extends Request
 	public function __construct(
 		string $engineName,
 		string $searchSuggestionQuery,
-		AdaptiveRelevanceSuggestionParams $adaptive_relevance_suggestion_params = null
+		AdaptiveRelevanceSuggestionParams $adaptive_relevance_suggestion_params = null,
 	) {
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

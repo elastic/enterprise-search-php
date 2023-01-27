@@ -37,7 +37,7 @@ class MemoryUsage
 		int $heap_used,
 		int $non_heap_committed,
 		int $non_heap_init,
-		int $object_pending_finalization_count
+		int $object_pending_finalization_count,
 	) {
 		$this->heap_committed = $heap_committed;
 		$this->heap_init = $heap_init;

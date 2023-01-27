@@ -35,7 +35,7 @@ class ExtractUrlExtractionResults
 		string $content_hash,
 		array $content_hash_fields,
 		SimpleObject $content_fields,
-		array $meta_tag_warnings
+		array $meta_tag_warnings,
 	) {
 		$this->content_hash = $content_hash;
 		$this->content_hash_fields = $content_hash_fields;

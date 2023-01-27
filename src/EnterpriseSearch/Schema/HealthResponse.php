@@ -38,7 +38,7 @@ class HealthResponse
 		string $name,
 		SystemInfo $system,
 		Version $version,
-		string $cluster_uuid
+		string $cluster_uuid,
 	) {
 		$this->filebeat = $filebeat;
 		$this->jvm = $jvm;

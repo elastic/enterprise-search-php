@@ -37,7 +37,7 @@ class ConnectorPool
 		bool $running,
 		int $size,
 		int $total_completed,
-		int $total_scheduled
+		int $total_scheduled,
 	) {
 		$this->busy = $busy;
 		$this->idle = $idle;

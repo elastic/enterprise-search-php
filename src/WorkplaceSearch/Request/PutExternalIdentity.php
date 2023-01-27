@@ -35,7 +35,7 @@ class PutExternalIdentity extends Request
 	public function __construct(
 		string $contentSourceId,
 		string $externalUserId,
-		ExternalIdentityUpdateDefinition $external_identity_update_definition
+		ExternalIdentityUpdateDefinition $external_identity_update_definition,
 	) {
 		$this->method = 'PUT';
 		$content_source_id = urlencode($contentSourceId);

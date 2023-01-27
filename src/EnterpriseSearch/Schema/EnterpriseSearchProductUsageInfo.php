@@ -19,20 +19,13 @@ namespace Elastic\EnterpriseSearch\EnterpriseSearch\Schema;
 /**
  * @generated This file is generated, please do not edit
  */
-class ProductUsageInfo
+class EnterpriseSearchProductUsageInfo
 {
-	public AppSearchProductUsageInfo $app_search;
-	public WorkplaceSearchProductUsageInfo $workplace_search;
-	public EnterpriseSearchProductUsageInfo $enterprise_search;
+	public int $total_search_indices;
 
 
-	public function __construct(
-		AppSearchProductUsageInfo $app_search,
-		WorkplaceSearchProductUsageInfo $workplace_search,
-		EnterpriseSearchProductUsageInfo $enterprise_search,
-	) {
-		$this->app_search = $app_search;
-		$this->workplace_search = $workplace_search;
-		$this->enterprise_search = $enterprise_search;
+	public function __construct(int $total_search_indices)
+	{
+		$this->total_search_indices = $total_search_indices;
 	}
 }

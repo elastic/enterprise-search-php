@@ -37,7 +37,7 @@ class CrawlRequestStatus
 		string $created_at,
 		?string $updated_at,
 		?string $begun_at,
-		EngineIdAndName $engine
+		EngineIdAndName $engine,
 	) {
 		$this->id = $id;
 		if (!in_array($status, ['success','failed','canceled','skipped','pending','suspended','starting','running','canceling','suspending'])) {

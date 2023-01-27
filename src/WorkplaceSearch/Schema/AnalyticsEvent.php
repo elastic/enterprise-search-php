@@ -55,7 +55,7 @@ class AnalyticsEvent
 		int $page,
 		string $content_source_id,
 		string $document_id,
-		int $rank
+		int $rank,
 	) {
 		if (!in_array($type, ['click','feedback'])) {
 			throw new InvalidArgumentException('The $type parameter must be one of these values: click,feedback');

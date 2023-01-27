@@ -44,7 +44,7 @@ class JvmInfo
 		int $uptime,
 		string $vm_name,
 		string $vm_vendor,
-		string $vm_version
+		string $vm_version,
 	) {
 		$this->memory_pools = $memory_pools;
 		$this->memory_usage = $memory_usage;

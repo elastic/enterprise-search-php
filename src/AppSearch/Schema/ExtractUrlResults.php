@@ -31,7 +31,7 @@ class ExtractUrlResults
 		ExtractUrlDownloadResults $download,
 		ExtractUrlExtractionResults $extraction,
 		ExtractUrlIndexingResults $indexing,
-		ExtractUrlDeduplicationResults $deduplication
+		ExtractUrlDeduplicationResults $deduplication,
 	) {
 		$this->download = $download;
 		$this->extraction = $extraction;
