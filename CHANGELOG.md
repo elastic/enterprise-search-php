@@ -1,5 +1,18 @@
 # Changelog
 
+## 8.7.0 (2023-04-04)
+
+Release compatible with Enterprise Search, App Search and Workplace Search 8.7.
+
+- Fixed incorrect property name `boost` for `SearchRequestParams` in AppSearch
+  [#35](https://github.com/elastic/enterprise-search-php/issues/35)
+- Fixed Document class in `AppSearch\Request\IndexDocuments`
+  [#30](https://github.com/elastic/enterprise-search-php/issues/30)
+
+## 8.6.0 (2023-01-27)
+
+Release compatible with Enterprise Search, App Search and Workplace Search 8.6.
+
 ## 8.5.0 (2022-11-07)
 
 Release compatible with Enterprise Search, App Search and Workplace Search 8.5.
