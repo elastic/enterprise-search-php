@@ -16,6 +16,7 @@ declare(strict_types=1);
 
 namespace Elastic\EnterpriseSearch\AppSearch\Request;
 
+use Elastic\EnterpriseSearch\AppSearch\Schema\Document;
 use Elastic\EnterpriseSearch\Request\Request;
 
 /**

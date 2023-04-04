@@ -23,7 +23,7 @@ class SearchRequestParams
 {
 	public string $query;
 	public SimpleObject $analytics;
-	public SearchBoosts $boost;
+	public SearchBoosts $boosts;
 	public SimpleObject $facets;
 	public SimpleObject $filters;
 	public SimpleObject $group;
