@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.7.1 (2023-06-01)
+
+- Removes Accept-Encoding (gzip) header when using Symfony HTTP client
+
 ## 8.7.0 (2023-04-04)
 
 Release compatible with Enterprise Search, App Search and Workplace Search 8.7.
