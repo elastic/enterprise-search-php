@@ -110,7 +110,9 @@ class Client
         if (!isset($config['meta-header']) || $config['meta-header']) {
             $transport->setElasticMetaHeader('ent', self::VERSION);
         }
-        $transport->setHeader('Accept-Encoding', 'gzip');
+        if (!$this->isSymfonyHttpClient($transport)) {
+            $transport->setHeader('Accept-Encoding', 'gzip');
+        }
     }
 
     /**
@@ -184,5 +186,16 @@ class Client
         throw new MissingParameterException(
             'You need to use an authentication method: username and password, token or apiKey'
         );
+    }
+
+    private function isSymfonyHttpClient(Transport $transport): bool
+    {
+        if (false !== strpos(get_class($transport->getClient()), 'Symfony\Component\HttpClient')) {
+            return true;
+        }
+        if (false !== strpos(get_class($transport->getAsyncClient()), 'Symfony\Component\HttpClient')) {
+            return true;
+        }
+        return false;
     }
 }
