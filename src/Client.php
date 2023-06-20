@@ -110,7 +110,6 @@ class Client
         if (!isset($config['meta-header']) || $config['meta-header']) {
             $transport->setElasticMetaHeader('ent', self::VERSION);
         }
-        $transport->setHeader('Accept-Encoding', 'gzip');
     }
 
     /**
