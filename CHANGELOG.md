@@ -1,6 +1,11 @@
 # Changelog
 
-# ## 8.8.0 (2023-06-09)
+## 8.8.1 (2023-08-17)
+
+- Fixed Client version 
+  [cc55620](https://github.com/elastic/enterprise-search-php/commit/cc5562058b5d6a525d9b51e11a14694366d94184)
+
+## 8.8.0 (2023-06-09)
 
 Release compatible with Enterprise Search, App Search and Workplace Search 8.8.
 
