@@ -36,6 +36,8 @@ class Response implements ResponseInterface, ArrayAccess
 
     protected string $asString;
 
+    protected MessageResponseInterface $response;
+
     /**
      * @throws ClientErrorResponseException if status code 4xx
      * @throws ServerErrorResponseException if status code 5xx
