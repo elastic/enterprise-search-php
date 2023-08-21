@@ -1,0 +1,11 @@
+[[release_notes_89]]
+=== 8.9 Release notes
+
+[discrete]
+[[release_notes_890]]
+=== 8.9.0 Release notes
+
+Release created to be compatible with the **8.9** API of https://www.elastic.co/enterprise-search[Enterprise Search], https://www.elastic.co/app-search/[App Search] and https://www.elastic.co/workplace-search[Workplace Search].
+
+- Fixed allow Document Creation Without Id for App Search https://github.com/elastic/enterprise-search-php/issues/33[#33]
+- Fixed nullable parameters in PHP generated classes https://github.com/elastic/enterprise-search-php/issues/40[#40]
