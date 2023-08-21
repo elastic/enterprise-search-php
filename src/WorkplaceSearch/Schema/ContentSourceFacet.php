@@ -24,8 +24,8 @@ class ContentSourceFacet
 {
 	public string $field;
 	public bool $enabled;
-	public string $display_name;
-	public string $transform;
+	public ?string $display_name;
+	public ?string $transform;
 
 
 	public function __construct(string $field, bool $enabled)

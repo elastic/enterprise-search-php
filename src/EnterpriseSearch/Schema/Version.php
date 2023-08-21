@@ -23,7 +23,7 @@ class Version
 {
 	public string $number;
 	public string $build_hash;
-	public string $build_date;
+	public ?string $build_date;
 
 
 	public function __construct(?string $build_date, string $build_hash, string $number)

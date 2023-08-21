@@ -23,6 +23,6 @@ namespace Elastic\EnterpriseSearch\WorkplaceSearch\Schema;
  */
 class ContentSourceIconDefinition
 {
-	public string $main_icon;
-	public string $alt_icon;
+	public ?string $main_icon;
+	public ?string $alt_icon;
 }

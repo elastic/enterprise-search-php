@@ -24,12 +24,12 @@ class ContentSourceDisplay
 	public string $title_field;
 	public string $url_field;
 	public string $color;
-	public string $description_field;
-	public string $subtitle_field;
-	public string $type_field;
-	public string $media_type_field;
-	public string $created_by_field;
-	public string $updated_by_field;
+	public ?string $description_field;
+	public ?string $subtitle_field;
+	public ?string $type_field;
+	public ?string $media_type_field;
+	public ?string $created_by_field;
+	public ?string $updated_by_field;
 	public array $detail_fields;
 
 

@@ -33,8 +33,12 @@ class PutCrawlerEntryPoint extends Request
 	 * @param string $entryPointId Crawler Entry Point identifier
 	 * @param EntryPoint $entry_point
 	 */
-	public function __construct(string $engineName, string $domainId, string $entryPointId, EntryPoint $entry_point = null)
-	{
+	public function __construct(
+		string $engineName,
+		string $domainId,
+		string $entryPointId,
+		EntryPoint $entry_point = null,
+	) {
 		$this->method = 'PUT';
 		$engine_name = urlencode($engineName);
 		$domain_id = urlencode($domainId);
