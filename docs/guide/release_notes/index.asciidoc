@@ -4,12 +4,22 @@
 [discrete]
 === 8.x
 
+* <<release_notes_89, 8.9.0 Release Notes>>
+* <<release_notes_88, 8.8.0 Release Notes>>
+* <<release_notes_87, 8.7.0 Release Notes>>
+* <<release_notes_86, 8.6.0 Release Notes>>
+* <<release_notes_85, 8.5.0 Release Notes>>
 * <<release_notes_84, 8.4.0 Release Notes>>
 * <<release_notes_83, 8.3.0 Release Notes>>
 * <<release_notes_82, 8.2.0 Release Notes>>
 * <<release_notes_81, 8.1.0 Release Notes>>
 * <<release_notes_80, 8.0.0 Release Notes>>
 
+include::89.asciidoc[]
+include::88.asciidoc[]
+include::87.asciidoc[]
+include::86.asciidoc[]
+include::85.asciidoc[]
 include::84.asciidoc[]
 include::83.asciidoc[]
 include::82.asciidoc[]
