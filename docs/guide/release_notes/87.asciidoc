@@ -1,0 +1,11 @@
+[[release_notes_87]]
+=== 8.7 Release notes
+
+[discrete]
+[[release_notes_870]]
+=== 8.7.0 Release notes
+
+Release created to be compatible with the **8.7** API of https://www.elastic.co/enterprise-search[Enterprise Search], https://www.elastic.co/app-search/[App Search] and https://www.elastic.co/workplace-search[Workplace Search].
+
+- Fixed incorrect property name `boost` for `SearchRequestParams` in AppSearch https://github.com/elastic/enterprise-search-php/issues/35[#35]
+- Fixed Document class in `AppSearch\Request\IndexDocuments` https://github.com/elastic/enterprise-search-php/issues/30[#30]

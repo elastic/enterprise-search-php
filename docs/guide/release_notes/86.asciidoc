@@ -1,0 +1,9 @@
+[[release_notes_86]]
+=== 8.6 Release notes
+
+[discrete]
+[[release_notes_860]]
+=== 8.6.0 Release notes
+
+Release created to be compatible with the **8.6** API of https://www.elastic.co/enterprise-search[Enterprise Search], https://www.elastic.co/app-search/[App Search] and https://www.elastic.co/workplace-search[Workplace Search].
+  

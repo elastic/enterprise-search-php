@@ -1,5 +1,14 @@
 # Changelog
 
+## 8.9.0 (2023-08-21)
+
+Release compatible with Enterprise Search, App Search and Workplace Search 8.9.0
+
+- Fixed allow Document Creation Without Id for App Search
+  [#33](https://github.com/elastic/enterprise-search-php/issues/33)
+- Fixed nullable parameters in PHP generated classes 
+  [#40](https://github.com/elastic/enterprise-search-php/issues/40)
+
 ## 8.8.1 (2023-08-17)
 
 - Fixed Client version 
