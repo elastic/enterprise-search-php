@@ -28,6 +28,6 @@ class ProcessCrawl
 	public array $domains;
 	public bool $process_all_domains;
 	public string $created_at;
-	public string $begun_at;
-	public string $completed_at;
+	public ?string $begun_at;
+	public ?string $completed_at;
 }

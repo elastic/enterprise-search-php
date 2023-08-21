@@ -21,8 +21,8 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
  */
 class ExtractUrlIndexingResults
 {
-	public string $document_id;
-	public object $document_fields;
+	public ?string $document_id;
+	public ?object $document_fields;
 
 
 	public function __construct(?string $document_id, ?object $document_fields)

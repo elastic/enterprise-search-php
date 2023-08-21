@@ -24,7 +24,7 @@ class Engine
 	public string $name;
 
 	/** Engine language (null for universal) */
-	public string $language;
+	public ?string $language;
 	public string $type;
 	public array $source_engines;
 	public int $document_count;

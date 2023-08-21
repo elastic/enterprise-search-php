@@ -26,5 +26,5 @@ class ContentSourceIndexingRule
 	public string $exclude;
 	public string $include;
 	public string $filter_type;
-	public array $fields;
+	public ?array $fields;
 }

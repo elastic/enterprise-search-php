@@ -53,5 +53,10 @@
         "phpstan": [
             "vendor/bin/phpstan analyse src tests"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     }
 }

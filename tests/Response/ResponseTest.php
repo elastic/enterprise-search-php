@@ -21,11 +21,17 @@ use Elastic\Transport\Exception\UnknownContentTypeException;
 use PHPUnit\Framework\MockObject\Builder\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use SimpleXMLElement;
 use stdClass;
 
 final class ResponseTest extends TestCase
 {
+    /**
+     * @var Stub
+     */
+    private $stream;
+
     /**
      * @var Stub
      */
@@ -38,6 +44,7 @@ final class ResponseTest extends TestCase
 
     public function setUp(): void
     {
+        $this->stream = $this->createStub(StreamInterface::class);
         $this->psr7Response = $this->createStub(ResponseInterface::class); 
         $this->response = new Response($this->psr7Response);
     }
@@ -65,8 +72,11 @@ final class ResponseTest extends TestCase
             ->with($this->equalTo('Content-Type'))
             ->willReturn($type);
 
-        $this->psr7Response->method('getBody')
+        $this->stream->method('__toString')
             ->willReturn($body);
+
+        $this->psr7Response->method('getBody')
+            ->willReturn($this->stream);
 
         $this->assertEquals($asArray, $this->response->asArray());
 
@@ -128,8 +138,11 @@ final class ResponseTest extends TestCase
             ->with($this->equalTo('Content-Type'))
             ->willReturn($type);
 
-        $this->psr7Response->method('getBody')
+        $this->stream->method('__toString')
             ->willReturn($body);
+
+        $this->psr7Response->method('getBody')
+            ->willReturn($this->stream);
 
         $this->assertEquals($asObject, $this->response->asObject());
     }
@@ -186,8 +199,11 @@ final class ResponseTest extends TestCase
             ->with($this->equalTo('Content-Type'))
             ->willReturn($type);
 
-        $this->psr7Response->method('getBody')
+        $this->stream->method('__toString')
             ->willReturn($body);
+
+        $this->psr7Response->method('getBody')
+            ->willReturn($this->stream);
 
         $this->assertEquals($asString, $this->response->asString());
     }
@@ -204,8 +220,11 @@ final class ResponseTest extends TestCase
             ->with($this->equalTo('Content-Type'))
             ->willReturn('xxx');
 
-        $this->psr7Response->method('getBody')
+        $this->stream->method('__toString')
             ->willReturn($body);
+
+        $this->psr7Response->method('getBody')
+            ->willReturn($this->stream);
 
         $this->assertEquals($body, (string) $this->response);
     }
@@ -248,8 +267,11 @@ final class ResponseTest extends TestCase
             ->with($this->equalTo('Content-Type'))
             ->willReturn($type);
 
-        $this->psr7Response->method('getBody')
+        $this->stream->method('__toString')
             ->willReturn($body);
+
+        $this->psr7Response->method('getBody')
+            ->willReturn($this->stream);
         
         $this->assertEquals($return($this->response), $value);
     }
@@ -264,8 +286,11 @@ final class ResponseTest extends TestCase
             ->with($this->equalTo('Content-Type'))
             ->willReturn('xxx');
 
-        $this->psr7Response->method('getBody')
+        $this->stream->method('__toString')
             ->willReturn('yyy: zzz');
+
+        $this->psr7Response->method('getBody')
+            ->willReturn($this->stream);
         
         $this->expectException(UnknownContentTypeException::class);
         $this->response['yyy'];
@@ -281,8 +306,11 @@ final class ResponseTest extends TestCase
             ->with($this->equalTo('Content-Type'))
             ->willReturn('application/json');
 
-        $this->psr7Response->method('getBody')
+        $this->stream->method('__toString')
             ->willReturn('{"foo":"bar"}');
+
+        $this->psr7Response->method('getBody')
+            ->willReturn($this->stream);
 
         $this->assertFalse(isset($this->response['baz']));
         $this->assertTrue(isset($this->response['foo']));
@@ -310,8 +338,11 @@ final class ResponseTest extends TestCase
             ->with($this->equalTo('Content-Type'))
             ->willReturn('application/json');
 
+        $this->stream->method('__toString')
+            ->willReturn('{"foo":"bar"}');
+
         $this->psr7Response->method('getBody')
-            ->willReturn('{ "foo" : "bar" }');
+            ->willReturn($this->stream);
 
         $this->assertEquals($this->response->foo, 'bar');
     }
@@ -326,8 +357,11 @@ final class ResponseTest extends TestCase
             ->with($this->equalTo('Content-Type'))
             ->willReturn('application/json');
 
+        $this->stream->method('__toString')
+            ->willReturn('{"foo":"bar"}');
+
         $this->psr7Response->method('getBody')
-            ->willReturn('{ "foo" : "bar" }');
+            ->willReturn($this->stream);
 
         $value = $this->response->bar;
         $this->assertNull($value);

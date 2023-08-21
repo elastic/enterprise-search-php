@@ -94,9 +94,9 @@ $result = $this->appSearch->search(
 print_r($result->asArray());
 ----------------------------
 
-=== Elasticsearch Search API (beta)
+=== Elasticsearch Search API
 
-This is a beta feature that can be used to search using the Elasticsearch API.
+Using this API you can search directly in App Search using the https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html[search API] of Elasticsearch.
 You can use the `Request\SearchEsSearch` to perform a https://www.elastic.co/guide/en/elasticsearch/reference/current/search-your-data.html[search query]
 using the Elasticsearch API.
 

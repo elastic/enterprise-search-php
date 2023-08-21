@@ -24,7 +24,7 @@ class TraceUrlEvent
 {
 	public string $timestamp;
 	public string $event_id;
-	public string $message;
+	public ?string $message;
 
 
 	public function __construct(string $timestamp, string $event_id, ?string $message)

@@ -28,8 +28,8 @@ class CrawlRequest
 	public string $type;
 	public string $status;
 	public string $created_at;
-	public string $begun_at;
-	public string $completed_at;
+	public ?string $begun_at;
+	public ?string $completed_at;
 
 
 	public function __construct(string $id, string $status, string $created_at, ?string $begun_at, ?string $completed_at)

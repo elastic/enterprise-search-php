@@ -68,7 +68,7 @@ class ContentSource
 	public int $document_count;
 
 	/** The date/time when documents were last indexed into this Content Source. This may be "null" if documents have not yet been indexed. Note, this field is not applicable to Remote Content Sources. */
-	public string $last_indexed_at;
+	public ?string $last_indexed_at;
 
 
 	/**

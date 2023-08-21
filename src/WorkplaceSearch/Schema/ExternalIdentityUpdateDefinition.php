@@ -26,10 +26,10 @@ class ExternalIdentityUpdateDefinition
 	public string $external_user_id;
 
 	/** A list of external user properties, where each property is an object with an attribute_name and attribute_value. */
-	public array $external_user_properties;
+	public ?array $external_user_properties;
 
 	/** A list of user permissions. */
-	public array $permissions;
+	public ?array $permissions;
 
 
 	public function __construct(string $external_user_id)

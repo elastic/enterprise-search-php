@@ -22,10 +22,10 @@ namespace Elastic\EnterpriseSearch\AppSearch\Schema;
 #[\AllowDynamicProperties]
 class Document
 {
-	public string $id;
+	public ?string $id;
 
 
-	public function __construct(string $id)
+	public function __construct(?string $id = null)
 	{
 		$this->id = $id;
 	}

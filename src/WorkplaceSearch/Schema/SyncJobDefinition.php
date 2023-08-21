@@ -30,8 +30,13 @@ class SyncJobDefinition
 	public string $last_updated_at;
 
 
-	public function __construct(string $id, string $job_type, string $status, string $created_at, string $last_updated_at)
-	{
+	public function __construct(
+		string $id,
+		string $job_type,
+		string $status,
+		string $created_at,
+		string $last_updated_at,
+	) {
 		$this->id = $id;
 		if (!in_array($job_type, ['full','incremental','delete','permissions'])) {
 			throw new InvalidArgumentException('The $job_type parameter must be one of these values: full,incremental,delete,permissions');

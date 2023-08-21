@@ -26,8 +26,8 @@ class CrawlRequestStatus
 	public string $id;
 	public string $status;
 	public string $created_at;
-	public string $updated_at;
-	public string $begun_at;
+	public ?string $updated_at;
+	public ?string $begun_at;
 	public EngineIdAndName $engine;
 
 
