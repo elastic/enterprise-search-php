@@ -11,7 +11,7 @@ RUN apt-get update && \
 RUN apt-get install -y \
         libzip-dev \
         zip \
-    && docker-php-ext-install zip 
+    && docker-php-ext-install zip
 
 # Print PHP version
 RUN php -v

@@ -29,8 +29,12 @@ set -euo pipefail
 echo -e "\033[34;1mINFO:\033[0m Take down node if called twice with the same arguments (DETACH=true) or on seperate terminals \033[0m"
 cleanup_node $es_node_name
 
-# Set vm.max_map_count kernel setting to 262144
-sudo sysctl -w vm.max_map_count=262144
+BUILDKITE=${BUILDKITE-false}
+
+# Set vm.max_map_count kernel setting to 262144 if we're in CI
+if [[ "$BUILDKITE" == "true" ]]; then
+  sudo sysctl -w vm.max_map_count=262144
+fi
 
 master_node_name=${es_node_name}
 cluster_name=${moniker}${suffix}
@@ -50,22 +54,18 @@ environment=($(cat <<-END
   --env action.destructive_requires_name=false
   --env ingest.geoip.downloader.enabled=false
   --env cluster.deprecation_indexing.enabled=false
-END
-))
-if [[ "$TEST_SUITE" == "platinum" ]]; then
-  environment+=($(cat <<-END
-    --env xpack.security.enabled=true
-    --env xpack.license.self_generated.type=trial
-    --env xpack.security.http.ssl.enabled=true
-    --env xpack.security.http.ssl.verification_mode=certificate
-    --env xpack.security.http.ssl.key=certs/testnode.key
-    --env xpack.security.http.ssl.certificate=certs/testnode.crt
-    --env xpack.security.http.ssl.certificate_authorities=certs/ca.crt
-    --env xpack.security.transport.ssl.enabled=true
-    --env xpack.security.transport.ssl.verification_mode=certificate
-    --env xpack.security.transport.ssl.key=certs/testnode.key
-    --env xpack.security.transport.ssl.certificate=certs/testnode.crt
-    --env xpack.security.transport.ssl.certificate_authorities=certs/ca.crt
+  --env xpack.security.enabled=true
+  --env xpack.license.self_generated.type=trial
+  --env xpack.security.http.ssl.enabled=true
+  --env xpack.security.http.ssl.verification_mode=certificate
+  --env xpack.security.http.ssl.key=certs/testnode.key
+  --env xpack.security.http.ssl.certificate=certs/testnode.crt
+  --env xpack.security.http.ssl.certificate_authorities=certs/ca.crt
+  --env xpack.security.transport.ssl.enabled=true
+  --env xpack.security.transport.ssl.verification_mode=certificate
+  --env xpack.security.transport.ssl.key=certs/testnode.key
+  --env xpack.security.transport.ssl.certificate=certs/testnode.crt
+  --env xpack.security.transport.ssl.certificate_authorities=certs/ca.crt
 END
 ))
   volumes+=($(cat <<-END
@@ -74,19 +74,8 @@ END
     --volume $ssl_ca:/usr/share/elasticsearch/config/certs/ca.crt
 END
 ))
-else
-  environment+=($(cat <<-END
-    --env node.roles=data,data_cold,data_content,data_frozen,data_hot,data_warm,ingest,master,ml,remote_cluster_client,transform
-    --env xpack.security.enabled=false
-    --env xpack.security.http.ssl.enabled=false
-END
-))
-fi
 
-cert_validation_flags=""
-if [[ "$TEST_SUITE" == "platinum" ]]; then
-  cert_validation_flags="--insecure --cacert /usr/share/elasticsearch/config/certs/ca.crt --resolve ${es_node_name}:443:127.0.0.1"
-fi
+cert_validation_flags="--insecure --cacert /usr/share/elasticsearch/config/certs/ca.crt --resolve ${es_node_name}:443:127.0.0.1"
 
 # Pull the container, retry on failures up to 5 times with
 # short delays between each attempt. Fixes most transient network errors.
@@ -142,5 +131,4 @@ END
   if wait_for_container "$es_node_name" "$network_name"; then
     echo -e "\033[32;1mSUCCESS:\033[0m Running on: $node_url\033[0m"
   fi
-
 done

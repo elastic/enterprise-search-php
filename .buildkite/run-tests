@@ -4,13 +4,12 @@
 # - Moved to .ci folder and seperated out `run-repository.sh`
 # - Add `$RUNSCRIPTS` env var for running Elasticsearch dependent products
 export CONTAINER_NAME=enterprise-search
-export RUNSCRIPTS=enterprise-search
 
 script_path=$(dirname $(realpath -s $0))
 source $script_path/functions/imports.sh
 set -euo pipefail
 
-echo "--- :elasticsearch: Starting Elasticsearch"
+echo "--- :docker: :elasticsearch: Starting Elasticsearch"
 DETACH=true bash $script_path/run-elasticsearch.sh
 
 echo "--- :docker: :elastic-enterprise-search: Starting Enterprise Search"

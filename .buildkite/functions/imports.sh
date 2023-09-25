@@ -18,7 +18,6 @@ require_stack_version
 if [[ -z $es_node_name ]]; then
   # only set these once
   set -euo pipefail
-  export RUNSCRIPTS=${RUNSCRIPTS-}
   export DETACH=${DETACH-false}
   export CLEANUP=${CLEANUP-false}
 

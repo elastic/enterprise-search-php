@@ -16,21 +16,17 @@ PHP_VERSION=${PHP_VERSION-8.0-cli}
 
 echo -e "\033[34;1mINFO:\033[0m VERSION: ${STACK_VERSION}\033[0m"
 echo -e "\033[34;1mINFO:\033[0m TEST_SUITE: ${TEST_SUITE}\033[0m"
-echo -e "\033[34;1mINFO:\033[0m RUNSCRIPTS: ${RUNSCRIPTS}\033[0m"
 
-echo -e "\033[34;1mINFO:\033[0m pinging Elasticsearch ..\033[0m"
+echo "--- :telephone_receiver: Pinging Elasticsearch :elasticsearch:"
 curl --insecure --fail $external_elasticsearch_url/_cluster/health?pretty
 
-if [[ "$RUNSCRIPTS" = *"enterprise-search"* ]]; then
-  enterprise_search_url="http://localhost:3002"
-  echo -e "\033[34;1mINFO:\033[0m pinging Enterprise Search ..\033[0m"
-  curl -I --fail $enterprise_search_url
-fi
+enterprise_search_url="http://localhost:3002"
+echo "--- :telephone_receiver: Pinging Enterprise Search :elastic-enterprise-search:"
+curl -I --fail $enterprise_search_url
 
 echo -e "\033[32;1mSUCCESS:\033[0m successfully started the ${STACK_VERSION} stack.\033[0m"
 
-echo -e "\033[1m>>>>> Build docker container >>>>>>>>>>>>>>>>>>>>>>>>>>>>>\033[0m"
-
+echo "--- :docker: :php: Building Docker image"
 docker build \
   --no-cache \
   --file $script_path/Dockerfile \
@@ -38,7 +34,7 @@ docker build \
   --build-arg PHP_VERSION=${PHP_VERSION} \
   .
 
-echo -e "\033[1m>>>>> Run test:integration >>>>>>>>>>>>>>>>>>>>>>>>>>>>>\033[0m"
+echo "--- :docker: :php: Running Client Container"
 
 repo=$(realpath $(dirname $(realpath -s $0))/../)
 
