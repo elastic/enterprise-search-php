@@ -1,4 +1,4 @@
-[[release_notes_810]]
+[[release_notes_8_10]]
 === 8.10 Release notes
 
 [discrete]
