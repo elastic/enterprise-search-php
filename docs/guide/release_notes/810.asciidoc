@@ -1,0 +1,8 @@
+[[release_notes_810]]
+=== 8.10 Release notes
+
+[discrete]
+[[release_notes_8100]]
+=== 8.10.0 Release notes
+
+Release created to be compatible with the **8.19** API of https://www.elastic.co/enterprise-search[Enterprise Search], https://www.elastic.co/app-search/[App Search] and https://www.elastic.co/workplace-search[Workplace Search].
