@@ -236,8 +236,7 @@ final class AppSearchTest extends TestCase
         ];
         
         $result = $this->appSearch->searchEsSearch(
-            (new Request\SearchEsSearch('test', $searchParams))
-                ->setAuthorization(getenv('ELASTICSEARCH_API_KEY'))
+            new Request\SearchEsSearch('test', getenv('ELASTICSEARCH_API_KEY'), $searchParams)
         );
         
         $this->assertCount(1, $result['hits']['hits']);
