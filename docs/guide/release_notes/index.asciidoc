@@ -4,7 +4,7 @@
 [discrete]
 === 8.x
 
-* <<release_notes_810, 8.10.0 Release Notes>>
+* <<release_notes_8_10, 8.10.0 Release Notes>>
 * <<release_notes_89, 8.9.0 Release Notes>>
 * <<release_notes_88, 8.8.0 Release Notes>>
 * <<release_notes_87, 8.7.0 Release Notes>>
