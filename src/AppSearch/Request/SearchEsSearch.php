@@ -36,7 +36,7 @@ class SearchEsSearch extends Request
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);
-		$this->headers['Authorization'] = $authorization;
+		$this->setAuthorization($authorization);
 		$this->path = "/api/as/v1/engines/$engine_name/elasticsearch/_search";
 		$this->headers['Content-Type'] = 'application/json';
 		$this->body = $es_search_params;
