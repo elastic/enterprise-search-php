@@ -1,0 +1,22 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: buildkite-pipeline-enterprise-search-php
+spec:
+  implementation:
+    apiVersion: buildkite.elastic.dev/v1
+    kind: Pipeline
+    metadata:
+      description: Enterprise Search PHP Client
+      name: enterprise-search-php
+    spec:
+      default_branch: null
+      repository: elastic/enterprise-search-php
+      teams:
+        devtools-team:
+          access_level: MANAGE_BUILD_AND_READ
+        everyone:
+          access_level: READ_ONLY
+  owner: group:devtools-team
+  type: buildkite-pipeline
