@@ -2,8 +2,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: d6fb0a12-5578-4671-a2dc-52892dd058c2
-  namespace: terrazzo-local
+  name: buildkite-pipeline-enterprise-search-php
 spec:
   implementation:
     apiVersion: buildkite.elastic.dev/v1
@@ -15,7 +14,8 @@ spec:
       default_branch: null
       repository: elastic/enterprise-search-php
       teams:
-        devtools-team: {}
+        devtools-team:
+          access_level: MANAGE_BUILD_AND_READ
         everyone:
           access_level: READ_ONLY
   owner: group:devtools-team
