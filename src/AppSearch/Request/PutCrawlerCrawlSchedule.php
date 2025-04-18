@@ -31,7 +31,7 @@ class PutCrawlerCrawlSchedule extends Request
 	 * @param string $engineName Name of the engine
 	 * @param CrawlSchedule $crawl_schedule
 	 */
-	public function __construct(string $engineName, CrawlSchedule $crawl_schedule = null)
+	public function __construct(string $engineName, ?CrawlSchedule $crawl_schedule = null)
 	{
 		$this->method = 'PUT';
 		$engine_name = urlencode($engineName);

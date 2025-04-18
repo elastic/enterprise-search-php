@@ -31,7 +31,7 @@ class Search extends Request
 	 * @param string $engineName Name of the engine
 	 * @param SearchRequestParams $search_request_params
 	 */
-	public function __construct(string $engineName, SearchRequestParams $search_request_params = null)
+	public function __construct(string $engineName, ?SearchRequestParams $search_request_params = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

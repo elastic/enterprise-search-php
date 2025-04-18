@@ -32,7 +32,7 @@ class SearchEsSearch extends Request
 	 * @param string $authorization The Elasticsearch token API
 	 * @param EsSearchParams $es_search_params
 	 */
-	public function __construct(string $engineName, string $authorization, EsSearchParams $es_search_params = null)
+	public function __construct(string $engineName, string $authorization, ?EsSearchParams $es_search_params = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

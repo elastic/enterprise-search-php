@@ -31,7 +31,7 @@ class MultiSearch extends Request
 	 * @param string $engineName Name of the engine
 	 * @param MultiSearchData $multi_search_data
 	 */
-	public function __construct(string $engineName, MultiSearchData $multi_search_data = null)
+	public function __construct(string $engineName, ?MultiSearchData $multi_search_data = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

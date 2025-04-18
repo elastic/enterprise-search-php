@@ -33,7 +33,7 @@ class PutCrawlerSitemap extends Request
 	 * @param string $sitemapId Sitemap ID
 	 * @param Sitemap $sitemap
 	 */
-	public function __construct(string $engineName, string $domainId, string $sitemapId, Sitemap $sitemap = null)
+	public function __construct(string $engineName, string $domainId, string $sitemapId, ?Sitemap $sitemap = null)
 	{
 		$this->method = 'PUT';
 		$engine_name = urlencode($engineName);

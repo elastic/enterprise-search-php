@@ -31,7 +31,7 @@ class GetTopQueriesAnalytics extends Request
 	 * @param string $engineName Name of the engine
 	 * @param AnalyticsQueriesParams $analytics_queries_params
 	 */
-	public function __construct(string $engineName, AnalyticsQueriesParams $analytics_queries_params = null)
+	public function __construct(string $engineName, ?AnalyticsQueriesParams $analytics_queries_params = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

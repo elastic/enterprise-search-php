@@ -30,7 +30,7 @@ class CreateEngine extends Request
 	/**
 	 * @param Engine $engine
 	 */
-	public function __construct(Engine $engine = null)
+	public function __construct(?Engine $engine = null)
 	{
 		$this->method = 'POST';
 		$this->path = "/api/as/v1/engines";

@@ -32,7 +32,7 @@ class PutCuration extends Request
 	 * @param string $curationId Curation ID
 	 * @param Curation $curation
 	 */
-	public function __construct(string $engineName, string $curationId, Curation $curation = null)
+	public function __construct(string $engineName, string $curationId, ?Curation $curation = null)
 	{
 		$this->method = 'PUT';
 		$engine_name = urlencode($engineName);

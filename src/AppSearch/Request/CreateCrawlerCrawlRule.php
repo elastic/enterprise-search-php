@@ -32,7 +32,7 @@ class CreateCrawlerCrawlRule extends Request
 	 * @param string $domainId Crawler Domain ID
 	 * @param CrawlRule $crawl_rule
 	 */
-	public function __construct(string $engineName, string $domainId, CrawlRule $crawl_rule = null)
+	public function __construct(string $engineName, string $domainId, ?CrawlRule $crawl_rule = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

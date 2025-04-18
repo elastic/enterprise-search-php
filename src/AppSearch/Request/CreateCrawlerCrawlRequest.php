@@ -31,7 +31,7 @@ class CreateCrawlerCrawlRequest extends Request
 	 * @param string $engineName Name of the engine
 	 * @param CrawlRequestOverrides $crawl_request_overrides
 	 */
-	public function __construct(string $engineName, CrawlRequestOverrides $crawl_request_overrides = null)
+	public function __construct(string $engineName, ?CrawlRequestOverrides $crawl_request_overrides = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

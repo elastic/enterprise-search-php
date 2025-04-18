@@ -30,7 +30,7 @@ class ListSynonymSets extends Request
 	/**
 	 * @param SynonymsListDefinition $synonyms_list_definition
 	 */
-	public function __construct(SynonymsListDefinition $synonyms_list_definition = null)
+	public function __construct(?SynonymsListDefinition $synonyms_list_definition = null)
 	{
 		$this->method = 'GET';
 		$this->path = "/api/ws/v1/synonyms";

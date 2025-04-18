@@ -32,7 +32,7 @@ class PutCrawlerDomain extends Request
 	 * @param string $domainId Crawler Domain ID
 	 * @param Domain $domain
 	 */
-	public function __construct(string $engineName, string $domainId, Domain $domain = null)
+	public function __construct(string $engineName, string $domainId, ?Domain $domain = null)
 	{
 		$this->method = 'PUT';
 		$engine_name = urlencode($engineName);

@@ -37,7 +37,7 @@ class PutCrawlerEntryPoint extends Request
 		string $engineName,
 		string $domainId,
 		string $entryPointId,
-		EntryPoint $entry_point = null,
+		?EntryPoint $entry_point = null,
 	) {
 		$this->method = 'PUT';
 		$engine_name = urlencode($engineName);

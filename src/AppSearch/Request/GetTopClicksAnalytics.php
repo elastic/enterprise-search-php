@@ -31,7 +31,7 @@ class GetTopClicksAnalytics extends Request
 	 * @param string $engineName Name of the engine
 	 * @param AnalyticsClicksParams $analytics_clicks_params
 	 */
-	public function __construct(string $engineName, AnalyticsClicksParams $analytics_clicks_params = null)
+	public function __construct(string $engineName, ?AnalyticsClicksParams $analytics_clicks_params = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

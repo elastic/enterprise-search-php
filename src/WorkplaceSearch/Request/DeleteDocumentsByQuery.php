@@ -31,7 +31,7 @@ class DeleteDocumentsByQuery extends Request
 	 * @param string $contentSourceId Unique ID for a Custom API source, provided upon creation of a Custom API Source
 	 * @param DocumentsDeleteDefinition $documents_delete_definition
 	 */
-	public function __construct(string $contentSourceId, DocumentsDeleteDefinition $documents_delete_definition = null)
+	public function __construct(string $contentSourceId, ?DocumentsDeleteDefinition $documents_delete_definition = null)
 	{
 		$this->method = 'DELETE';
 		$content_source_id = urlencode($contentSourceId);

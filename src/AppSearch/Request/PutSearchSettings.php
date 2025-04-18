@@ -31,7 +31,7 @@ class PutSearchSettings extends Request
 	 * @param string $engineName Name of the engine
 	 * @param SearchSettings $search_settings
 	 */
-	public function __construct(string $engineName, SearchSettings $search_settings = null)
+	public function __construct(string $engineName, ?SearchSettings $search_settings = null)
 	{
 		$this->method = 'PUT';
 		$engine_name = urlencode($engineName);

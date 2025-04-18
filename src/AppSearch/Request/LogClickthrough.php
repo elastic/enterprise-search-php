@@ -31,7 +31,7 @@ class LogClickthrough extends Request
 	 * @param string $engineName Name of the engine
 	 * @param ClickParams $click_params
 	 */
-	public function __construct(string $engineName, ClickParams $click_params = null)
+	public function __construct(string $engineName, ?ClickParams $click_params = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

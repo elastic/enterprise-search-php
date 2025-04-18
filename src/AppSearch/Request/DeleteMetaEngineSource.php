@@ -30,7 +30,7 @@ class DeleteMetaEngineSource extends Request
 	 * @param string $engineName Name of the engine
 	 * @param string[] $sourceEngines
 	 */
-	public function __construct(string $engineName, array $sourceEngines = null)
+	public function __construct(string $engineName, ?array $sourceEngines = null)
 	{
 		$this->method = 'DELETE';
 		$engine_name = urlencode($engineName);

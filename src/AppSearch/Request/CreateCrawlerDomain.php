@@ -31,7 +31,7 @@ class CreateCrawlerDomain extends Request
 	 * @param string $engineName Name of the engine
 	 * @param Domain $domain
 	 */
-	public function __construct(string $engineName, Domain $domain = null)
+	public function __construct(string $engineName, ?Domain $domain = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

@@ -31,7 +31,7 @@ class CreateCrawlerProcessCrawl extends Request
 	 * @param string $engineName Name of the engine
 	 * @param ProcessCrawlParameters $process_crawl_parameters
 	 */
-	public function __construct(string $engineName, ProcessCrawlParameters $process_crawl_parameters = null)
+	public function __construct(string $engineName, ?ProcessCrawlParameters $process_crawl_parameters = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

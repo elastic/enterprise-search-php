@@ -31,7 +31,7 @@ class ListDocuments extends Request
 	 * @param string $contentSourceId Unique ID for a Custom API source, provided upon creation of a Custom API Source
 	 * @param DocumentsApiQuery $documents_api_query
 	 */
-	public function __construct(string $contentSourceId, DocumentsApiQuery $documents_api_query = null)
+	public function __construct(string $contentSourceId, ?DocumentsApiQuery $documents_api_query = null)
 	{
 		$this->method = 'POST';
 		$content_source_id = urlencode($contentSourceId);

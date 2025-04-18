@@ -31,7 +31,7 @@ class IndexDocuments extends Request
 	 * @param string $engineName Name of the engine
 	 * @param Document[] $documents
 	 */
-	public function __construct(string $engineName, array $documents = null)
+	public function __construct(string $engineName, ?array $documents = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

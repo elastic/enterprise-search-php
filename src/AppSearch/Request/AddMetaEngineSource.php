@@ -30,7 +30,7 @@ class AddMetaEngineSource extends Request
 	 * @param string $engineName Name of the engine
 	 * @param string[] $sourceEngines
 	 */
-	public function __construct(string $engineName, array $sourceEngines = null)
+	public function __construct(string $engineName, ?array $sourceEngines = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

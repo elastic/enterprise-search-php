@@ -33,7 +33,7 @@ class PutCrawlerCrawlRule extends Request
 	 * @param string $crawlRuleId Crawl Rule ID
 	 * @param CrawlRule $crawl_rule
 	 */
-	public function __construct(string $engineName, string $domainId, string $crawlRuleId, CrawlRule $crawl_rule = null)
+	public function __construct(string $engineName, string $domainId, string $crawlRuleId, ?CrawlRule $crawl_rule = null)
 	{
 		$this->method = 'PUT';
 		$engine_name = urlencode($engineName);

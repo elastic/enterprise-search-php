@@ -31,7 +31,7 @@ class PutSchema extends Request
 	 * @param string $engineName Name of the engine
 	 * @param SchemaUpdateRequest $schema
 	 */
-	public function __construct(string $engineName, SchemaUpdateRequest $schema = null)
+	public function __construct(string $engineName, ?SchemaUpdateRequest $schema = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

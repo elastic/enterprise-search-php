@@ -32,7 +32,7 @@ class CreateCrawlerEntryPoint extends Request
 	 * @param string $domainId Crawler Domain ID
 	 * @param EntryPoint $entry_point
 	 */
-	public function __construct(string $engineName, string $domainId, EntryPoint $entry_point = null)
+	public function __construct(string $engineName, string $domainId, ?EntryPoint $entry_point = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

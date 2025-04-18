@@ -31,7 +31,7 @@ class QuerySuggestion extends Request
 	 * @param string $engineName Name of the engine
 	 * @param QuerySuggestionRequest $query_suggestion_request
 	 */
-	public function __construct(string $engineName, QuerySuggestionRequest $query_suggestion_request = null)
+	public function __construct(string $engineName, ?QuerySuggestionRequest $query_suggestion_request = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

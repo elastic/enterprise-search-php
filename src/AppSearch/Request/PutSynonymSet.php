@@ -32,7 +32,7 @@ class PutSynonymSet extends Request
 	 * @param string $synonymSetId Synonym Set ID
 	 * @param SynonymSet $synonym_set
 	 */
-	public function __construct(string $engineName, string $synonymSetId, SynonymSet $synonym_set = null)
+	public function __construct(string $engineName, string $synonymSetId, ?SynonymSet $synonym_set = null)
 	{
 		$this->method = 'PUT';
 		$engine_name = urlencode($engineName);

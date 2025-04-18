@@ -33,7 +33,7 @@ class PutAdaptiveRelevanceSettings extends Request
 	 */
 	public function __construct(
 		string $engineName,
-		AdaptiveRelevanceSettingsObject $adaptive_relevance_settings_object = null,
+		?AdaptiveRelevanceSettingsObject $adaptive_relevance_settings_object = null,
 	) {
 		$this->method = 'PUT';
 		$engine_name = urlencode($engineName);

@@ -30,7 +30,7 @@ class DeleteDocuments extends Request
 	 * @param string $engineName Name of the engine
 	 * @param string[] $documentIds
 	 */
-	public function __construct(string $engineName, array $documentIds = null)
+	public function __construct(string $engineName, ?array $documentIds = null)
 	{
 		$this->method = 'DELETE';
 		$engine_name = urlencode($engineName);

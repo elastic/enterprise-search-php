@@ -30,7 +30,7 @@ class PutAdaptiveRelevanceSuggestions extends Request
 	 * @param string $engineName Name of the engine
 	 * @param AdaptiveRelevanceSuggestionBulkUpdateParam[] $adaptive_relevance_suggestion_bulk_update_param_list
 	 */
-	public function __construct(string $engineName, array $adaptive_relevance_suggestion_bulk_update_param_list = null)
+	public function __construct(string $engineName, ?array $adaptive_relevance_suggestion_bulk_update_param_list = null)
 	{
 		$this->method = 'PUT';
 		$engine_name = urlencode($engineName);

@@ -31,7 +31,7 @@ class PutApiKey extends Request
 	 * @param string $apiKeyName Name of an API key
 	 * @param ApiKey $api_key
 	 */
-	public function __construct(string $apiKeyName, ApiKey $api_key = null)
+	public function __construct(string $apiKeyName, ?ApiKey $api_key = null)
 	{
 		$this->method = 'PUT';
 		$api_key_name = urlencode($apiKeyName);

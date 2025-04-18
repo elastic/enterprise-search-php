@@ -31,7 +31,7 @@ class CreateCuration extends Request
 	 * @param string $engineName Name of the engine
 	 * @param Curation $curation
 	 */
-	public function __construct(string $engineName, Curation $curation = null)
+	public function __construct(string $engineName, ?Curation $curation = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

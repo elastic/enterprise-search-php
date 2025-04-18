@@ -31,7 +31,7 @@ class GetCountAnalytics extends Request
 	 * @param string $engineName Name of the engine
 	 * @param AnalyticsCountsParams $analytics_counts_params
 	 */
-	public function __construct(string $engineName, AnalyticsCountsParams $analytics_counts_params = null)
+	public function __construct(string $engineName, ?AnalyticsCountsParams $analytics_counts_params = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

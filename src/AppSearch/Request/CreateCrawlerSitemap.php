@@ -32,7 +32,7 @@ class CreateCrawlerSitemap extends Request
 	 * @param string $domainId Crawler Domain ID
 	 * @param Sitemap $sitemap
 	 */
-	public function __construct(string $engineName, string $domainId, Sitemap $sitemap = null)
+	public function __construct(string $engineName, string $domainId, ?Sitemap $sitemap = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

@@ -31,7 +31,7 @@ class CreateSynonymSet extends Request
 	 * @param string $engineName Name of the engine
 	 * @param SynonymSet $synonym_set
 	 */
-	public function __construct(string $engineName, SynonymSet $synonym_set = null)
+	public function __construct(string $engineName, ?SynonymSet $synonym_set = null)
 	{
 		$this->method = 'POST';
 		$engine_name = urlencode($engineName);

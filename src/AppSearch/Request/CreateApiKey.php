@@ -30,7 +30,7 @@ class CreateApiKey extends Request
 	/**
 	 * @param ApiKey $api_key
 	 */
-	public function __construct(ApiKey $api_key = null)
+	public function __construct(?ApiKey $api_key = null)
 	{
 		$this->method = 'POST';
 		$this->path = "/api/as/v1/credentials";
