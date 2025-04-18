@@ -1,0 +1,13 @@
+[[release_notes_8_18]]
+=== 8.18 Release notes
+
+[discrete]
+[[release_notes_8180]]
+=== 8.18.0 Release notes
+
+Release created to be compatible with the **8.18** API of https://www.elastic.co/enterprise-search[Enterprise Search], https://www.elastic.co/app-search/[App Search] and https://www.elastic.co/workplace-search[Workplace Search].
+
+This is the last version of 8.x, Enterprise Search will be discontinued in 9.0.
+
+Read https://github.com/elastic/enterprise-search-php/blob/main/README.md[here] for more information.
+

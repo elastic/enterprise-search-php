@@ -1,5 +1,14 @@
 # Changelog
 
+## 8.18.0 (2025-04-18)
+
+Release compatible with Enterprise Search, App Search and Workplace Search 8.18.0.
+
+This is the last version of 8.x, Enterprise Search will be discontinued in 9.0.
+
+Read [here](https://github.com/elastic/enterprise-search-php/blob/main/README.md) for more information.
+
+
 ## 8.10.0 (2023-09-28)
 
 Release compatible with Enterprise Search, App Search and Workplace Search 8.10.0
