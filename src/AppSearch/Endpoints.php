@@ -87,7 +87,7 @@ class Endpoints extends AbstractEndpoints
 	 * @see https://www.elastic.co/guide/en/app-search/current/adaptive-relevance-api-reference.html#adaptive-relevance-api-post-engine-adaptive-relevance-suggestions-update-process-refresh
 	 */
 	public function refreshAdaptiveRelevanceUpdateProcess(
-		Request\RefreshAdaptiveRelevanceUpdateProcess $request,
+		Request\RefreshAdaptiveRelevanceUpdateProcess $request
 	): Response
 	{
 		return new Response($this->transport->sendRequest($request->getRequest()));
